@@ -21,7 +21,7 @@ using namespace glm;
 
 
 App::App(int argc, char** argv) : VRApp(argc, argv) {
-    lastTime = VRSystem::getTime();
+    _lastTime = VRSystem::getTime();
 }
 
 App::~App()
@@ -31,10 +31,9 @@ App::~App()
 
 void App::onAnalogChange(const VRAnalogEvent &event) {
     if (event.getName() == "FrameStart") {
-        lastTime = curFrameTime;
-        curFrameTime = event.getValue();
+        _lastTime = _curFrameTime;
+        _curFrameTime = event.getValue();
     }
-    
 }
 
 
@@ -48,7 +47,7 @@ void App::onButtonUp(const VRButtonEvent &event) {
     // to see exactly which button has been pressed down.
 }
 
-void App:onCursoMove(const VRCursorEvent &event){
+void App::onCursorMove(const VRCursorEvent &event){
     // This routine is called for all mouse move events. You can get the absolute position
     // or the relative position within the window scaled 0--1.
 }
@@ -63,14 +62,14 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
     if (renderState.isInitialRenderCall()) {
         //For windows, we need to initialize a few more things for it to recognize all of the
         // opengl calls.
-#ifndef __APPLE__
+        #ifndef __APPLE__
         glewExperimental = GL_TRUE;
         GLenum err = glewInit();
         if (GLEW_OK != err)
         {
             std::cout << "Error initializing GLEW." << std::endl;
         }
-        
+        #endif
         
         glEnable(GL_DEPTH_TEST);
         glClearDepth(1.0f);
@@ -104,6 +103,9 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     GLfloat windowHeight = renderState.index().getValue("WindowHeight");
     GLfloat windowWidth = renderState.index().getValue("WindowWidth");
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), windowWidth / windowHeight, 0.01f, 500.0f);
+    
+    // Set up model matrix;
+    glm::mat4 model = glm::mat4(1.0);
     
     // Update shader variables
     _shader.use();
