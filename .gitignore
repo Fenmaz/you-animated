@@ -1,32 +1,52 @@
-# Prerequisites
-*.d
+# data files
+data*/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# External junk
+.DS_Store
+_ReSharper*
+*.opensdf
+*.sdf
+*.dir
+*.vcxproj*
+*.sln
+*.bak
+Win32
+Debug
+Release
+*.pyc
 
-# Precompiled Headers
-*.gch
-*.pch
+# build files
+build*/
+install*/
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+cmake_uninstall.cmake
+Makefile
+external
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Local MinVR
+*log.txt
+*local.cfg
+*local.sh
+*local.vrsetup
+*local.*
+deps
 
-# Fortran module files
-*.mod
-*.smod
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# VIM
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
