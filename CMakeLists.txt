@@ -34,10 +34,12 @@ message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
 set(source_files
   src/main.cpp
   src/App.cpp
+  src/Model.cpp
 )
 
 set(header_files
   src/App.hpp
+  src/Model.h
 )
 
 set(extra_files
