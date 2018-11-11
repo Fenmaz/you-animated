@@ -1,6 +1,4 @@
 //
-//  main.cpp
-//
 //  Created by Mark Coretsopoulos on 10/26/18.
 //
 
