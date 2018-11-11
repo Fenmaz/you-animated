@@ -35,11 +35,13 @@ set(source_files
   src/main.cpp
   src/App.cpp
   src/Model.cpp
+  src/Mesh.cpp
 )
 
 set(header_files
   src/App.hpp
   src/Model.h
+  src/Mesh.h
 )
 
 set(extra_files
