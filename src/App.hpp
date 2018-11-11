@@ -64,6 +64,8 @@ protected:
     virtual void reloadShaders();
     basicgraphics::GLSLProgram _shader;
     
+    std::unique_ptr<Model> _modelMesh;
+    
 };
 
 

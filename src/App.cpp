@@ -59,14 +59,14 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
     if (renderState.isInitialRenderCall()) {
         //For windows, we need to initialize a few more things for it to recognize all of the
         // opengl calls.
-        #ifndef __APPLE__
+#ifndef __APPLE__
         glewExperimental = GL_TRUE;
         GLenum err = glewInit();
         if (GLEW_OK != err)
         {
             std::cout << "Error initializing GLEW." << std::endl;
         }
-        #endif
+#endif
         
         glEnable(GL_DEPTH_TEST);
         glClearDepth(1.0f);
@@ -82,6 +82,8 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
+        
+        _modelMesh.reset(new Model("Alfred.obj", 1.0, vec4(1.0)));
     }
 }
 
@@ -111,6 +113,8 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     _shader.setUniform("model_mat", model);
     _shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
     _shader.setUniform("eye_world", eye_world);
+    
+    _modelMesh->draw(_shader);
     
 }
 
