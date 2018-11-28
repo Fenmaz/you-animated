@@ -42,6 +42,7 @@ set(header_files
 
 set(extra_files
   README.md
+  resources/Alfred.obj
 )
 
 set_source_files_properties(${extra_files} PROPERTIES HEADER_FILE_ONLY TRUE)
@@ -101,10 +102,10 @@ if (WIN32)
 endif(WIN32)
 
 #copy resource files to build folder so that the executable can find them in the working directory
-#add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-#                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-#                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>
-#					   )
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>
+					   )
 			
 #copy the basic graphics resources to the build directory			
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD

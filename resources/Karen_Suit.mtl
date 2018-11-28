@@ -1,0 +1,123 @@
+# Blender3D MTL File: Karen_Suit.blend
+# Material Count: 11
+newmtl shoesole_mat_shoesoles_dif.tga
+Ns 76.470588
+Ka 0.002593 0.000000 0.007325
+Kd 0.800000 0.800000 0.800000
+Ks 1.500000 1.500000 1.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd shoesoles_dif.tga
+
+
+newmtl Face2_mat_Keren_Face_dif.tga
+Ns 17.647059
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.600000 0.600000 0.600000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Keren_Face_dif.tga
+
+
+newmtl Hair_mat_Karen_Hair_dif.tga
+Ns 47.058824
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 2.000000 1.141821 0.717896
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Karen_Hair_dif.tga
+
+
+newmtl Suit_mat_Karen_Suit_Dif.tga
+Ns 76.470588
+Ka 0.002593 0.000000 0.007325
+Kd 0.800000 0.800000 0.800000
+Ks 0.705516 0.703237 0.703237
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Karen_Suit_Dif.tga
+
+
+newmtl Insidemouth_Innermouth_dif.png
+Ns 145.098039
+Ka 0.002593 0.000000 0.007325
+Kd 0.800000 0.800000 0.800000
+Ks 1.000000 1.000000 1.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Innermouth_dif.png
+
+
+newmtl Eyelashes_Eyelashes.png
+Ns 37.254902
+Ka 0.000000 0.000000 0.000000
+Kd 0.478470 0.003045 0.003045
+Ks 1.000000 1.000000 1.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd Eyelashes.png
+
+
+newmtl Insidemouth_teeth_Innermouth_dif.png
+Ns 145.098039
+Ka 0.002593 0.000000 0.007325
+Kd 0.800000 0.800000 0.800000
+Ks 1.000000 1.000000 1.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd Innermouth_dif.png
+
+
+newmtl Suit2_mat_Karen_Suit_Dif.tga
+Ns 76.470588
+Ka 0.002593 0.000000 0.007325
+Kd 1.000000 1.000000 1.000000
+Ks 0.705516 0.703237 0.703237
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Karen_Suit_Dif.tga
+
+
+newmtl Eye_mat_Karen_Eye_dif.tga
+Ns 782.352941
+Ka 0.002593 0.000000 0.007325
+Kd 1.000000 1.000000 1.000000
+Ks 2.000000 2.000000 2.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Karen_Eye_dif.tga
+
+
+newmtl Face_mat_Keren_Face_dif.tga
+Ns 17.647059
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.600000 0.600000 0.600000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Keren_Face_dif.tga
+
+
+newmtl HelmetField_mat_Karen_HelmetField_dif
+Ns 76.470588
+Ka 0.002593 0.000000 0.007325
+Kd 0.800000 0.800000 0.800000
+Ks 1.500000 1.500000 1.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Karen_HelmetField_dif.tga
+
+
