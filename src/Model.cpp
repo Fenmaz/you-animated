@@ -140,8 +140,33 @@ namespace basicgraphics {
 	{
 		// Data to fill
 		std::vector<Mesh::Vertex> cpuVertexArray;
-		std::vector<int>			 cpuIndexArray;
-		std::vector<std::shared_ptr<Texture>  > textures;
+		std::vector<int> cpuIndexArray;
+		std::vector<std::shared_ptr<Texture>> textures;
+        
+        std::vector<Mesh::VertexBoneData> bones[mesh->mNumVertices];
+        
+        std::map<string, uint> boneMapping;
+        std::vector<Mesh::BoneInfo> boneInfo;
+        uint numBones = 0;
+        
+        for (uint i = 0 ; i < mesh->mNumBones ; i++) {
+            uint boneIndex = 0;
+            string boneName(mesh->mBones[i]->mName.data);
+            
+            if (boneMapping.find(boneName) == boneMapping.end()) {
+                boneIndex = numBones;
+                numBones++;
+                Mesh::BoneInfo bi;
+                boneInfo.push_back(bi);
+            }
+            else {
+                boneIndex = boneMapping[boneName];
+            }
+            
+            boneMapping[boneName] = boneIndex;
+            boneInfo[boneIndex].BoneOffset = mesh->mBones[i]->mOffsetMatrix;;
+            
+        }
 
 		// Walk through each of the mesh's vertices
 		for (GLuint i = 0; i < mesh->mNumVertices; i++)
@@ -199,7 +224,9 @@ namespace basicgraphics {
 		const int numVertices = cpuVertexArray.size();
 		const int cpuVertexByteSize = sizeof(Mesh::Vertex) * numVertices;
 		const int cpuIndexByteSize = sizeof(int) * cpuIndexArray.size();
+        
 		std::shared_ptr<Mesh> gpuMesh(new Mesh(textures, GL_TRIANGLES, GL_STATIC_DRAW, cpuVertexByteSize, cpuIndexByteSize, 0, cpuVertexArray, cpuIndexArray.size(), cpuIndexByteSize, &cpuIndexArray[0]));
+        
 		gpuMesh->setMaterialColor(_materialColor);
 		return gpuMesh;
 	}
