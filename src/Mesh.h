@@ -50,6 +50,7 @@ namespace basicgraphics {
         
         #define NUM_BONES_PER_VERTEX 4
         
+        
         struct VertexBoneData
         {
             uint IDs[NUM_BONES_PER_VERTEX];
@@ -67,6 +68,7 @@ namespace basicgraphics {
             void AddBoneData(uint BoneID, float Weight);
         };
         
+        
         struct BoneInfo {
             glm::mat4 BoneOffset;
             glm::mat4 FinalTransformation;
@@ -76,6 +78,7 @@ namespace basicgraphics {
                 FinalTransformation = glm::mat4(0.0);
             }
         };
+        
         
         struct Vertex {
             glm::vec3 position;
@@ -129,10 +132,6 @@ namespace basicgraphics {
         glm::vec4 _materialColor;
         
         std::vector<std::shared_ptr<Texture> > _textures;
-        
-        std::map<string, uint> _boneMapping;
-        uint _numBones;
-        std::vector<BoneInfo> _boneInfo;
     };
     
 }

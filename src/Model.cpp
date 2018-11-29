@@ -42,6 +42,7 @@ namespace basicgraphics {
 		// Create a logger instance for Console Output
 		Assimp::DefaultLogger::create("", severity, aiDefaultLogStream_STDOUT);
 
+        _numBones = 0;
 		int numIndices = 0;
 		importMesh(filename, numIndices, scale);
 	}
@@ -51,7 +52,9 @@ namespace basicgraphics {
 		Assimp::Logger::LogSeverity severity = Assimp::Logger::NORMAL;
 		// Create a logger instance for Console Output
 		Assimp::DefaultLogger::create("", severity, aiDefaultLogStream_STDOUT);
-
+        
+        _numBones = 0;
+        
 		importMeshFromString(fileContents);
 	}
 
@@ -94,29 +97,6 @@ namespace basicgraphics {
 
 	}
 
-	void Model::importMeshFromString(const std::string &fileContents) {
-		if (_importer.get() == nullptr) {
-			_importer.reset(new Assimp::Importer());
-		}
-
-		size_t size = sizeof(unsigned char) * fileContents.size();
-
-		const aiScene* scene = _importer->ReadFileFromMemory(fileContents.c_str(), size, aiProcessPreset_TargetRealtime_Quality, ".nff");
-		// If the import failed, report it
-		if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-		{
-			Assimp::DefaultLogger::get()->info(_importer->GetErrorString());
-			return;
-		}
-
-
-		glm::mat4 scaleMat(1.0);
-
-		this->processNode(scene->mRootNode, scene, scaleMat);
-
-		_importer->FreeScene();
-	}
-
 	// Processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
 	void Model::processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat)
 	{
@@ -144,27 +124,23 @@ namespace basicgraphics {
 		std::vector<std::shared_ptr<Texture>> textures;
         
         std::vector<Mesh::VertexBoneData> bones[mesh->mNumVertices];
-        
-        std::map<string, uint> boneMapping;
-        std::vector<Mesh::BoneInfo> boneInfo;
-        uint numBones = 0;
-        
+                
         for (uint i = 0 ; i < mesh->mNumBones ; i++) {
             uint boneIndex = 0;
             string boneName(mesh->mBones[i]->mName.data);
             
-            if (boneMapping.find(boneName) == boneMapping.end()) {
-                boneIndex = numBones;
-                numBones++;
+            if (_boneMapping.find(boneName) == _boneMapping.end()) {
+                boneIndex = _numBones;
+                _numBones++;
                 Mesh::BoneInfo bi;
-                boneInfo.push_back(bi);
+                _boneInfo.push_back(bi);
             }
             else {
-                boneIndex = boneMapping[boneName];
+                boneIndex = _boneMapping[boneName];
             }
             
-            boneMapping[boneName] = boneIndex;
-            boneInfo[boneIndex].BoneOffset = mesh->mBones[i]->mOffsetMatrix;;
+            _boneMapping[boneName] = boneIndex;
+            _boneInfo[boneIndex].BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
             
         }
 

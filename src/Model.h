@@ -72,10 +72,29 @@ namespace basicgraphics {
 		std::vector< std::shared_ptr<Texture> > _textures;
 
 		void importMesh(const std::string &filename, int &numIndices, const double scale);
-		void importMeshFromString(const std::string &fileContents);
 		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
 		std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat);
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
+        
+        std::map<string, uint> _boneMapping;
+        std::vector<Mesh::BoneInfo> _boneInfo;
+        uint _numBones;
+        
+        struct MeshEntry {
+            MeshEntry()
+            {
+                NumIndices    = 0;
+                BaseVertex    = 0;
+                BaseIndex     = 0;
+            }
+            
+            unsigned int NumIndices;
+            unsigned int BaseVertex;
+            unsigned int BaseIndex;
+        };
+        
+        std::vector<MeshEntry> _entries;
+
 	};
 
 }
