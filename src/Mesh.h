@@ -37,8 +37,8 @@
 
 #include "Texture.h"
 #include "GLSLProgram.h"
-#include <Vector>
-#include <Memory>
+//#include <Vector>
+//#include <Memory>
 
 namespace basicgraphics {
     
@@ -47,10 +47,51 @@ namespace basicgraphics {
     class Mesh : public std::enable_shared_from_this<Mesh>
     {
     public:
+        
+        #define NUM_BONES_PER_VERTEX 4
+        
+        
+        struct VertexBoneData
+        {
+            uint IDs[NUM_BONES_PER_VERTEX];
+            float Weights[NUM_BONES_PER_VERTEX];
+            
+            VertexBoneData() {
+                Reset();
+            };
+            
+            void Reset() {
+                std::memset(IDs, 0, sizeof(uint) * NUM_BONES_PER_VERTEX);
+                std::memset(Weights, 0, sizeof(Weights) * NUM_BONES_PER_VERTEX);
+            };
+            
+            void AddBoneData(uint BoneID, float Weight);
+        };
+        
+        
+        struct BoneInfo {
+            glm::mat4 BoneOffset;
+            glm::mat4 FinalTransformation;
+            
+            BoneInfo() {
+                BoneOffset = glm::mat4(0.0);
+                FinalTransformation = glm::mat4(0.0);
+            }
+        };
+        
+        
         struct Vertex {
             glm::vec3 position;
             glm::vec3 normal;
             glm::vec2 texCoord0;
+            VertexBoneData bones[NUM_BONES_PER_VERTEX];
+            
+            Vertex() {
+                position = glm::vec3(0.0);
+                normal = glm::vec3(0.0);
+                texCoord0 = glm::vec2(0.0);
+                std::memset(bones, 0, sizeof(VertexBoneData) * NUM_BONES_PER_VERTEX);
+            };
         };
         
         

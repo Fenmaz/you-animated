@@ -49,6 +49,10 @@ namespace basicgraphics {
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
         glEnableVertexAttribArray(2);
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texCoord0));
+        glEnableVertexAttribArray(3);
+        glVertexAttribIPointer(3, 4, GL_INT, sizeof(Vertex), (void*)offsetof(Vertex, bones));
+        glEnableVertexAttribArray(4);
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, bones));
         
         // Create indexstream
         glGenBuffers(1, &_indexVBO);
@@ -185,6 +189,19 @@ namespace basicgraphics {
         assert(_filledIndexByteSize <= _allocatedIndexByteSize);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexVBO);
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, startByteOffset, indexByteSize, index);
+    }
+    
+    void Mesh::VertexBoneData::AddBoneData(uint BoneID, float Weight) {
+        for (uint i = 0; i < (sizeof(IDs)/sizeof(*IDs)); i++) {
+            if (Weights[i] == 0.0) {
+                IDs[i] = BoneID;
+                Weights[i] = Weight;
+                return;
+            }
+        }
+        
+        // more bones than we have space for
+        assert(0);
     }
     
 }
