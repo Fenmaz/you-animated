@@ -44,19 +44,10 @@ namespace basicgraphics {
 
         _numBones = 0;
 		int numIndices = 0;
+        
 		importMesh(filename, numIndices, scale);
 	}
 
-	Model::Model(const std::string &fileContents, glm::vec4 materialColor /*=glm::vec4(1.0)*/) : _materialColor(materialColor)
-	{
-		Assimp::Logger::LogSeverity severity = Assimp::Logger::NORMAL;
-		// Create a logger instance for Console Output
-		Assimp::DefaultLogger::create("", severity, aiDefaultLogStream_STDOUT);
-        
-        _numBones = 0;
-        
-		importMeshFromString(fileContents);
-	}
 
 	Model::~Model()
 	{
@@ -85,11 +76,12 @@ namespace basicgraphics {
 			return;
 		}
 
-
 		glm::mat4 scaleMat(1.0);
 		scaleMat[0][0] = scale;
 		scaleMat[1][1] = scale;
 		scaleMat[2][2] = scale;
+        
+        _entries.resize(scene->mNumMeshes);
 
 		this->processNode(scene->mRootNode, scene, scaleMat);
 
