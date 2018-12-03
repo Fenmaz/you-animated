@@ -81,8 +81,7 @@ namespace basicgraphics {
 		scaleMat[1][1] = scale;
 		scaleMat[2][2] = scale;
         
-        _entries.resize(scene->mNumMeshes);
-
+        _globalInverseTransform = glm::inverse(aiMatrix4x4ToGlm(&scene->mRootNode->mTransformation));
 		this->processNode(scene->mRootNode, scene, scaleMat);
 
 		_importer->FreeScene();
@@ -114,9 +113,8 @@ namespace basicgraphics {
 		std::vector<Mesh::Vertex> cpuVertexArray;
 		std::vector<int> cpuIndexArray;
 		std::vector<std::shared_ptr<Texture>> textures;
-        
         std::vector<Mesh::VertexBoneData> bones[mesh->mNumVertices];
-                
+        
         for (uint i = 0 ; i < mesh->mNumBones ; i++) {
             uint boneIndex = 0;
             string boneName(mesh->mBones[i]->mName.data);
@@ -165,6 +163,7 @@ namespace basicgraphics {
 			cpuVertexArray.push_back(vertex);
 		}
 
+        // Process the index array
 		for (GLuint i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
@@ -173,6 +172,7 @@ namespace basicgraphics {
 				cpuIndexArray.push_back(face.mIndices[j]);
 			}
 		}
+        
 		// Process materials
 		if (scene->HasMaterials())
 		{

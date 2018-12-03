@@ -93,8 +93,7 @@ namespace basicgraphics {
             unsigned int BaseIndex;
         };
         
-        std::vector<MeshEntry> _entries;
-
+        glm::mat4 _globalInverseTransform;
 	};
 
 }
