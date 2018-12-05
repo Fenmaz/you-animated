@@ -44,19 +44,10 @@ namespace basicgraphics {
 
         _numBones = 0;
 		int numIndices = 0;
+        
 		importMesh(filename, numIndices, scale);
 	}
 
-	Model::Model(const std::string &fileContents, glm::vec4 materialColor /*=glm::vec4(1.0)*/) : _materialColor(materialColor)
-	{
-		Assimp::Logger::LogSeverity severity = Assimp::Logger::NORMAL;
-		// Create a logger instance for Console Output
-		Assimp::DefaultLogger::create("", severity, aiDefaultLogStream_STDOUT);
-        
-        _numBones = 0;
-        
-		importMeshFromString(fileContents);
-	}
 
 	Model::~Model()
 	{
@@ -85,12 +76,12 @@ namespace basicgraphics {
 			return;
 		}
 
-
 		glm::mat4 scaleMat(1.0);
 		scaleMat[0][0] = scale;
 		scaleMat[1][1] = scale;
 		scaleMat[2][2] = scale;
-
+        
+        _globalInverseTransform = glm::inverse(aiMatrix4x4ToGlm(&scene->mRootNode->mTransformation));
 		this->processNode(scene->mRootNode, scene, scaleMat);
 
 		_importer->FreeScene();
@@ -122,27 +113,6 @@ namespace basicgraphics {
 		std::vector<Mesh::Vertex> cpuVertexArray;
 		std::vector<int> cpuIndexArray;
 		std::vector<std::shared_ptr<Texture>> textures;
-        
-        std::vector<Mesh::VertexBoneData> bones[mesh->mNumVertices];
-                
-        for (uint i = 0 ; i < mesh->mNumBones ; i++) {
-            uint boneIndex = 0;
-            string boneName(mesh->mBones[i]->mName.data);
-            
-            if (_boneMapping.find(boneName) == _boneMapping.end()) {
-                boneIndex = _numBones;
-                _numBones++;
-                Mesh::BoneInfo bi;
-                _boneInfo.push_back(bi);
-            }
-            else {
-                boneIndex = _boneMapping[boneName];
-            }
-            
-            _boneMapping[boneName] = boneIndex;
-            _boneInfo[boneIndex].BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
-            
-        }
 
 		// Walk through each of the mesh's vertices
 		for (GLuint i = 0; i < mesh->mNumVertices; i++)
@@ -172,7 +142,37 @@ namespace basicgraphics {
 
 			cpuVertexArray.push_back(vertex);
 		}
+        
+        
+        for (uint i = 0 ; i < mesh->mNumBones ; i++) {
+            uint boneIndex = 0;
+            string boneName(mesh->mBones[i]->mName.data);
+            
+            if (_boneMapping.find(boneName) == _boneMapping.end()) {
+                boneIndex = _numBones;
+                _boneMapping[boneName] = boneIndex;
+                
+                BoneInfo bi;
+                _boneInfo.push_back(bi);
+                
+                _numBones++;
+            }
+            else {
+                boneIndex = _boneMapping[boneName];
+            }
+            
+            _boneInfo[boneIndex].BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
 
+            
+            for (uint j = 0 ; j < mesh->mBones[i]->mNumWeights ; j++) {
+                uint vertexID = mesh->mBones[i]->mWeights[j].mVertexId;
+                float weight = mesh->mBones[i]->mWeights[j].mWeight;
+                cpuVertexArray[vertexID].AddBoneData(boneIndex, weight);
+            }
+        }
+
+
+        // Process the index array
 		for (GLuint i = 0; i < mesh->mNumFaces; i++)
 		{
 			aiFace face = mesh->mFaces[i];
@@ -181,6 +181,7 @@ namespace basicgraphics {
 				cpuIndexArray.push_back(face.mIndices[j]);
 			}
 		}
+        
 		// Process materials
 		if (scene->HasMaterials())
 		{

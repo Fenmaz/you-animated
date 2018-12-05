@@ -51,54 +51,29 @@ namespace basicgraphics {
         #define NUM_BONES_PER_VERTEX 4
         
         
-        struct VertexBoneData
-        {
+        struct Vertex {
+            glm::vec3 position;
+            glm::vec3 normal;
+            glm::vec2 texCoord0;
             uint IDs[NUM_BONES_PER_VERTEX];
-            float Weights[NUM_BONES_PER_VERTEX];
-            
-            VertexBoneData() {
-                Reset();
-            };
-            
-            void Reset() {
+            float weights[NUM_BONES_PER_VERTEX];
+
+            Vertex() {
+                position = glm::vec3(0.0);
+                normal = glm::vec3(0.0);
+                texCoord0 = glm::vec2(0.0);
                 std::memset(IDs, 0, sizeof(uint) * NUM_BONES_PER_VERTEX);
-                std::memset(Weights, 0, sizeof(Weights) * NUM_BONES_PER_VERTEX);
+                std::memset(weights, 0, sizeof(float) * NUM_BONES_PER_VERTEX);
             };
             
             void AddBoneData(uint BoneID, float Weight);
         };
         
         
-        struct BoneInfo {
-            glm::mat4 BoneOffset;
-            glm::mat4 FinalTransformation;
-            
-            BoneInfo() {
-                BoneOffset = glm::mat4(0.0);
-                FinalTransformation = glm::mat4(0.0);
-            }
-        };
-        
-        
-        struct Vertex {
-            glm::vec3 position;
-            glm::vec3 normal;
-            glm::vec2 texCoord0;
-            VertexBoneData bones[NUM_BONES_PER_VERTEX];
-            
-            Vertex() {
-                position = glm::vec3(0.0);
-                normal = glm::vec3(0.0);
-                texCoord0 = glm::vec2(0.0);
-                std::memset(bones, 0, sizeof(VertexBoneData) * NUM_BONES_PER_VERTEX);
-            };
-        };
-        
-        
         // Creates a vao and vbo. Usage should be GL_STATIC_DRAW, GL_DYNAMIC_DRAW, etc. Leave data empty to just allocate but not upload.
         Mesh(std::vector<std::shared_ptr<Texture> > textures, GLenum primitiveType, GLenum usage, int allocateVertexByteSize, int allocateIndexByteSize, int vertexOffset, const std::vector<Vertex> &data, int numIndices = 0, int indexByteSize = 0, int* index = nullptr);
         virtual ~Mesh();
-        
+
         virtual void draw(GLSLProgram &shader);
         
         void setMaterialColor(const glm::vec4 &color);

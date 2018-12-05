@@ -60,6 +60,17 @@ namespace basicgraphics {
 		virtual void draw(GLSLProgram &shader);
         
         void setMaterialColor(const glm::vec4 &color);
+        
+        
+        struct BoneInfo {
+            glm::mat4 BoneOffset;
+            glm::mat4 FinalTransformation;
+            
+            BoneInfo() {
+                BoneOffset = glm::mat4(0.0);
+                FinalTransformation = glm::mat4(0.0);
+            }
+        };
 
 
 	private:
@@ -77,24 +88,10 @@ namespace basicgraphics {
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
         
         std::map<string, uint> _boneMapping;
-        std::vector<Mesh::BoneInfo> _boneInfo;
+        std::vector<BoneInfo> _boneInfo;
         uint _numBones;
         
-        struct MeshEntry {
-            MeshEntry()
-            {
-                NumIndices    = 0;
-                BaseVertex    = 0;
-                BaseIndex     = 0;
-            }
-            
-            unsigned int NumIndices;
-            unsigned int BaseVertex;
-            unsigned int BaseIndex;
-        };
-        
-        std::vector<MeshEntry> _entries;
-
+        glm::mat4 _globalInverseTransform;
 	};
 
 }
