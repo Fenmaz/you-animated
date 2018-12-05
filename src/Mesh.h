@@ -51,35 +51,6 @@ namespace basicgraphics {
         #define NUM_BONES_PER_VERTEX 4
         
         
-        struct VertexBoneData
-        {
-            uint IDs[NUM_BONES_PER_VERTEX];
-            float Weights[NUM_BONES_PER_VERTEX];
-            
-            VertexBoneData() {
-                Reset();
-            };
-            
-            void Reset() {
-                std::memset(IDs, 0, sizeof(uint) * NUM_BONES_PER_VERTEX);
-                std::memset(Weights, 0, sizeof(Weights) * NUM_BONES_PER_VERTEX);
-            };
-            
-            void AddBoneData(uint BoneID, float Weight);
-        };
-        
-        
-        struct BoneInfo {
-            glm::mat4 BoneOffset;
-            glm::mat4 FinalTransformation;
-            
-            BoneInfo() {
-                BoneOffset = glm::mat4(0.0);
-                FinalTransformation = glm::mat4(0.0);
-            }
-        };
-        
-        
         struct Vertex {
             glm::vec3 position;
             glm::vec3 normal;
@@ -94,6 +65,8 @@ namespace basicgraphics {
                 std::memset(IDs, 0, sizeof(uint) * NUM_BONES_PER_VERTEX);
                 std::memset(weights, 0, sizeof(float) * NUM_BONES_PER_VERTEX);
             };
+            
+            void AddBoneData(uint BoneID, float Weight);
         };
         
         
