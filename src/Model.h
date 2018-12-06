@@ -71,7 +71,8 @@ namespace basicgraphics {
                 FinalTransformation = glm::mat4(0.0);
             }
         };
-
+        
+        void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene);
 
 	private:
 
@@ -85,6 +86,8 @@ namespace basicgraphics {
 		void importMesh(const std::string &filename, int &numIndices, const double scale);
 		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
 		std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat);
+        
+        
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
         
         std::map<string, uint> _boneMapping;

@@ -106,6 +106,7 @@ namespace basicgraphics {
 		}
 
 	}
+    
 
 	std::shared_ptr<Mesh> Model::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
 	{
@@ -154,15 +155,13 @@ namespace basicgraphics {
                 
                 BoneInfo bi;
                 _boneInfo.push_back(bi);
+                _boneInfo[boneIndex].BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
                 
                 _numBones++;
             }
             else {
                 boneIndex = _boneMapping[boneName];
             }
-            
-            _boneInfo[boneIndex].BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
-
             
             for (uint j = 0 ; j < mesh->mBones[i]->mNumWeights ; j++) {
                 uint vertexID = mesh->mBones[i]->mWeights[j].mVertexId;
@@ -207,7 +206,24 @@ namespace basicgraphics {
 		gpuMesh->setMaterialColor(_materialColor);
 		return gpuMesh;
 	}
-
+    
+    void Model::boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene)
+    {
+        float ticksPerSec = scene->mAnimations[0]->mTicksPerSecond != 0 ? scene->mAnimations[0]->mTicksPerSecond : 25.0f;
+        float timeInTicks = timeInSecs * ticksPerSec;
+        float animationTime = fmod(timeInTicks, scene->mAnimations[0]->mDuration);
+        
+        // TODO: processNode given animation time here
+        
+        transforms.resize(_numBones);
+        
+        for (uint i = 0; i < _numBones; i++) {
+            transforms[i] = _boneInfo[i].FinalTransformation;
+        }
+    }
+    
+    
+    
 	// Checks all material textures of a given type and loads the textures if they're not loaded yet.
 	// The required info is returned as a Texture struct.
 	std::vector<std::shared_ptr<Texture> > Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type)
