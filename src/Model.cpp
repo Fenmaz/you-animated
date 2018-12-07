@@ -6,6 +6,8 @@
 
 #include "Model.h"
 
+#include "App.hpp"
+
 namespace basicgraphics {
 
 	ProgressReporter::ProgressReporter()
@@ -105,6 +107,61 @@ namespace basicgraphics {
 		}
 
 	}
+    
+    const aiNodeAnim* Model::FindNodeAnim(const aiAnimation* pAnimation, const string NodeName){
+        for (uint i = 0 ; i < pAnimation->mNumChannels ; i++) {
+            const aiNodeAnim* pNodeAnim = pAnimation->mChannels[i];
+            
+            if (string(pNodeAnim->mNodeName.data) == NodeName) {
+                return pNodeAnim;
+            }
+        }
+        
+        return NULL;
+    }
+
+    
+    
+    //Do we need to take into account scale of mesh when applying transformations (i don't think so, but we'll see)
+    void Model::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene* scene, const glm::mat4& ParentTransform){
+        
+        string NodeName(node->mName.data);
+        
+        const aiAnimation* pAnimation = scene->mAnimations[0];
+        
+        mat4 NodeTransformation(aiMatrix4x4ToGlm(&(node->mTransformation)));
+        
+        ///Eventually, change this to a map for more efficient animation lookup
+        const aiNodeAnim* pNodeAnim = FindNodeAnim(pAnimation, NodeName);
+        
+        if(pNodeAnim){
+            aiVector3D Scaling;
+            CalcInterpolatedScaling(Scaling, AnimationTime, pNodeAnim);
+            mat4 ScalingM = glm::scale(glm::mat4(1.0f), glm::vec3(Scaling.x, Scaling.y, Scaling.z));
+            
+            aiQuaternion RotationQ;
+            CalcInterpolatedRotation(RotationQ, AnimationTime, pNodeAnim);
+            aiMatrix3x3 rotQM = RotationQ.GetMatrix();
+            mat4 RotationM = aiMatrix3x3ToGlm(&(rotQM));
+            
+            aiVector3D Translation;
+            CalcInterpolatedPosition(Translation, AnimationTime, pNodeAnim);
+            mat4 TranslationM= glm::translate(glm::mat4(1.0f), glm::vec3(Translation.x, Translation.y, Translation.z));
+            
+            NodeTransformation = TranslationM * RotationM * ScalingM;
+        }
+        
+        mat4 GlobalTransformation = ParentTransform * NodeTransformation;
+        
+        if(_boneMapping.find(NodeName) != _boneMapping.end()){
+            uint BoneIndex = _boneMapping[NodeName];
+            _boneInfo[BoneIndex].FinalTransformation = _globalInverseTransform * GlobalTransformation * _boneInfo[BoneIndex].BoneOffset;
+        }
+        
+        for(uint i = 0; i < node->mNumChildren; i++){
+            ReadNodeHeirarchy(AnimationTime, node->mChildren[i], scene, GlobalTransformation);
+        }
+    }
     
 
 	std::shared_ptr<Mesh> Model::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)

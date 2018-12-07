@@ -30,6 +30,7 @@ void App::onAnalogChange(const VRAnalogEvent &event) {
     if (event.getName() == "FrameStart") {
         _lastTime = _curFrameTime;
         _curFrameTime = event.getValue();
+
     }
 }
 
@@ -83,7 +84,10 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
         
-        _modelMesh.reset(new Model("Alfred.obj", 1.0, vec4(1.0)));
+        _modelMesh.reset(new Model("free3Dmodel.dae", 1.0, vec4(1.0)));
+        
+        //_box.reset(new Box(vec3(-0.5, -0.5, -0.5), vec3(0.5, 0.5, 0.5), vec4(1.0, 0.0, 0.0, 1.0)));
+
     }
 }
 
@@ -95,12 +99,17 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     
     // Setup the camera with a good initial position and view direction to see the table
-    glm::vec3 eye_world = glm::vec3(0, 10, 10);
+    glm::vec3 eye_world = glm::vec3(-5, 12, 5);
+    glm::vec3 direction (cos(0.3f) * cos(0.5f) * 3.0f, sin(0.5f)* 3.0f, sin(0.3f)*cos(0.5f)* 3.0f);
+    //glm::vec3 center (-0.3, 0.8, 0);
+    glm::vec3 center (0, 0, 0);
     
-    glm::mat4 view = glm::lookAt(eye_world, glm::vec3(0,0,0), glm::vec3(0, 1, 0));
+    //glm::vec3 eye_world = center+direction;
     
-    GLfloat windowHeight = renderState.index().getValue("WindowHeight");
-    GLfloat windowWidth = renderState.index().getValue("WindowWidth");
+    glm::mat4 view = glm::lookAt(eye_world, center, glm::vec3(0, 1, 0));
+    
+    GLfloat windowHeight = renderState.index().getValue("FramebufferHeight");
+    GLfloat windowWidth = renderState.index().getValue("FramebufferWidth");
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), windowWidth / windowHeight, 0.01f, 500.0f);
     
     // Set up model matrix;
@@ -115,7 +124,6 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     _shader.setUniform("eye_world", eye_world);
     
     _modelMesh->draw(_shader);
-
 }
 
 void App::reloadShaders(){
