@@ -119,7 +119,7 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
 }
 
 void App::reloadShaders(){
-    _shader.compileShader("texture.vert", GLSLShader::VERTEX);
+    _shader.compileShader("skinning.vs", GLSLShader::VERTEX);
     _shader.compileShader("texture.frag", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();

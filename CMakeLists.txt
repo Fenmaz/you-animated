@@ -45,6 +45,8 @@ set(header_files
 )
 
 set(extra_files
+  shaders/skinning.vs
+  shaders/
   README.md
 )
 

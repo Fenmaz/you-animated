@@ -1,9 +1,7 @@
 //
 //  Model.cpp
-//  
 //
 //  Created by Bret Jackson on 2/2/17.
-//
 //
 
 #include "Model.h"
@@ -222,7 +220,106 @@ namespace basicgraphics {
         }
     }
     
+    void Model::CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
+    {
+        if (pNodeAnim->mNumPositionKeys == 1) {
+            Out = pNodeAnim->mPositionKeys[0].mValue;
+            return;
+        }
+        
+        uint PositionIndex = FindPosition(AnimationTime, pNodeAnim);
+        uint NextPositionIndex = (PositionIndex + 1);
+        assert(NextPositionIndex < pNodeAnim->mNumPositionKeys);
+        float DeltaTime = (float)(pNodeAnim->mPositionKeys[NextPositionIndex].mTime - pNodeAnim->mPositionKeys[PositionIndex].mTime);
+        float Factor = (AnimationTime - (float)pNodeAnim->mPositionKeys[PositionIndex].mTime) / DeltaTime;
+        assert(Factor >= 0.0f && Factor <= 1.0f);
+        const aiVector3D& Start = pNodeAnim->mPositionKeys[PositionIndex].mValue;
+        const aiVector3D& End = pNodeAnim->mPositionKeys[NextPositionIndex].mValue;
+        aiVector3D Delta = End - Start;
+        Out = Start + Factor * Delta;
+    }
     
+    void Model::CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
+    {
+        // we need at least two values to interpolate...
+        if (pNodeAnim->mNumRotationKeys == 1) {
+            Out = pNodeAnim->mRotationKeys[0].mValue;
+            return;
+        }
+        
+        uint RotationIndex = FindRotation(AnimationTime, pNodeAnim);
+        uint NextRotationIndex = (RotationIndex + 1);
+        assert(NextRotationIndex < pNodeAnim->mNumRotationKeys);
+        float DeltaTime = (float)(pNodeAnim->mRotationKeys[NextRotationIndex].mTime - pNodeAnim->mRotationKeys[RotationIndex].mTime);
+        float Factor = (AnimationTime - (float)pNodeAnim->mRotationKeys[RotationIndex].mTime) / DeltaTime;
+        assert(Factor >= 0.0f && Factor <= 1.0f);
+        const aiQuaternion& StartRotationQ = pNodeAnim->mRotationKeys[RotationIndex].mValue;
+        const aiQuaternion& EndRotationQ   = pNodeAnim->mRotationKeys[NextRotationIndex].mValue;
+        aiQuaternion::Interpolate(Out, StartRotationQ, EndRotationQ, Factor);
+        Out = Out.Normalize();
+    }
+    
+    void Model::CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
+    {
+        if (pNodeAnim->mNumScalingKeys == 1) {
+            Out = pNodeAnim->mScalingKeys[0].mValue;
+            return;
+        }
+        
+        uint ScalingIndex = FindScaling(AnimationTime, pNodeAnim);
+        uint NextScalingIndex = (ScalingIndex + 1);
+        assert(NextScalingIndex < pNodeAnim->mNumScalingKeys);
+        float DeltaTime = (float)(pNodeAnim->mScalingKeys[NextScalingIndex].mTime - pNodeAnim->mScalingKeys[ScalingIndex].mTime);
+        float Factor = (AnimationTime - (float)pNodeAnim->mScalingKeys[ScalingIndex].mTime) / DeltaTime;
+        assert(Factor >= 0.0f && Factor <= 1.0f);
+        const aiVector3D& Start = pNodeAnim->mScalingKeys[ScalingIndex].mValue;
+        const aiVector3D& End   = pNodeAnim->mScalingKeys[NextScalingIndex].mValue;
+        aiVector3D Delta = End - Start;
+        Out = Start + Factor * Delta;
+    }
+    
+    uint Model::FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim)
+    {
+        for (uint i = 0 ; i < pNodeAnim->mNumPositionKeys - 1 ; i++) {
+            if (AnimationTime < (float)pNodeAnim->mPositionKeys[i + 1].mTime) {
+                return i;
+            }
+        }
+        
+        assert(0);
+        
+        return 0;
+    }
+    
+    uint Model::FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim)
+    {
+        assert(pNodeAnim->mNumRotationKeys > 0);
+        
+        for (uint i = 0 ; i < pNodeAnim->mNumRotationKeys - 1 ; i++) {
+            if (AnimationTime < (float)pNodeAnim->mRotationKeys[i + 1].mTime) {
+                return i;
+            }
+        }
+        
+        assert(0);
+        
+        return 0;
+    }
+    
+    uint Model::FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim)
+    {
+        assert(pNodeAnim->mNumScalingKeys > 0);
+        
+        for (uint i = 0 ; i < pNodeAnim->mNumScalingKeys - 1 ; i++) {
+            if (AnimationTime < (float)pNodeAnim->mScalingKeys[i + 1].mTime) {
+                return i;
+            }
+        }
+        
+        assert(0);
+        
+        return 0;
+    }
     
 	// Checks all material textures of a given type and loads the textures if they're not loaded yet.
 	// The required info is returned as a Texture struct.

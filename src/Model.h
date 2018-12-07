@@ -87,6 +87,12 @@ namespace basicgraphics {
 		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
 		std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat);
         
+        void CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        void CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        void CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        uint FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
+        uint FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
+        uint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
         
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
         
