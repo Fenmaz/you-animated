@@ -131,6 +131,5 @@ void App::reloadShaders(){
     _shader.compileShader("fragment.glsl", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
-    
 }
 
