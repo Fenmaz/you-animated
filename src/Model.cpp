@@ -106,6 +106,45 @@ namespace basicgraphics {
 		}
 
 	}
+    
+    const aiNodeAnim* Model::FindNodeAnim(const aiAnimation* pAnimation, const string NodeName){
+        for (uint i = 0 ; i < pAnimation->mNumChannels ; i++) {
+            const aiNodeAnim* pNodeAnim = pAnimation->mChannels[i];
+            
+            if (string(pNodeAnim->mNodeName.data) == NodeName) {
+                return pNodeAnim;
+            }
+        }
+        
+        return NULL;
+    }
+
+    
+    
+    //Do we need to take into account scale of mesh when applying transformations (i don't think so, but we'll see)
+    void Model::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene* scene, const glm::mat4& ParentTransform){
+        
+        string NodeName(node->mName.data);
+        
+        const aiAnimation* pAnimation = scene->mAnimations[0];
+        
+        mat4 NodeTransformation(aiMatrix4x4ToGlm(&(node->mTransformation)));
+        
+        ///Eventually, change this to a map for more efficient animation lookup
+        const aiNodeAnim* pNodeAnim = FindNodeAnim(pAnimation, NodeName);
+        
+        if(pNodeAnim){
+            //interpolate scaling and generate scaling transform matrix
+            aiVector3D Scaling;
+            //CalcInterpolatedScaling(Scaling, AnimationTime, pNodeAnim);
+            mat4 ScalingM;
+            //ScalingM.InitScaleTransform()
+        }
+        
+        
+    }
+    
+
 
 	std::shared_ptr<Mesh> Model::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
 	{

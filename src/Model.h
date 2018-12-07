@@ -84,6 +84,9 @@ namespace basicgraphics {
 
 		void importMesh(const std::string &filename, int &numIndices, const double scale);
 		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
+        void ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene *scene, const glm::mat4& ParentTransform);
+        const aiNodeAnim* FindNodeAnim(const aiAnimation* pAnimation, const string NodeName);
+
 		std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat);
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
         
