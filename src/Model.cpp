@@ -269,7 +269,7 @@ namespace basicgraphics {
         float timeInTicks = timeInSecs * ticksPerSec;
         float animationTime = fmod(timeInTicks, scene->mAnimations[0]->mDuration);
         
-        // TODO: processNode given animation time here
+        ReadNodeHeirarchy(animationTime, scene->mRootNode , scene, glm::mat4(1.0f));
         
         transforms.resize(_numBones);
         
