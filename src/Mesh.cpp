@@ -191,11 +191,11 @@ namespace basicgraphics {
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, startByteOffset, indexByteSize, index);
     }
     
-    void Mesh::VertexBoneData::AddBoneData(uint BoneID, float Weight) {
+    void Mesh::Vertex::AddBoneData(uint BoneID, float Weight) {
         for (uint i = 0; i < (sizeof(IDs)/sizeof(*IDs)); i++) {
-            if (Weights[i] == 0.0) {
+            if (weights[i] == 0.0) {
                 IDs[i] = BoneID;
-                Weights[i] = Weight;
+                weights[i] = Weight;
                 return;
             }
         }
