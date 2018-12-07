@@ -44,6 +44,7 @@ namespace basicgraphics {
 		int numIndices = 0;
         
 		importMesh(filename, numIndices, scale);
+        
 	}
 
 

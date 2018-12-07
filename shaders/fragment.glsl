@@ -14,13 +14,16 @@ out vec4 fragment_colour;
 
 void main () {
 	vec4 color = materialColor * (1 - hasTexture) + hasTexture * texture(textureSampler, texture_coordinates );
+    
     // Ambient
     vec3 ambient = 0.2 * color.rgb;
+    
     // Diffuse
     vec3 lightDir = normalize(lightPos - position_world);
     vec3 normal = normalize(normal_world);
     float diff = max(dot(lightDir, normal), 0.0);
     vec3 diffuse = diff * color.rgb;
+    
     // Specular
     vec3 viewDir = normalize(eye_world - position_world);
     vec3 reflectDir = reflect(-lightDir, normal);

@@ -45,8 +45,8 @@ set(header_files
 )
 
 set(extra_files
-  shaders/skinning.vs
-  shaders/
+  shaders/vertex.glsl
+  shaders/fragment.glsl
   README.md
 )
 

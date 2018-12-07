@@ -1,10 +1,10 @@
 #version 330 
 
-layout (location = 0) in vec3 Position; 
-layout (location = 1) in vec2 TexCoord; 
-layout (location = 2) in vec3 Normal; 
-layout (location = 3) in ivec4 BoneIDs;
-layout (location = 4) in vec4 Weights;
+layout (location = 0) in vec3 vertex_position;
+layout (location = 1) in vec3 vertex_normal;
+layout (location = 2) in vec2 vertex_texcoord;
+layout (location = 3) in ivec4 boneIDs;
+layout (location = 4) in vec4 weights;
 
 uniform mat4 projection_mat, view_mat, model_mat;
 uniform mat3 normal_mat;
@@ -13,22 +13,19 @@ out vec3 position_world, normal_world;
 out vec2 texture_coordinates;
 
 const int MAX_BONES = 100;
-
-uniform mat4 gWVP;
-uniform mat4 gWorld;
-uniform mat4 gBones[MAX_BONES];
+uniform mat4 bones[MAX_BONES];
 
 void main()
 { 
-    mat4 BoneTransform = gBones[BoneIDs[0]] * Weights[0];
-    BoneTransform += gBones[BoneIDs[1]] * Weights[1];
-    BoneTransform += gBones[BoneIDs[2]] * Weights[2];
-    BoneTransform += gBones[BoneIDs[3]] * Weights[3];
+    mat4 boneTransform = bones[boneIDs[0]] * weights[0];
+    boneTransform += bones[boneIDs[1]] * weights[1];
+    boneTransform += bones[boneIDs[2]] * weights[2];
+    boneTransform += bones[boneIDs[3]] * weights[3];
 
-    vec4 PosL = BoneTransform * vec4(Position, 1.0);
-    gl_Position = gWVP * PosL;
-    TexCoord0 = TexCoord;
-    vec4 NormalL = BoneTransform * vec4(Normal, 0.0);
-    Normal0 = (gWorld * NormalL).xyz;
-    WorldPos0 = (gWorld * PosL).xyz; 
+    position_world = vec3 (model_mat * boneTransform * vec4 (vertex_position, 1.0));
+    // This would not work - the vertex normal and normal_mat is vec3 while boneTransform is mat4.
+    normal_world = normalize(normal_mat * vec3(boneTransform * vec4(vertex_normal, 0.0)));
+    texture_coordinates = vertex_texcoord;
+    
+    gl_Position = projection_mat * view_mat * vec4 (position_world, 1.0);
 }

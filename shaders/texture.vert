@@ -6,6 +6,7 @@ layout (location = 2) in vec2 vertex_texcoord;
 
 uniform mat4 projection_mat, view_mat, model_mat;
 uniform mat3 normal_mat;
+
 out vec3 position_world, normal_world;
 out vec2 texture_coordinates;
 

@@ -115,12 +115,12 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     _shader.setUniform("eye_world", eye_world);
     
     _modelMesh->draw(_shader);
-    
+
 }
 
 void App::reloadShaders(){
-    _shader.compileShader("skinning.vs", GLSLShader::VERTEX);
-    _shader.compileShader("texture.frag", GLSLShader::FRAGMENT);
+    _shader.compileShader("vertex.glsl", GLSLShader::VERTEX);
+    _shader.compileShader("fragment.glsl", GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
     
