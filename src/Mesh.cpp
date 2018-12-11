@@ -192,7 +192,7 @@ namespace basicgraphics {
     }
     
     void Mesh::Vertex::AddBoneData(uint BoneID, float Weight) {
-        for (uint i = 0; i < (sizeof(IDs)/sizeof(*IDs)); i++) {
+        for (uint i = 0; i < 4; i++) {
             if (weights[i] == 0.0) {
                 IDs[i] = BoneID;
                 weights[i] = Weight;

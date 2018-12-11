@@ -35,7 +35,7 @@ namespace basicgraphics {
 		return true;
 	}
 
-	Model::Model(const std::string &filename, const double scale, glm::vec4 materialColor /*=glm::vec4(1.0)*/) : _materialColor(materialColor)
+    Model::Model(const std::string &filename, const double scale, glm::vec4 materialColor): _materialColor(materialColor)
 	{
 		//TODO not entirely sure this is threadsafe, although assimp says the library is as long as you have separate importer objects
 		//Assimp::Logger::LogSeverity severity = Assimp::Logger::NORMAL;
@@ -46,7 +46,7 @@ namespace basicgraphics {
 		int numIndices = 0;
         _boneMapping = {};
         
-		importMesh(filename, numIndices, scale);
+        importMesh(filename, numIndices, scale);
         
 	}
 
@@ -54,7 +54,7 @@ namespace basicgraphics {
 	Model::~Model()
 	{
 		// Kill it after the work is done
-		Assimp::DefaultLogger::kill();
+		//Assimp::DefaultLogger::kill();
 	}
 
 	void Model::draw(GLSLProgram &shader) {
@@ -203,10 +203,11 @@ namespace basicgraphics {
         
         
         for (uint i = 0 ; i < mesh->mNumBones ; i++) {
-            uint boneIndex = 0;
+            uint boneIndex;
             string boneName(mesh->mBones[i]->mName.data);
             
             if (_boneMapping.find(boneName) == _boneMapping.end()) {
+                std::cout << _numBones << std::endl;
                 boneIndex = _numBones;
                 _boneMapping[boneName] = boneIndex;
                 
@@ -380,7 +381,7 @@ namespace basicgraphics {
         return 0;
     }
     
-	// Checks all material textures of a given type and loads the textures if they're not loaded yet.
+	// Checks all material textures of a given type and loads the textures if they're not loaded yet. 
 	// The required info is returned as a Texture struct.
 	std::vector<std::shared_ptr<Texture> > Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type)
 	{

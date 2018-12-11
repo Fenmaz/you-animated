@@ -49,18 +49,13 @@ namespace basicgraphics {
 		/*!
 		 * Tries to load a model from disk. Scale can be used to scale the vertex locations of the model. If the model contains textures than materialColor will be ignored.
 		 */
-		Model(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
+        Model(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
 
-		/*!
-		 * Given a string in nff format, this will try to load a model
-		 */
-		Model(const std::string &fileContents, glm::vec4 materialColor = glm::vec4(1.0));
 		virtual ~Model();
 
 		virtual void draw(GLSLProgram &shader);
         
         void setMaterialColor(const glm::vec4 &color);
-        
         
         struct BoneInfo {
             glm::mat4 BoneOffset;
@@ -80,9 +75,15 @@ namespace basicgraphics {
 		glm::vec4 _materialColor;
 
 		std::unique_ptr<Assimp::Importer> _importer;
-		std::unique_ptr<ProgressReporter> _reporter;
+		//std::unique_ptr<ProgressReporter> _reporter;
 		std::vector< std::shared_ptr<Mesh> > _meshes;
 		std::vector< std::shared_ptr<Texture> > _textures;
+        
+        std::map<string, uint> _boneMapping;
+        std::vector<BoneInfo> _boneInfo;
+        uint _numBones;
+        
+        glm::mat4 _globalInverseTransform;
 
 		void importMesh(const std::string &filename, int &numIndices, const double scale);
 		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
@@ -99,12 +100,6 @@ namespace basicgraphics {
         uint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
         
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
-        
-        std::map<string, uint> _boneMapping;
-        std::vector<BoneInfo> _boneInfo;
-        uint _numBones;
-        
-        glm::mat4 _globalInverseTransform;
 	};
 
 }
