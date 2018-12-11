@@ -58,8 +58,7 @@ public:
     
 protected:
     
-    double _lastTime;
-    double _curFrameTime;
+    double _startTime;
     
     virtual void reloadShaders();
     basicgraphics::GLSLProgram _shader;
