@@ -57,7 +57,6 @@ namespace basicgraphics {
         
         void setMaterialColor(const glm::vec4 &color);
         
-        
         struct BoneInfo {
             glm::mat4 BoneOffset;
             glm::mat4 FinalTransformation;
@@ -75,9 +74,15 @@ namespace basicgraphics {
 		glm::vec4 _materialColor;
 
 		std::unique_ptr<Assimp::Importer> _importer;
-		std::unique_ptr<ProgressReporter> _reporter;
+		//std::unique_ptr<ProgressReporter> _reporter;
 		std::vector< std::shared_ptr<Mesh> > _meshes;
 		std::vector< std::shared_ptr<Texture> > _textures;
+        
+        std::map<string, uint> _boneMapping;
+        std::vector<BoneInfo> _boneInfo;
+        uint _numBones;
+        
+        glm::mat4 _globalInverseTransform;
 
 		void importMesh(const std::string &filename, int &numIndices, const double scale);
 		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
@@ -94,12 +99,6 @@ namespace basicgraphics {
         uint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
         
 		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
-        
-        std::map<string, uint> _boneMapping;
-        std::vector<BoneInfo> _boneInfo;
-        uint _numBones;
-        
-        glm::mat4 _globalInverseTransform;
 	};
 
 }
