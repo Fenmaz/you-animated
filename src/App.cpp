@@ -18,7 +18,7 @@ using namespace glm;
 
 
 App::App(int argc, char** argv) : VRApp(argc, argv) {
-    _lastTime = VRSystem::getTime();
+    _startTime = VRSystem::getTime();
 }
 
 App::~App()
@@ -27,11 +27,6 @@ App::~App()
 }
 
 void App::onAnalogChange(const VRAnalogEvent &event) {
-    if (event.getName() == "FrameStart") {
-        _lastTime = _curFrameTime;
-        _curFrameTime = event.getValue();
-
-    }
 }
 
 
@@ -121,7 +116,10 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     _shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
     _shader.setUniform("eye_world", eye_world);
     
-    //_modelMesh->draw(_shader);
+    float time = (float) (VRSystem::getTime() - _startTime);
+    printf("%f\n", time);
+    _modelMesh->draw(_shader);
+
 }
 
 void App::reloadShaders(){
