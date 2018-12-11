@@ -44,6 +44,7 @@ namespace basicgraphics {
 
         _numBones = 0;
 		int numIndices = 0;
+        _boneMapping = {};
         
 		importMesh(filename, numIndices, scale);
         
@@ -412,6 +413,7 @@ namespace basicgraphics {
 				this->_textures.push_back(texture);  // Store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
 			}
 		}
+        cout << &textures << endl;
 		return textures;
 	}
 

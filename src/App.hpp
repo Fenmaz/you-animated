@@ -65,8 +65,6 @@ protected:
     basicgraphics::GLSLProgram _shader;
     
     std::unique_ptr<Model> _modelMesh;
-    
-    std::unique_ptr<Box> _box;
 
     
 };
