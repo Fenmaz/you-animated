@@ -68,6 +68,7 @@ namespace basicgraphics {
         };
         
         void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene);
+        void printBoneName(float index);
 
 	private:
 
