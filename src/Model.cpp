@@ -35,7 +35,7 @@ namespace basicgraphics {
 		return true;
 	}
 
-	Model::Model(const std::string &filename, const double scale, glm::vec4 materialColor /*=glm::vec4(1.0)*/) : _materialColor(materialColor)
+    Model::Model(const std::string &filename, const double scale, glm::vec4 materialColor)
 	{
 		//TODO not entirely sure this is threadsafe, although assimp says the library is as long as you have separate importer objects
 		//Assimp::Logger::LogSeverity severity = Assimp::Logger::NORMAL;
@@ -43,6 +43,7 @@ namespace basicgraphics {
 		//Assimp::DefaultLogger::create("", severity, aiDefaultLogStream_STDOUT);
 
         _numBones = 0;
+        _boneMapping = {};
 		int numIndices = 0;
         
 		importMesh(filename, numIndices, scale);

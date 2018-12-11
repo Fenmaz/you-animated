@@ -86,8 +86,6 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         
         _modelMesh.reset(new Model("free3Dmodel.dae", 1.0, vec4(1.0)));
         
-        //_box.reset(new Box(vec3(-0.5, -0.5, -0.5), vec3(0.5, 0.5, 0.5), vec4(1.0, 0.0, 0.0, 1.0)));
-
     }
 }
 

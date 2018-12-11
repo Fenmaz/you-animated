@@ -49,12 +49,8 @@ namespace basicgraphics {
 		/*!
 		 * Tries to load a model from disk. Scale can be used to scale the vertex locations of the model. If the model contains textures than materialColor will be ignored.
 		 */
-		Model(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
+        Model(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
 
-		/*!
-		 * Given a string in nff format, this will try to load a model
-		 */
-		Model(const std::string &fileContents, glm::vec4 materialColor = glm::vec4(1.0));
 		virtual ~Model();
 
 		virtual void draw(GLSLProgram &shader);

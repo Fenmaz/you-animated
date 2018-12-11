@@ -48,7 +48,7 @@ set(extra_files
   README.md
   shaders/vertex.glsl
   shaders/fragment.glsl
-  resources/Alfred.obj
+  resources/free3Dmodel.dae
 )
 
 set_source_files_properties(${extra_files} PROPERTIES HEADER_FILE_ONLY TRUE)
