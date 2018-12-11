@@ -37,8 +37,6 @@
 
 #include "Texture.h"
 #include "GLSLProgram.h"
-#include <Vector>
-#include <Memory>
 
 namespace basicgraphics {
     
