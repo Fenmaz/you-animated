@@ -79,8 +79,7 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
         
-        _modelMesh.reset(new AnimatedModel("free3Dmodel.dae", 1.0, vec4(1.0)));
-        
+        _modelMesh.reset(new Model("ArmatureForkedComplex.dae", 1.0, vec4(1.0)));
     }
 }
 
@@ -119,6 +118,7 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     float time = (float) (VRSystem::getTime() - _startTime);
     printf("%f\n", time);
     _modelMesh->draw(_shader);
+
 }
 
 void App::reloadShaders(){
