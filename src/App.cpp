@@ -79,7 +79,7 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
         
-        _modelMesh.reset(new Model("ArmatureForkedComplex.dae", 1.0, vec4(1.0)));
+        _modelMesh.reset(new AnimatedModel("ArmatureForkedComplex.dae", 1.0, vec4(1.0)));
     }
 }
 
