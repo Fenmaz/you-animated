@@ -40,7 +40,7 @@ class BoneMesh : public std::enable_shared_from_this<BoneMesh>
 {
 public:
     
-    #define NUM_BONES_PER_VERTEX 4
+    #define NUM_BONES_PER_VERTEX 12
     
     struct Vertex {
         glm::vec3 position;
@@ -57,7 +57,7 @@ public:
             std::memset(weights, 0, sizeof(float) * NUM_BONES_PER_VERTEX);
         };
         
-        void AddBoneData(uint BoneID, float Weight);
+        void AddBoneData(int BoneID, float Weight);
     };
     
     

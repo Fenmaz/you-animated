@@ -115,10 +115,9 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     _shader.setUniform("normal_mat", mat3(transpose(inverse(model))));
     _shader.setUniform("eye_world", eye_world);
     
-    float time = (float) (VRSystem::getTime() - _startTime);
-    printf("%f\n", time);
+    //float time = (float) (VRSystem::getTime() - _startTime);
+    //printf("%f\n", time);
     _modelMesh->draw(_shader);
-
 }
 
 void App::reloadShaders(){

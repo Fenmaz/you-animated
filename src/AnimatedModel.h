@@ -78,9 +78,9 @@ private:
     std::vector< std::shared_ptr<BoneMesh> > _meshes;
     std::vector< std::shared_ptr<basicgraphics::Texture> > _textures;
     
-    std::map<std::string, int> _boneMapping;
+    std::map<std::string, int> _boneMapping = {};
     std::vector<BoneInfo> _boneInfo;
-    int _numBones;
+    int _numBones = 0;
     
     glm::mat4 _globalInverseTransform;
 

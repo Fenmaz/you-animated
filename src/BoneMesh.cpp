@@ -188,7 +188,7 @@ void BoneMesh::updateIndexData(int totalNumIndices, int startByteOffset, int ind
     glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, startByteOffset, indexByteSize, index);
 }
 
-void BoneMesh::Vertex::AddBoneData(uint BoneID, float Weight) {
+void BoneMesh::Vertex::AddBoneData(int BoneID, float Weight) {
     for (int i = 0; i < NUM_BONES_PER_VERTEX; i++) {
         if (weights[i] == 0) {
             IDs[i] = BoneID;
