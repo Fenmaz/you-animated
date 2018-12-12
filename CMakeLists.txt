@@ -34,14 +34,14 @@ message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
 set(source_files
   src/main.cpp
   src/App.cpp
-  src/Model.cpp
-  src/Mesh.cpp
+  src/AnimatedModel.cpp
+  src/BoneMesh.cpp
 )
 
 set(header_files
   src/App.hpp
-  src/Model.h
-  src/Mesh.h
+  src/AnimatedModel.h
+  src/BoneMesh.h
 )
 
 set(extra_files

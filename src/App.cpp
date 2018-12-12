@@ -79,7 +79,7 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
         
-        _modelMesh.reset(new Model("free3Dmodel.dae", 1.0, vec4(1.0)));
+        _modelMesh.reset(new AnimatedModel("free3Dmodel.dae", 1.0, vec4(1.0)));
         
     }
 }
@@ -122,8 +122,8 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
 }
 
 void App::reloadShaders(){
-    _shader.compileShader("vertex.glsl", GLSLShader::VERTEX);
-    _shader.compileShader("fragment.glsl", GLSLShader::FRAGMENT);
+    _shader.compileShader("vertex.glsl", basicgraphics::GLSLShader::VERTEX);
+    _shader.compileShader("fragment.glsl", basicgraphics::GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
 }

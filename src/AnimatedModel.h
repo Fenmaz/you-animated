@@ -1,14 +1,14 @@
 ///
-///  Model.hpp
+///  AnimatedModel.hpp
 ///
 ///
-///  Created by Bret Jackson on 2/2/17.
+///  Created by Trung Nguyen on 12/12/2018.
 ///
 ///  \brief Model is used to load a 3d model file from disk. It will automatically create mesh objects uploaded to VBOs
 ///
 
-#ifndef Model_hpp
-#define Model_hpp
+#ifndef AnimatedModel_hpp
+#define AnimatedModel_hpp
 
 #include <iostream>
 #include <iomanip>
@@ -23,86 +23,83 @@
 #include <assimp/ProgressHandler.hpp>
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
-#include "Mesh.h"
+#include "BoneMesh.h"
 #include "Texture.h"
 #include "GLSLProgram.h"
 
-namespace basicgraphics {
 
-	typedef std::shared_ptr<class Importer> ImporterRef;
+typedef std::shared_ptr<class Importer> ImporterRef;
 
-	class ProgressReporter : public Assimp::ProgressHandler
-	{
-	public:
-		ProgressReporter();
-		~ProgressReporter();
-		bool Update(float percentage = -1.f);
-		void reset();
-	private:
-		bool _firstUpdate;
-	};
+class ProgressReporter : public Assimp::ProgressHandler
+{
+public:
+    ProgressReporter();
+    ~ProgressReporter();
+    bool Update(float percentage = -1.f);
+    void reset();
+private:
+    bool _firstUpdate;
+};
+    
+class AnimatedModel : public std::enable_shared_from_this<AnimatedModel>
+{
+public:
 
-	class AnimatedModel : public std::enable_shared_from_this<AnimatedModel>
-	{
-	public:
+    /*!
+     * Tries to load a model from disk. Scale can be used to scale the vertex locations of the model. If the model contains textures than materialColor will be ignored.
+     */
+    AnimatedModel(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
 
-		/*!
-		 * Tries to load a model from disk. Scale can be used to scale the vertex locations of the model. If the model contains textures than materialColor will be ignored.
-		 */
-        AnimatedModel(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
+    virtual ~AnimatedModel();
 
-		virtual ~AnimatedModel();
-
-		virtual void draw(GLSLProgram &shader);
+    virtual void draw(basicgraphics::GLSLProgram &shader);
+    
+    void setMaterialColor(const glm::vec4 &color);
+    
+    struct BoneInfo {
+        glm::mat4 BoneOffset;
+        glm::mat4 FinalTransformation;
         
-        void setMaterialColor(const glm::vec4 &color);
-        
-        struct BoneInfo {
-            glm::mat4 BoneOffset;
-            glm::mat4 FinalTransformation;
-            
-            BoneInfo() {
-                BoneOffset = glm::mat4(0.0);
-                FinalTransformation = glm::mat4(0.0);
-            }
-        };
-        
-        void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene);
-        void printBoneName(float index);
+        BoneInfo() {
+            BoneOffset = glm::mat4(0.0);
+            FinalTransformation = glm::mat4(0.0);
+        }
+    };
+    
+    void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene);
+    void printBoneName(float index);
 
-	private:
+private:
 
-		glm::vec4 _materialColor;
+    glm::vec4 _materialColor;
 
-		std::unique_ptr<Assimp::Importer> _importer;
-		//std::unique_ptr<ProgressReporter> _reporter;
-		std::vector< std::shared_ptr<Mesh> > _meshes;
-		std::vector< std::shared_ptr<Texture> > _textures;
-        
-        std::unique_ptr<std::map<std::string, int> > _boneMapping;
-        std::vector<BoneInfo> _boneInfo;
-        int _numBones;
-        
-        glm::mat4 _globalInverseTransform;
+    std::unique_ptr<Assimp::Importer> _importer;
+    //std::unique_ptr<ProgressReporter> _reporter;
+    std::vector< std::shared_ptr<BoneMesh> > _meshes;
+    std::vector< std::shared_ptr<basicgraphics::Texture> > _textures;
+    
+    std::map<std::string, int> _boneMapping;
+    std::vector<BoneInfo> _boneInfo;
+    int _numBones;
+    
+    glm::mat4 _globalInverseTransform;
 
-		void importMesh(const std::string &filename, int &numIndices, const double scale);
-		void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
-        void ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene *scene, const glm::mat4& ParentTransform);
-        const aiNodeAnim* FindNodeAnim(const aiAnimation* pAnimation, const string NodeName);
+    void importMesh(const std::string &filename, int &numIndices, const double scale);
+    void processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat);
+    void ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene *scene, const glm::mat4& ParentTransform);
+    const aiNodeAnim* FindNodeAnim(const aiAnimation* pAnimation, const string NodeName);
 
-		std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat);
-        
-        void CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        void CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        void CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        uint FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        uint FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        uint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        
-		std::vector<std::shared_ptr<Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
-	};
-
-}
+    std::shared_ptr<BoneMesh> processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat);
+    
+    void CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+    void CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+    void CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+    uint FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
+    uint FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
+    uint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
+    
+    std::vector<std::shared_ptr<basicgraphics::Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
+};
 
 inline glm::mat4 aiMatrix4x4ToGlm(const aiMatrix4x4* from)
 {
@@ -130,4 +127,4 @@ inline glm::mat4 aiMatrix3x3ToGlm(const aiMatrix3x3* from)
     return to;
 }
 
-#endif /* Model_hpp */
+#endif /* AnimatedModel_hpp */
