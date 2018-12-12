@@ -23,7 +23,6 @@ void main()
     boneTransform += bones[boneIDs[3]] * weights[3];
 
     position_world = vec3 (model_mat * boneTransform * vec4 (vertex_position, 1.0));
-    // This would not work - the vertex normal and normal_mat is vec3 while boneTransform is mat4.
     normal_world = normalize(normal_mat * vec3(boneTransform * vec4(vertex_normal, 0.0)));
     texture_coordinates = vertex_texcoord;
     
