@@ -4,7 +4,7 @@
 //  Created by Bret Jackson on 2/2/17.
 //
 
-#include "Model.h"
+#include "AnimatedModel.h"
 
 #include "App.hpp"
 
@@ -35,35 +35,35 @@ namespace basicgraphics {
 		return true;
 	}
 
-    Model::Model(const std::string &filename, const double scale, glm::vec4 materialColor): _materialColor(materialColor)
+    AnimatedModel::AnimatedModel(const std::string &filename, const double scale, glm::vec4 materialColor): _materialColor(materialColor)
 	{
 		//TODO not entirely sure this is threadsafe, although assimp says the library is as long as you have separate importer objects
 		//Assimp::Logger::LogSeverity severity = Assimp::Logger::NORMAL;
 		// Create a logger instance for Console Output
 		//Assimp::DefaultLogger::create("", severity, aiDefaultLogStream_STDOUT);
 
-        _numBones = 0;
+        //_numBones = 0;
+        //_boneMapping = {};
 		int numIndices = 0;
-        _boneMapping = {};
         
         importMesh(filename, numIndices, scale);
         
 	}
 
 
-	Model::~Model()
+	AnimatedModel::~AnimatedModel()
 	{
 		// Kill it after the work is done
 		//Assimp::DefaultLogger::kill();
 	}
 
-	void Model::draw(GLSLProgram &shader) {
+	void AnimatedModel::draw(GLSLProgram &shader) {
 		for (int i = 0; i < _meshes.size(); i++) {
 			_meshes[i]->draw(shader);
 		}
 	}
 
-	void Model::importMesh(const std::string &filename, int &numIndices, const double scale/*=1.0*/)
+	void AnimatedModel::importMesh(const std::string &filename, int &numIndices, const double scale/*=1.0*/)
 	{
 		if (_importer.get() == nullptr) {
 			_importer.reset(new Assimp::Importer());
@@ -91,7 +91,7 @@ namespace basicgraphics {
 	}
 
 	// Processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
-	void Model::processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat)
+	void AnimatedModel::processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat)
 	{
 		// Process each mesh located at the current node
 		for (GLuint i = 0; i < node->mNumMeshes; i++)
@@ -109,7 +109,7 @@ namespace basicgraphics {
 
 	}
     
-    const aiNodeAnim* Model::FindNodeAnim(const aiAnimation* pAnimation, const string NodeName){
+    const aiNodeAnim* AnimatedModel::FindNodeAnim(const aiAnimation* pAnimation, const string NodeName){
         for (uint i = 0 ; i < pAnimation->mNumChannels ; i++) {
             const aiNodeAnim* pNodeAnim = pAnimation->mChannels[i];
             
@@ -124,7 +124,7 @@ namespace basicgraphics {
     
     
     //Do we need to take into account scale of mesh when applying transformations (i don't think so, but we'll see)
-    void Model::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene* scene, const glm::mat4& ParentTransform){
+    void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene* scene, const glm::mat4& ParentTransform){
         
         string NodeName(node->mName.data);
         
@@ -154,8 +154,8 @@ namespace basicgraphics {
         
         mat4 GlobalTransformation = ParentTransform * NodeTransformation;
         
-        if(_boneMapping.find(NodeName) != _boneMapping.end()){
-            uint BoneIndex = _boneMapping[NodeName];
+        if(_boneMapping->find(NodeName) != _boneMapping->end()){
+            uint BoneIndex = _boneMapping->at(NodeName);
             _boneInfo[BoneIndex].FinalTransformation = _globalInverseTransform * GlobalTransformation * _boneInfo[BoneIndex].BoneOffset;
         }
         
@@ -165,7 +165,7 @@ namespace basicgraphics {
     }
     
 
-	std::shared_ptr<Mesh> Model::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
+	std::shared_ptr<Mesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
 	{
 		// Data to fill
 		std::vector<Mesh::Vertex> cpuVertexArray;
@@ -203,13 +203,13 @@ namespace basicgraphics {
         
         
         for (uint i = 0 ; i < mesh->mNumBones ; i++) {
-            uint boneIndex;
-            string boneName(mesh->mBones[i]->mName.data);
+            int boneIndex;
+            std::string boneName(mesh->mBones[i]->mName.data);
             
-            if (_boneMapping.find(boneName) == _boneMapping.end()) {
+            if (_boneMapping->find(boneName) == _boneMapping->end()) {
                 std::cout << _numBones << std::endl;
                 boneIndex = _numBones;
-                _boneMapping[boneName] = boneIndex;
+                _boneMapping->emplace(boneName, boneIndex);
                 
                 BoneInfo bi;
                 _boneInfo.push_back(bi);
@@ -218,7 +218,7 @@ namespace basicgraphics {
                 _numBones++;
             }
             else {
-                boneIndex = _boneMapping[boneName];
+                boneIndex = _boneMapping->at(boneName);
             }
             
             for (uint j = 0 ; j < mesh->mBones[i]->mNumWeights ; j++) {
@@ -265,7 +265,7 @@ namespace basicgraphics {
 		return gpuMesh;
 	}
     
-    void Model::boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene)
+    void AnimatedModel::boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene)
     {
         float ticksPerSec = scene->mAnimations[0]->mTicksPerSecond != 0 ? scene->mAnimations[0]->mTicksPerSecond : 25.0f;
         float timeInTicks = timeInSecs * ticksPerSec;
@@ -280,7 +280,7 @@ namespace basicgraphics {
         }
     }
     
-    void Model::CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
+    void AnimatedModel::CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
     {
         if (pNodeAnim->mNumPositionKeys == 1) {
             Out = pNodeAnim->mPositionKeys[0].mValue;
@@ -299,7 +299,7 @@ namespace basicgraphics {
         Out = Start + Factor * Delta;
     }
     
-    void Model::CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
+    void AnimatedModel::CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
     {
         // we need at least two values to interpolate...
         if (pNodeAnim->mNumRotationKeys == 1) {
@@ -319,7 +319,7 @@ namespace basicgraphics {
         Out = Out.Normalize();
     }
     
-    void Model::CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
+    void AnimatedModel::CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim)
     {
         if (pNodeAnim->mNumScalingKeys == 1) {
             Out = pNodeAnim->mScalingKeys[0].mValue;
@@ -338,7 +338,7 @@ namespace basicgraphics {
         Out = Start + Factor * Delta;
     }
     
-    uint Model::FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim)
+    uint AnimatedModel::FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim)
     {
         for (uint i = 0 ; i < pNodeAnim->mNumPositionKeys - 1 ; i++) {
             if (AnimationTime < (float)pNodeAnim->mPositionKeys[i + 1].mTime) {
@@ -351,7 +351,7 @@ namespace basicgraphics {
         return 0;
     }
     
-    uint Model::FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim)
+    uint AnimatedModel::FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim)
     {
         assert(pNodeAnim->mNumRotationKeys > 0);
         
@@ -366,7 +366,7 @@ namespace basicgraphics {
         return 0;
     }
     
-    uint Model::FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim)
+    uint AnimatedModel::FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim)
     {
         assert(pNodeAnim->mNumScalingKeys > 0);
         
@@ -383,7 +383,7 @@ namespace basicgraphics {
     
 	// Checks all material textures of a given type and loads the textures if they're not loaded yet. 
 	// The required info is returned as a Texture struct.
-	std::vector<std::shared_ptr<Texture> > Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type)
+	std::vector<std::shared_ptr<Texture> > AnimatedModel::loadMaterialTextures(aiMaterial* mat, aiTextureType type)
 	{
 		std::vector<std::shared_ptr<Texture> > textures;
 		for (GLuint i = 0; i < mat->GetTextureCount(type); i++)
@@ -417,7 +417,7 @@ namespace basicgraphics {
 		return textures;
 	}
 
-    void Model::setMaterialColor(const glm::vec4 &color){
+    void AnimatedModel::setMaterialColor(const glm::vec4 &color){
         _materialColor = color;
         for(int i=0; i < _meshes.size(); i++){
             _meshes[i]->setMaterialColor(color);

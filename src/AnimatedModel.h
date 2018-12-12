@@ -42,16 +42,16 @@ namespace basicgraphics {
 		bool _firstUpdate;
 	};
 
-	class Model : public std::enable_shared_from_this<Model>
+	class AnimatedModel : public std::enable_shared_from_this<AnimatedModel>
 	{
 	public:
 
 		/*!
 		 * Tries to load a model from disk. Scale can be used to scale the vertex locations of the model. If the model contains textures than materialColor will be ignored.
 		 */
-        Model(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
+        AnimatedModel(const std::string &filename, const double scale, glm::vec4 materialColor = glm::vec4(1.0));
 
-		virtual ~Model();
+		virtual ~AnimatedModel();
 
 		virtual void draw(GLSLProgram &shader);
         
@@ -79,9 +79,9 @@ namespace basicgraphics {
 		std::vector< std::shared_ptr<Mesh> > _meshes;
 		std::vector< std::shared_ptr<Texture> > _textures;
         
-        std::map<string, uint> _boneMapping;
+        std::unique_ptr<std::map<std::string, int> > _boneMapping;
         std::vector<BoneInfo> _boneInfo;
-        uint _numBones;
+        int _numBones;
         
         glm::mat4 _globalInverseTransform;
 
