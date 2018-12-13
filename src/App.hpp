@@ -64,6 +64,9 @@ protected:
     virtual void reloadShaders();
     basicgraphics::GLSLProgram _shader;
     std::unique_ptr<AnimatedModel> _modelMesh;
+    std::unique_ptr<basicgraphics::Box> _box;
+
+    
 };
 
 

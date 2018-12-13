@@ -13,14 +13,16 @@ out vec3 position_world, normal_world;
 out vec2 texture_coordinates;
 
 const int MAX_BONES = 100;
+const int NUM_BONES_PER_VERTEX = 12;
 uniform mat4 bones[MAX_BONES];
 
 void main()
 { 
-    mat4 boneTransform = bones[boneIDs[0]] * weights[0];
-    boneTransform += bones[boneIDs[1]] * weights[1];
-    boneTransform += bones[boneIDs[2]] * weights[2];
-    boneTransform += bones[boneIDs[3]] * weights[3];
+    mat4 boneTransform;
+    
+    for (int i = 0; i < NUM_BONES_PER_VERTEX; i++){
+        boneTransform += bones[boneIDs[i]] * weights[i];
+    }
 
     position_world = vec3 (model_mat * boneTransform * vec4 (vertex_position, 1.0));
     // This would not work - the vertex normal and normal_mat is vec3 while boneTransform is mat4.
