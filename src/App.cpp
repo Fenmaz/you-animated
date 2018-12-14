@@ -79,8 +79,8 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
         
-        //_modelMesh.reset(new AnimatedModel("free3Dmodel.dae", 1.0, vec4(1.0)));
-        _box.reset(new basicgraphics::Box(vec3(-0.5, -0.5, -0.5), vec3(0.5, 0.5, 0.5), vec4(1.0, 0.0, 0.0, 1.0)));
+        _modelMesh.reset(new AnimatedModel("bunny.obj", 1.0, vec4(1.0)));
+        //_box.reset(new basicgraphics::Box(vec3(-0.5, -0.5, -0.5), vec3(0.5, 0.5, 0.5), vec4(1.0, 0.0, 0.0, 1.0)));
 
     }
 }
@@ -92,13 +92,9 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     // clear the canvas and other buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     
-    // Setup the camera with a good initial position and view direction to see the table
-    glm::vec3 eye_world = glm::vec3(5, 5, 5);
-    glm::vec3 direction (cos(0.3f) * cos(0.5f) * 3.0f, sin(0.5f)* 3.0f, sin(0.3f)*cos(0.5f)* 3.0f);
-    //glm::vec3 center (-0.3, 0.8, 0);
+    // Setup the camera with a good initial position and view direction to see the model
+    glm::vec3 eye_world = glm::vec3(20, 12, 5);
     glm::vec3 center (0, 0, 0);
-    
-    //glm::vec3 eye_world = center+direction;
     
     glm::mat4 view = glm::lookAt(eye_world, center, glm::vec3(0, 1, 0));
     
@@ -119,8 +115,8 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     
     //float time = (float) (VRSystem::getTime() - _startTime);
     //printf("%f\n", time);
-    //_modelMesh->draw(_shader);
-    _box->draw(_shader, model);
+    _modelMesh->draw(_shader);
+    //_box->draw(_shader, model);
 }
 
 void App::reloadShaders(){

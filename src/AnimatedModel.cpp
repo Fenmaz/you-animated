@@ -55,6 +55,7 @@ AnimatedModel::~AnimatedModel()
 
 void AnimatedModel::draw(basicgraphics::GLSLProgram &shader) {
     for (int i = 0; i < _meshes.size(); i++) {
+        
         _meshes[i]->draw(shader);
     }
 }
