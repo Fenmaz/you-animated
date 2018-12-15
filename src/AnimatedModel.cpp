@@ -106,6 +106,7 @@ void AnimatedModel::processNode(aiNode* node, const aiScene* scene, const glm::m
 
 }
 
+//Find the node animation that matches the node name
 const aiNodeAnim* AnimatedModel::FindNodeAnim(const aiAnimation* pAnimation, const string NodeName){
     for (uint i = 0 ; i < pAnimation->mNumChannels ; i++) {
         const aiNodeAnim* pNodeAnim = pAnimation->mChannels[i];
@@ -120,7 +121,7 @@ const aiNodeAnim* AnimatedModel::FindNodeAnim(const aiAnimation* pAnimation, con
 
 
 
-//Do we need to take into account scale of mesh when applying transformations (i don't think so, but we'll see)
+//Recursively loop through the nodes of the scene graph to calculate the animation and pass to the children of that node
 void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const aiScene* scene, const glm::mat4& ParentTransform){
     
     string NodeName(node->mName.data);
@@ -129,9 +130,11 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
     
     mat4 NodeTransformation(aiMatrix4x4ToGlm(&(node->mTransformation)));
     
-    ///Eventually, change this to a map for more efficient animation lookup
+    //Find animation for a given node from name and aiAnimation of scene
+    //Eventually, change this to a map for more efficient animation lookup
     const aiNodeAnim* pNodeAnim = FindNodeAnim(pAnimation, NodeName);
     
+    //calculate scaling, rotation, and tranlation matricies from node animation and time
     if(pNodeAnim){
         aiVector3D Scaling;
         CalcInterpolatedScaling(Scaling, AnimationTime, pNodeAnim);
@@ -146,16 +149,20 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
         CalcInterpolatedPosition(Translation, AnimationTime, pNodeAnim);
         mat4 TranslationM= glm::translate(glm::mat4(1.0f), glm::vec3(Translation.x, Translation.y, Translation.z));
         
+        //Combine all three into transformation matrix of node
         NodeTransformation = TranslationM * RotationM * ScalingM;
     }
     
+    //Multiply node transformation by parent to get resulting transform
     mat4 GlobalTransformation = ParentTransform * NodeTransformation;
     
+    //Set bone transformation from node
     if(_boneMapping.find(NodeName) != _boneMapping.end()){
         uint BoneIndex = _boneMapping[NodeName];
         _boneInfo[BoneIndex].FinalTransformation = _globalInverseTransform * GlobalTransformation * _boneInfo[BoneIndex].BoneOffset;
     }
     
+    //Pass tranformation to children with recursive call
     for(uint i = 0; i < node->mNumChildren; i++){
         ReadNodeHeirarchy(AnimationTime, node->mChildren[i], scene, GlobalTransformation);
     }
@@ -284,12 +291,19 @@ void AnimatedModel::CalcInterpolatedPosition(aiVector3D& Out, float AnimationTim
         return;
     }
     
+    //find animation closest to current time, and next animation
     uint PositionIndex = FindPosition(AnimationTime, pNodeAnim);
     uint NextPositionIndex = (PositionIndex + 1);
+    
+    //make sure there is a next animation, and calculate time difference
     assert(NextPositionIndex < pNodeAnim->mNumPositionKeys);
     float DeltaTime = (float)(pNodeAnim->mPositionKeys[NextPositionIndex].mTime - pNodeAnim->mPositionKeys[PositionIndex].mTime);
+    
+    //Calculate how far along we are to the next animation (btw 0 and 1)
     float Factor = (AnimationTime - (float)pNodeAnim->mPositionKeys[PositionIndex].mTime) / DeltaTime;
     assert(Factor >= 0.0f && Factor <= 1.0f);
+    
+    //Combine into a tranformation that is between start and end
     const aiVector3D& Start = pNodeAnim->mPositionKeys[PositionIndex].mValue;
     const aiVector3D& End = pNodeAnim->mPositionKeys[NextPositionIndex].mValue;
     aiVector3D Delta = End - Start;
@@ -304,12 +318,19 @@ void AnimatedModel::CalcInterpolatedRotation(aiQuaternion& Out, float AnimationT
         return;
     }
     
+    //find animation closest to current time, and next animation
     uint RotationIndex = FindRotation(AnimationTime, pNodeAnim);
     uint NextRotationIndex = (RotationIndex + 1);
+    
+    //make sure there is a next animation, and calculate time difference
     assert(NextRotationIndex < pNodeAnim->mNumRotationKeys);
     float DeltaTime = (float)(pNodeAnim->mRotationKeys[NextRotationIndex].mTime - pNodeAnim->mRotationKeys[RotationIndex].mTime);
+    
+    //Calculate how far along we are to the next animation (btw 0 and 1)
     float Factor = (AnimationTime - (float)pNodeAnim->mRotationKeys[RotationIndex].mTime) / DeltaTime;
     assert(Factor >= 0.0f && Factor <= 1.0f);
+    
+    //Combine into a tranformation that is between start and end
     const aiQuaternion& StartRotationQ = pNodeAnim->mRotationKeys[RotationIndex].mValue;
     const aiQuaternion& EndRotationQ   = pNodeAnim->mRotationKeys[NextRotationIndex].mValue;
     aiQuaternion::Interpolate(Out, StartRotationQ, EndRotationQ, Factor);
@@ -323,18 +344,26 @@ void AnimatedModel::CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime
         return;
     }
     
+    //find animation closest to current time, and next animation
     uint ScalingIndex = FindScaling(AnimationTime, pNodeAnim);
     uint NextScalingIndex = (ScalingIndex + 1);
+    
+    //make sure there is a next animation, and calculate time difference
     assert(NextScalingIndex < pNodeAnim->mNumScalingKeys);
     float DeltaTime = (float)(pNodeAnim->mScalingKeys[NextScalingIndex].mTime - pNodeAnim->mScalingKeys[ScalingIndex].mTime);
+    
+    //Calculate how far along we are to the next animation (btw 0 and 1)
     float Factor = (AnimationTime - (float)pNodeAnim->mScalingKeys[ScalingIndex].mTime) / DeltaTime;
     assert(Factor >= 0.0f && Factor <= 1.0f);
+    
+    //Combine into a tranformation that is between start and end
     const aiVector3D& Start = pNodeAnim->mScalingKeys[ScalingIndex].mValue;
     const aiVector3D& End   = pNodeAnim->mScalingKeys[NextScalingIndex].mValue;
     aiVector3D Delta = End - Start;
     Out = Start + Factor * Delta;
 }
 
+//Find closest translation animation to a given animation time
 uint AnimatedModel::FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim)
 {
     for (uint i = 0 ; i < pNodeAnim->mNumPositionKeys - 1 ; i++) {
@@ -348,6 +377,7 @@ uint AnimatedModel::FindPosition(float AnimationTime, const aiNodeAnim* pNodeAni
     return 0;
 }
 
+//Find closest rotation animation to a given animation time
 uint AnimatedModel::FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim)
 {
     assert(pNodeAnim->mNumRotationKeys > 0);
@@ -363,6 +393,7 @@ uint AnimatedModel::FindRotation(float AnimationTime, const aiNodeAnim* pNodeAni
     return 0;
 }
 
+//Find closest scaling animation to a given animation time
 uint AnimatedModel::FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim)
 {
     assert(pNodeAnim->mNumScalingKeys > 0);
@@ -414,6 +445,7 @@ std::vector<std::shared_ptr<basicgraphics::Texture> > AnimatedModel::loadMateria
     return textures;
 }
 
+//Set color of model based on given color
 void AnimatedModel::setMaterialColor(const glm::vec4 &color){
     _materialColor = color;
     for(int i=0; i < _meshes.size(); i++){

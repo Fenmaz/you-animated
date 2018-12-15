@@ -79,8 +79,8 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         // This load shaders from disk, we do it once when the program starts up.
         reloadShaders();
         
-        _modelMesh.reset(new AnimatedModel("bunny.obj", 1.0, vec4(1.0)));
-        //_box.reset(new basicgraphics::Box(vec3(-0.5, -0.5, -0.5), vec3(0.5, 0.5, 0.5), vec4(1.0, 0.0, 0.0, 1.0)));
+        //import a new model to use in the program
+        _modelMesh.reset(new AnimatedModel("ArmatureForkedComplex.dae", 1.0, vec4(1.0)));
 
     }
 }
@@ -115,8 +115,10 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     
     //float time = (float) (VRSystem::getTime() - _startTime);
     //printf("%f\n", time);
+    
+    // Draw the model
     _modelMesh->draw(_shader);
-    //_box->draw(_shader, model);
+    
 }
 
 void App::reloadShaders(){
