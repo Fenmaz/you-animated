@@ -3,7 +3,7 @@
 ![alt text](https://github.com/Fenmaz/you-animated/blob/bones/resources/Screen%20Shot%202018-11-27%20at%208.49.22%20PM.png) <!-- .element width="30%" -->
 
 
-You, Animated is a project by Trung Nguyen and Mark Coretsopoulos for the class Interactive computer Graphics (COMP 465) at Macalester College. The goal of this project is to implement a 3D model framework that can store bone and animation information, and to use this information to skin and animate the model. Our initial goal for the project was to use the Optimized Centers of Rotation technique to skin the model (more info on that [here](https://s3-us-west-1.amazonaws.com/disneyresearch/wp-content/uploads/20160705174939/Real-time-Skeletal-Skinning-with-Optimized-Centers-of-Rotation-Paper.pdf)) , but we are currently just using linear blend skinning. More information about the current state of the project, see below. 
+You, Animated is a project by Trung Nguyen and Mark Coretsopoulos for the class Interactive computer Graphics (COMP 465) at Macalester College. Our initial goal for the project was to build upon the work of the project [Everybody Dance](https://arxiv.org/abs/1808.07371) by taking an imput dance, and replicating the dance on a 3D model using the skinning technique [Optimized Centers of Rotation](https://s3-us-west-1.amazonaws.com/disneyresearch/wp-content/uploads/20160705174939/Real-time-Skeletal-Skinning-with-Optimized-Centers-of-Rotation-Paper.pdf)), creating an animated character that could accurately mimic human movement. At the current stage in the project, we are focused on rendering a animated 3D model using simple Linear Blend Skinning. You can read more about the setup and progress of our project below.
 
 ## Setup on MacOS
 ### Basic requirements
