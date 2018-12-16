@@ -1,6 +1,6 @@
 # You, Animated!
 
-![alt text](https://github.com/Fenmaz/you-animated/blob/bones/resources/Screen%20Shot%202018-11-27%20at%208.49.22%20PM.png =250x)
+![alt text](https://github.com/Fenmaz/you-animated/blob/bones/resources/Screen%20Shot%202018-11-27%20at%208.49.22%20PM.png | width=200)
 
 
 Project to animate humans as 3D models from 2D video input.
