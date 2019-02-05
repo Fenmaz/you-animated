@@ -55,6 +55,7 @@ AnimatedModel::~AnimatedModel()
 
 void AnimatedModel::draw(basicgraphics::GLSLProgram &shader) {
     for (int i = 0; i < _meshes.size(); i++) {
+        //cout<<"Drawing a mesh"<<endl;
         _meshes[i]->draw(shader);
     }
 }
@@ -203,7 +204,7 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
         std::string boneName(mesh->mBones[i]->mName.data);
         
         if (_boneMapping.find(boneName) == _boneMapping.end()) {
-            std::cout << _numBones << std::endl;
+            //std::cout << _numBones << std::endl;
             boneIndex = _numBones;
             _boneMapping[boneName] = boneIndex;
             

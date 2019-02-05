@@ -78,6 +78,7 @@ void BoneMesh::draw(basicgraphics::GLSLProgram &shader) {
     
     bool translucent = false;
     if (_textures.size() > 0) {
+        //std::cout<<"Mesh has texture"<<std::endl;
         shader.setUniform("hasTexture", 1);
         shader.setUniform("materialColor", vec4(0.0, 0.0, 0.0, 1.0));
         
@@ -94,6 +95,7 @@ void BoneMesh::draw(basicgraphics::GLSLProgram &shader) {
         }
     }
     else {
+        //std::cout<<"Mesh does not have texture"<<std::endl;
         shader.setUniform("hasTexture", 0);
         shader.setUniform("materialColor", _materialColor);
         if (_materialColor.a != 1.0) {

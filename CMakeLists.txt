@@ -48,6 +48,8 @@ set(extra_files
   README.md
   shaders/vertex.glsl
   shaders/fragment.glsl
+  shaders/vertex-basic.glsl
+  shaders/fragment-basic.glsl
   resources/ArmatureForkedComplex.dae
 )
 
