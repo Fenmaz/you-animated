@@ -74,7 +74,7 @@ private:
     glm::vec4 _materialColor;
 
     std::unique_ptr<Assimp::Importer> _importer;
-    //std::unique_ptr<ProgressReporter> _reporter;
+    std::unique_ptr<ProgressReporter> _reporter;
     std::vector< std::shared_ptr<BoneMesh> > _meshes;
     std::vector< std::shared_ptr<basicgraphics::Texture> > _textures;
     
