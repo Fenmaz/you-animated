@@ -7,6 +7,8 @@
 #include "AnimatedModel.h"
 #include "App.hpp"
 
+#include "glm/ext.hpp"
+
 
 ProgressReporter::ProgressReporter()
 {
@@ -56,6 +58,7 @@ AnimatedModel::~AnimatedModel()
 void AnimatedModel::draw(basicgraphics::GLSLProgram &shader) {
     for (int i = 0; i < _meshes.size(); i++) {
         //cout<<"Drawing a mesh"<<endl;
+        shader.setUniform("bones", _finalTransformation);
         _meshes[i]->draw(shader);
     }
 }
@@ -160,6 +163,8 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
     if(_boneMapping.find(NodeName) != _boneMapping.end()){
         uint BoneIndex = _boneMapping[NodeName];
         _boneInfo[BoneIndex].FinalTransformation = _globalInverseTransform * GlobalTransformation * _boneInfo[BoneIndex].BoneOffset;
+        _finalTransformation[BoneIndex] = _globalInverseTransform * GlobalTransformation * _boneOffset[BoneIndex];
+        //std::cout << glm::to_string(_finalTransformation[BoneIndex]) << std::endl;
     }
     
     //Pass tranformation to children with recursive call
@@ -218,6 +223,11 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
             BoneInfo bi;
             bi.BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
             _boneInfo.push_back(bi);
+            
+            _boneOffset[boneIndex] = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
+            _finalTransformation[boneIndex] = glm::mat4(1.0);
+            
+            //std::cout << glm::to_string(_boneOffset[boneIndex]) << std::endl;
             
             _numBones++;
         }
@@ -281,6 +291,7 @@ void AnimatedModel::boneTransform(float timeInSecs, std::vector<glm::mat4> &tran
     
     for (uint i = 0; i < _numBones; i++) {
         transforms[i] = _boneInfo[i].FinalTransformation;
+        //transform[i] = _finalTransformation[i];
     }
 }
 

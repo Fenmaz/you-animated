@@ -13,7 +13,7 @@ out vec3 position_world, normal_world;
 out vec2 texture_coordinates;
 
 const int MAX_BONES = 100;
-const int NUM_BONES_PER_VERTEX = 12;
+const int NUM_BONES_PER_VERTEX = 4;
 uniform mat4 bones[MAX_BONES];
 
 void main()
