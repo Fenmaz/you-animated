@@ -81,7 +81,6 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         
         //import a new model to use in the program
         _modelMesh.reset(new AnimatedModel("ArmatureForkedComplex.dae", 1.0, vec4(1.0)));
-
     }
 }
 
