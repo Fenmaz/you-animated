@@ -66,12 +66,14 @@ public:
         }
     };
     
-    void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene);
+    void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms);
     void printBoneName(float index);
 
 private:
 
     glm::vec4 _materialColor;
+    
+    const aiScene* scene;
 
     std::unique_ptr<Assimp::Importer> _importer;
     std::unique_ptr<ProgressReporter> _reporter;
@@ -97,6 +99,7 @@ private:
     uint FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
     uint FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
     uint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
+    
     
     std::vector<std::shared_ptr<basicgraphics::Texture> > loadMaterialTextures(aiMaterial* mat, aiTextureType type);
 };

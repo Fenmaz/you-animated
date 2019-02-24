@@ -50,6 +50,7 @@ AnimatedModel::AnimatedModel(const std::string &filename, const double scale, gl
 AnimatedModel::~AnimatedModel()
 {
     // Kill it after the work is done
+    _importer->FreeScene();
     Assimp::DefaultLogger::kill();
 }
 
@@ -66,8 +67,8 @@ void AnimatedModel::importMesh(const std::string &filename, int &numIndices, con
         _importer.reset(new Assimp::Importer());
     }
 
-    const aiScene* scene = _importer->ReadFile(filename, aiProcess_Triangulate);
-
+    scene = _importer->ReadFile(filename, aiProcess_Triangulate);
+    
     // If the import failed, report it
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
@@ -82,10 +83,8 @@ void AnimatedModel::importMesh(const std::string &filename, int &numIndices, con
     
     _globalInverseTransform = glm::inverse(aiMatrix4x4ToGlm(&scene->mRootNode->mTransformation));
     this->processNode(scene->mRootNode, scene, scaleMat);
-
-    _importer->FreeScene();
-
 }
+
 
 // Processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
 void AnimatedModel::processNode(aiNode* node, const aiScene* scene, const glm::mat4 scaleMat)
@@ -269,8 +268,10 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
     return gpuMesh;
 }
 
-void AnimatedModel::boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene)
+void AnimatedModel::boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms)
 {
+    
+    
     float ticksPerSec = scene->mAnimations[0]->mTicksPerSecond != 0 ? scene->mAnimations[0]->mTicksPerSecond : 25.0f;
     float timeInTicks = timeInSecs * ticksPerSec;
     float animationTime = fmod(timeInTicks, scene->mAnimations[0]->mDuration);
@@ -444,6 +445,7 @@ std::vector<std::shared_ptr<basicgraphics::Texture> > AnimatedModel::loadMateria
     }
     return textures;
 }
+
 
 //Set color of model based on given color
 void AnimatedModel::setMaterialColor(const glm::vec4 &color){
