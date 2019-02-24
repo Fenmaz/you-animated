@@ -82,6 +82,12 @@ private:
     
     std::map<std::string, int> _boneMapping = {};
     std::vector<BoneInfo> _boneInfo;
+    
+    #define MAX_BONES 100
+    
+    glm::mat4 _boneOffset[MAX_BONES];
+    glm::mat4 _finalTransformation[MAX_BONES];
+
     int _numBones = 0;
     
     glm::mat4 _globalInverseTransform;

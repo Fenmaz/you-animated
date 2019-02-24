@@ -125,7 +125,7 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
 }
 
 void App::reloadShaders(){
-    _shader.compileShader("vertex-basic.glsl", basicgraphics::GLSLShader::VERTEX);
+    _shader.compileShader("vertex.glsl", basicgraphics::GLSLShader::VERTEX);
     _shader.compileShader("fragment.glsl", basicgraphics::GLSLShader::FRAGMENT);
     _shader.link();
     _shader.use();
