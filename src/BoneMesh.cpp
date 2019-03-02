@@ -7,6 +7,9 @@
 
 #include "BoneMesh.h"
 
+#include "glm/ext.hpp"
+
+
 BoneMesh::BoneMesh(std::vector<std::shared_ptr<basicgraphics::Texture> > textures, GLenum primitiveType, GLenum usage, int allocateVertexByteSize, int allocateIndexByteSize, int vertexOffset, const std::vector<Vertex> &data, int numIndices /*=0*/, int indexByteSize/*=0*/, int* index/*=nullptr*/)
 {
     _textures = textures;
@@ -196,6 +199,14 @@ void BoneMesh::Vertex::AddBoneData(int BoneID, float Weight) {
         if (weights[i] == 0) {
             IDs[i] = BoneID;
             weights[i] = Weight;
+            
+//            std::cout << std::endl << "Position: " << glm::to_string(position) << std::endl << "ID: ";
+//            for (uint id: IDs) { std::cout << id << "\t"; };
+//            std::cout << std::endl << "Weights: ";
+//            float sum = 0;
+//            for (float weight: weights) { std::cout << weight << "\t"; sum += weight; };
+//            std::cout << std::endl << sum << std::endl;
+            
             return;
         }
     }
@@ -203,5 +214,3 @@ void BoneMesh::Vertex::AddBoneData(int BoneID, float Weight) {
     // more bones than we have space for
     assert(0);
 }
-
-
