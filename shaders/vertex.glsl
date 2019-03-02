@@ -3,8 +3,8 @@
 layout (location = 0) in vec3 vertex_position;
 layout (location = 1) in vec3 vertex_normal;
 layout (location = 2) in vec2 vertex_texcoord;
-layout (location = 3) in ivec4 boneIDs;
-layout (location = 4) in vec4 weights;
+layout (location = 3) in ivec4 boneIDs; // This is probably wrong
+layout (location = 4) in vec4 weights; // This is probably wrong
 
 uniform mat4 projection_mat, view_mat, model_mat;
 uniform mat3 normal_mat;
@@ -18,7 +18,7 @@ uniform mat4 bones[MAX_BONES];
 
 void main()
 { 
-    mat4 boneTransform;
+    mat4 boneTransform = mat4(0.0);
     
     for (int i = 0; i < NUM_BONES_PER_VERTEX; i++){
         boneTransform += bones[boneIDs[i]] * weights[i];
