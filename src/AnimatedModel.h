@@ -56,16 +56,6 @@ public:
     
     void setMaterialColor(const glm::vec4 &color);
     
-//    struct BoneInfo {
-//        glm::mat4 BoneOffset;
-//        glm::mat4 FinalTransformation;
-//
-//        BoneInfo() {
-//            BoneOffset = glm::mat4(0.0);
-//            FinalTransformation = glm::mat4(0.0);
-//        }
-//    };
-    
     void boneTransform(float timeInSecs, std::vector<glm::mat4> &transforms, const aiScene* scene);
     void printBoneName(float index);
 
@@ -79,7 +69,6 @@ private:
     std::vector< std::shared_ptr<basicgraphics::Texture> > _textures;
     
     std::map<std::string, int> _boneMapping = {};
-//    std::vector<BoneInfo> _boneInfo;
     
     #define MAX_BONES 100
     
