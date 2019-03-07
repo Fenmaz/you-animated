@@ -60,6 +60,7 @@ void AnimatedModel::draw(basicgraphics::GLSLProgram &shader) {
     for (int i = 0; i < _meshes.size(); i++) {
         //cout<<"Drawing a mesh"<<endl;
         shader.setUniform("bones", _finalTransformation);
+        //for (int i = 0; i < MAX_BONES; i++) { cout << i << "\t" << glm::to_string(_finalTransformation[i]) << endl; };
         _meshes[i]->draw(shader);
     }
 }
@@ -161,7 +162,7 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
     //Set bone transformation from node
     if(_boneMapping.find(NodeName) != _boneMapping.end()){
         uint BoneIndex = _boneMapping[NodeName];
-        _boneInfo[BoneIndex].FinalTransformation = _globalInverseTransform * GlobalTransformation * _boneInfo[BoneIndex].BoneOffset;
+//        _boneInfo[BoneIndex].FinalTransformation = _globalInverseTransform * GlobalTransformation * _boneInfo[BoneIndex].BoneOffset;
         _finalTransformation[BoneIndex] = _globalInverseTransform * GlobalTransformation * _boneOffset[BoneIndex];
         //std::cout << glm::to_string(_finalTransformation[BoneIndex]) << std::endl;
     }
@@ -175,6 +176,9 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
 
 std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
 {
+    
+    std::cout << "# vertices in mesh: " << mesh->mNumVertices << std::endl;
+    
     // Data to fill
     std::vector<BoneMesh::Vertex> cpuVertexArray;
     std::vector<int> cpuIndexArray;
@@ -209,7 +213,7 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
         cpuVertexArray.push_back(vertex);
     }
     
-    
+    cout << "# bones in mesh: " << mesh->mNumBones << endl;
     for (uint i = 0 ; i < mesh->mNumBones ; i++) {
         int boneIndex = 0;
         std::string boneName(mesh->mBones[i]->mName.data);
@@ -218,10 +222,6 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
             //std::cout << _numBones << std::endl;
             boneIndex = _numBones;
             _boneMapping[boneName] = boneIndex;
-            
-            BoneInfo bi;
-            bi.BoneOffset = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
-            _boneInfo.push_back(bi);
             
             _boneOffset[boneIndex] = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
             _finalTransformation[boneIndex] = glm::mat4(1.0);
@@ -240,6 +240,20 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
             cpuVertexArray[vertexID].AddBoneData(boneIndex, weight);
         }
     }
+    
+    //int i = 0;
+    int counter = 0;
+    for (BoneMesh::Vertex vertex: cpuVertexArray) {
+//        cout << i++ << "\n";
+//        for (uint boneID: vertex.IDs) { cout << boneID << "\t"; }
+//        cout << endl;
+//        for (float weight: vertex.weights) { cout << weight << "\t"; }
+//        cout << endl;
+        float total_w = 0;
+        for (float weight: vertex.weights) { total_w += weight; }
+        if (abs(total_w - 1.0) < 0.005) {counter++;}
+    }
+    //cout << "# vertices with weights totalling 1: " << counter << endl;
 
 
     // Process the index array
@@ -291,8 +305,8 @@ void AnimatedModel::boneTransform(float timeInSecs, std::vector<glm::mat4> &tran
     transforms.resize(_numBones);
     
     for (uint i = 0; i < _numBones; i++) {
-        transforms[i] = _boneInfo[i].FinalTransformation;
-        //transform[i] = _finalTransformation[i];
+//        transforms[i] = _boneInfo[i].FinalTransformation;
+        transforms[i] = _finalTransformation[i];
     }
 }
 

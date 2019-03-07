@@ -40,16 +40,16 @@ class BoneMesh : public std::enable_shared_from_this<BoneMesh>
 {
 public:
     
-    #define NUM_BONES_PER_VERTEX 12
+    #define NUM_BONES_PER_VERTEX 4
     
-    struct Vertex {
+    struct Vertex {        
         glm::vec3 position;
         glm::vec3 normal;
         glm::vec2 texCoord0;
         uint IDs[NUM_BONES_PER_VERTEX];
         float weights[NUM_BONES_PER_VERTEX];
 
-        Vertex() {
+        Vertex() {           
             position = glm::vec3(0.0);
             normal = glm::vec3(0.0);
             texCoord0 = glm::vec2(0.0);
@@ -85,6 +85,7 @@ public:
     void updateIndexData(int totalNumIndices, int startByteOffset, int indexByteSize, int* index);
     
 private:
+        
     GLuint _vaoID;
     GLuint _vertexVBO;
     GLuint _indexVBO;
