@@ -50,7 +50,6 @@ set(extra_files
   shaders/fragment.glsl
   shaders/vertex-basic.glsl
   shaders/fragment-basic.glsl
-  resources/ArmatureForkedComplex.dae
 )
 
 set_source_files_properties(${extra_files} PROPERTIES HEADER_FILE_ONLY TRUE)
