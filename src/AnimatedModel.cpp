@@ -241,19 +241,19 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
         }
     }
     
-    //int i = 0;
-    int counter = 0;
-    for (BoneMesh::Vertex vertex: cpuVertexArray) {
+//    int i = 0;
+//    int counter = 0;
+//    for (BoneMesh::Vertex vertex: cpuVertexArray) {
 //        cout << i++ << "\n";
 //        for (uint boneID: vertex.IDs) { cout << boneID << "\t"; }
 //        cout << endl;
 //        for (float weight: vertex.weights) { cout << weight << "\t"; }
 //        cout << endl;
-        float total_w = 0;
-        for (float weight: vertex.weights) { total_w += weight; }
-        if (abs(total_w - 1.0) < 0.005) {counter++;}
-    }
-    //cout << "# vertices with weights totalling 1: " << counter << endl;
+//        float total_w = 0;
+//        for (float weight: vertex.weights) { total_w += weight; }
+//        if (abs(total_w - 1.0) < 0.005) {counter++;}
+//    }
+//    cout << "# vertices with weights totalling 1: " << counter << endl;
 
 
     // Process the index array
