@@ -80,7 +80,7 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         reloadShaders();
         
         //import a new model to use in the program
-        _modelMesh.reset(new AnimatedModel("Mettaur_BN.dae", 1.0, vec4(1.0)));
+        _modelMesh.reset(new AnimatedModel("Bighat.dae", 1.0, vec4(1.0)));
     }
 }
 
