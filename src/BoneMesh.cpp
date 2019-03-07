@@ -86,6 +86,7 @@ void BoneMesh::draw(basicgraphics::GLSLProgram &shader) {
         shader.setUniform("materialColor", vec4(0.0, 0.0, 0.0, 1.0));
         
         for (int i = 0; i < _textures.size(); i++) {
+            
             if (!_textures[i]->isOpaque()) {
                 translucent = true;
                 glDisable(GL_DEPTH_TEST);
