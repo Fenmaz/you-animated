@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>Newtek LightWave CORE v1.0</authoring_tool>
+            <comments>LWCORE_profile_version=0.1</comments>
+        </contributor>
+        <created>2013-01-25T14:25:43Z</created>
+        <modified>2013-01-25T14:25:43Z</modified>
+        <unit meter="1"/>
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_animations/>
+    <library_cameras/>
+    <library_lights/>
+    <library_images>
+        <image id="wb_platypus_lg" name="wb_platypus_lg">
+            <init_from>file:///F:/documents/code/bgames/Artwork/3d/images/boomerang/wb platypus lg.jpg</init_from>
+        </image>
+        <extra>
+            <technique profile="LWCORE">
+                <component id="comp_Image" type="Image">
+                    <attribute sid="Name" dynamic="custom">
+                        <description>
+                            <parameter_type value="string"/>
+                            <is_input value="true"/>
+                        </description>
+                        <string>wb_platypus_lg</string>
+                    </attribute>
+                    <attribute sid="Self" dynamic="custom">
+                        <description>
+                            <parameter_type value="WeakRef"/>
+                            <is_input value="false"/>
+                        </description>
+                    </attribute>
+                    <attribute sid="Name_1">
+                        <string></string>
+                    </attribute>
+                    <attribute sid="Input">
+                        <WeakRef></WeakRef>
+                        <connected_component target_attribute="Output">
+                            <component id="comp_ImageClip" type="ImageClip">
+                                <attribute sid="Name" dynamic="custom">
+                                    <description>
+                                        <parameter_type value="string"/>
+                                        <is_input value="true"/>
+                                    </description>
+                                    <string>Image_Clip</string>
+                                </attribute>
+                                <attribute sid="Self" dynamic="custom">
+                                    <description>
+                                        <parameter_type value="WeakRef"/>
+                                        <is_input value="false"/>
+                                    </description>
+                                </attribute>
+                                <attribute sid="Name_1">
+                                    <string></string>
+                                </attribute>
+                                <attribute sid="Input">
+                                    <string>F:\documents\code\bgames\Artwork\3d\images\boomerang\wb platypus lg.jpg</string>
+                                </attribute>
+                                <attribute sid="DisplayName">
+                                    <string>wb_platypus_lg</string>
+                                </attribute>
+                                <attribute sid="ImageLabel">
+                                    <string>F:\documents\code\bgames\Artwork\3d\images\boomerang\wb platypus lg.jpg</string>
+                                </attribute>
+                                <attribute sid="RangeInfo">
+                                    <int>0</int>
+                                </attribute>
+                                <attribute sid="ImageInfo">
+                                    <string>256 x 256
+channels = 0
+linearity = Unknown
+channels = 0
+0 bits per channel
+0 bytes image
+</string>
+                                </attribute>
+                            </component>
+                        </connected_component>
+                    </attribute>
+                    <attribute sid="ImageLabel">
+                        <string>F:/documents/code/bgames/Artwork/3d/images/boomerang/wb platypus lg.jpg</string>
+                    </attribute>
+                    <children>
+                        <component_ref target="comp_ImageClip"/>
+                    </children>
+                </component>
+            </technique>
+        </extra>
+    </library_images>
+    <library_materials>
+        <material id="Default" name="Default">
+            <instance_effect url="#Default-fx"/>
+        </material>
+        <material id="boomerang" name="boomerang">
+            <instance_effect url="#boomerang-fx"/>
+        </material>
+        <material id="Default_1" name="Default_1">
+            <instance_effect url="#Default_1-fx"/>
+        </material>
+    </library_materials>
+    <library_effects>
+        <effect id="Default-fx">
+            <profile_COMMON>
+                <technique sid="common">
+                    <lambert>
+                        <diffuse>
+                            <color sid="diffuse">0.6 0.6 0.6 0</color>
+                        </diffuse>
+                    </lambert>
+                </technique>
+            </profile_COMMON>
+            <extra>
+                <technique profile="LWCORE">
+                    <shaders>
+                        <component id="comp_Material" type="Material">
+                            <attribute sid="Name" dynamic="custom">
+                                <description>
+                                    <parameter_type value="string"/>
+                                    <is_input value="true"/>
+                                </description>
+                                <string>Default</string>
+                            </attribute>
+                            <attribute sid="Self" dynamic="custom">
+                                <description>
+                                    <parameter_type value="WeakRef"/>
+                                    <is_input value="false"/>
+                                </description>
+                            </attribute>
+                            <attribute sid="Name_1">
+                                <string></string>
+                            </attribute>
+                            <attribute sid="Double Sided">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="Radiosity Transparent">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="Shader">
+                                <WeakRef></WeakRef>
+                                <connected_component target_attribute="Output">
+                                    <component id="comp_LegacyLightWave" type="LegacyLightWave">
+                                        <attribute sid="Name" dynamic="custom">
+                                            <description>
+                                                <parameter_type value="string"/>
+                                                <is_input value="true"/>
+                                            </description>
+                                            <string>Legacy_LightWave</string>
+                                        </attribute>
+                                        <attribute sid="Self" dynamic="custom">
+                                            <description>
+                                                <parameter_type value="WeakRef"/>
+                                                <is_input value="false"/>
+                                            </description>
+                                        </attribute>
+                                        <attribute sid="Name_1">
+                                            <string></string>
+                                        </attribute>
+                                        <attribute sid="Color">
+                                            <float3>0.6 0.6 0.6</float3>
+                                        </attribute>
+                                        <attribute sid="Luminosity">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Diffuse">
+                                            <float>0.78</float>
+                                        </attribute>
+                                        <attribute sid="Specularity">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Glossiness">
+                                            <float>0.4</float>
+                                        </attribute>
+                                        <attribute sid="Reflection">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Transparency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionIndex">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Translucency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Normal">
+                                            <double3>0 0 0</double3>
+                                        </attribute>
+                                        <attribute sid="BumpHeight">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Bump">
+                                            <double3>0 0 0</double3>
+                                        </attribute>
+                                        <attribute sid="ColorHighlights">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ColorFilter">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="AdditiveTransparency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="DiffuseSharpness">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionOptions">
+                                            <int>1</int>
+                                        </attribute>
+                                        <attribute sid="ReflectionMap">
+                                            <WeakRef></WeakRef>
+                                        </attribute>
+                                        <attribute sid="ReflectionImageSeamAngle">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionBlurring">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionSamples">
+                                            <int>8</int>
+                                        </attribute>
+                                        <attribute sid="RefractionOptions">
+                                            <int>1</int>
+                                        </attribute>
+                                        <attribute sid="RefractionMap">
+                                            <WeakRef></WeakRef>
+                                        </attribute>
+                                        <attribute sid="RefractionImageSeamAngle">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionBlurring">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionSamples">
+                                            <int>8</int>
+                                        </attribute>
+                                        <attribute sid="LWSURFChunk">
+                                            <string></string>
+                                        </attribute>
+                                    </component>
+                                </connected_component>
+                            </attribute>
+                            <children>
+                                <component_ref target="comp_LegacyLightWave"/>
+                            </children>
+                        </component>
+                    </shaders>
+                </technique>
+            </extra>
+        </effect>
+        <effect id="boomerang-fx">
+            <profile_COMMON>
+                <newparam sid="wb_platypus_lg-surface">
+                    <surface type="2D">
+                        <init_from>wb_platypus_lg</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="wb_platypus_lg-sampler">
+                    <sampler2D>
+                        <source>wb_platypus_lg-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <lambert>
+                        <diffuse>
+                            <texture texture="wb_platypus_lg-sampler" texcoord="TEX0"/>
+                        </diffuse>
+                    </lambert>
+                </technique>
+            </profile_COMMON>
+            <extra>
+                <technique profile="LWCORE">
+                    <shaders>
+                        <component id="comp_Material_2" type="Material">
+                            <attribute sid="Name" dynamic="custom">
+                                <description>
+                                    <parameter_type value="string"/>
+                                    <is_input value="true"/>
+                                </description>
+                                <string>boomerang</string>
+                            </attribute>
+                            <attribute sid="Self" dynamic="custom">
+                                <description>
+                                    <parameter_type value="WeakRef"/>
+                                    <is_input value="false"/>
+                                </description>
+                            </attribute>
+                            <attribute sid="Name_1">
+                                <string></string>
+                            </attribute>
+                            <attribute sid="Double Sided">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="Radiosity Transparent">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="Shader">
+                                <WeakRef></WeakRef>
+                                <connected_component target_attribute="Output">
+                                    <component id="comp_LegacyLightWave_2" type="LegacyLightWave">
+                                        <attribute sid="Name" dynamic="custom">
+                                            <description>
+                                                <parameter_type value="string"/>
+                                                <is_input value="true"/>
+                                            </description>
+                                            <string>Legacy_LightWave_1</string>
+                                        </attribute>
+                                        <attribute sid="Self" dynamic="custom">
+                                            <description>
+                                                <parameter_type value="WeakRef"/>
+                                                <is_input value="false"/>
+                                            </description>
+                                        </attribute>
+                                        <attribute sid="Name_1">
+                                            <string></string>
+                                        </attribute>
+                                        <attribute sid="Color">
+                                            <float3>0.784314 0.784314 0.784314</float3>
+                                            <connected_component target_attribute="Color">
+                                                <component id="comp_ImageSampler" type="ImageSampler">
+                                                    <attribute sid="Name" dynamic="custom">
+                                                        <description>
+                                                            <parameter_type value="string"/>
+                                                            <is_input value="true"/>
+                                                        </description>
+                                                        <string>Image_Sampler</string>
+                                                    </attribute>
+                                                    <attribute sid="Self" dynamic="custom">
+                                                        <description>
+                                                            <parameter_type value="WeakRef"/>
+                                                            <is_input value="false"/>
+                                                        </description>
+                                                    </attribute>
+                                                    <attribute sid="Name_1">
+                                                        <string></string>
+                                                    </attribute>
+                                                    <attribute sid="Image">
+                                                        <WeakRef></WeakRef>
+                                                        <connected_component target_attribute="Self">
+                                                            <component_ref target="comp_Image"/>
+                                                        </connected_component>
+                                                    </attribute>
+                                                    <attribute sid="WidthTile">
+                                                        <int>1</int>
+                                                    </attribute>
+                                                    <attribute sid="HeightTile">
+                                                        <int>1</int>
+                                                    </attribute>
+                                                    <attribute sid="BumpHeight">
+                                                        <float>1</float>
+                                                    </attribute>
+                                                    <attribute sid="Projection">
+                                                        <WeakRef></WeakRef>
+                                                        <connected_component target_attribute="Projection">
+                                                            <component id="comp_UVProjection" type="UVProjection">
+                                                                <attribute sid="Name" dynamic="custom">
+                                                                    <description>
+                                                                        <parameter_type value="string"/>
+                                                                        <is_input value="true"/>
+                                                                    </description>
+                                                                    <string>UV_Projection</string>
+                                                                </attribute>
+                                                                <attribute sid="Self" dynamic="custom">
+                                                                    <description>
+                                                                        <parameter_type value="WeakRef"/>
+                                                                        <is_input value="false"/>
+                                                                    </description>
+                                                                </attribute>
+                                                                <attribute sid="Name_1">
+                                                                    <string></string>
+                                                                </attribute>
+                                                                <attribute sid="UvMapName">
+                                                                    <string>Texture</string>
+                                                                </attribute>
+                                                            </component>
+                                                        </connected_component>
+                                                    </attribute>
+                                                    <children>
+                                                        <component_ref target="comp_UVProjection"/>
+                                                    </children>
+                                                </component>
+                                            </connected_component>
+                                        </attribute>
+                                        <attribute sid="Luminosity">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Diffuse">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Specularity">
+                                            <float>0.35</float>
+                                        </attribute>
+                                        <attribute sid="Glossiness">
+                                            <float>0.4</float>
+                                        </attribute>
+                                        <attribute sid="Reflection">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Transparency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionIndex">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Translucency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Normal">
+                                            <double3>0 0 0</double3>
+                                        </attribute>
+                                        <attribute sid="BumpHeight">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Bump">
+                                            <double3>0.68 0 0</double3>
+                                        </attribute>
+                                        <attribute sid="ColorHighlights">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ColorFilter">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="AdditiveTransparency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="DiffuseSharpness">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionOptions">
+                                            <int>1</int>
+                                        </attribute>
+                                        <attribute sid="ReflectionMap">
+                                            <WeakRef></WeakRef>
+                                        </attribute>
+                                        <attribute sid="ReflectionImageSeamAngle">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionBlurring">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionSamples">
+                                            <int>8</int>
+                                        </attribute>
+                                        <attribute sid="RefractionOptions">
+                                            <int>1</int>
+                                        </attribute>
+                                        <attribute sid="RefractionMap">
+                                            <WeakRef></WeakRef>
+                                        </attribute>
+                                        <attribute sid="RefractionImageSeamAngle">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionBlurring">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionSamples">
+                                            <int>8</int>
+                                        </attribute>
+                                        <attribute sid="LWSURFChunk">
+                                            <string></string>
+                                        </attribute>
+                                        <children>
+                                            <component_ref target="comp_ImageSampler"/>
+                                        </children>
+                                    </component>
+                                </connected_component>
+                            </attribute>
+                            <children>
+                                <component_ref target="comp_LegacyLightWave_2"/>
+                            </children>
+                        </component>
+                    </shaders>
+                </technique>
+            </extra>
+        </effect>
+        <effect id="Default_1-fx">
+            <profile_COMMON>
+                <technique sid="common">
+                    <lambert>
+                        <diffuse>
+                            <color sid="diffuse">0.784314 0.784314 0.784314 0</color>
+                        </diffuse>
+                    </lambert>
+                </technique>
+            </profile_COMMON>
+            <extra>
+                <technique profile="LWCORE">
+                    <shaders>
+                        <component id="comp_Material_3" type="Material">
+                            <attribute sid="Name" dynamic="custom">
+                                <description>
+                                    <parameter_type value="string"/>
+                                    <is_input value="true"/>
+                                </description>
+                                <string>Default_1</string>
+                            </attribute>
+                            <attribute sid="Self" dynamic="custom">
+                                <description>
+                                    <parameter_type value="WeakRef"/>
+                                    <is_input value="false"/>
+                                </description>
+                            </attribute>
+                            <attribute sid="Name_1">
+                                <string></string>
+                            </attribute>
+                            <attribute sid="Double Sided">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="Radiosity Transparent">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="Shader">
+                                <WeakRef></WeakRef>
+                                <connected_component target_attribute="Output">
+                                    <component id="comp_LegacyLightWave_3" type="LegacyLightWave">
+                                        <attribute sid="Name" dynamic="custom">
+                                            <description>
+                                                <parameter_type value="string"/>
+                                                <is_input value="true"/>
+                                            </description>
+                                            <string>Legacy_LightWave_2</string>
+                                        </attribute>
+                                        <attribute sid="Self" dynamic="custom">
+                                            <description>
+                                                <parameter_type value="WeakRef"/>
+                                                <is_input value="false"/>
+                                            </description>
+                                        </attribute>
+                                        <attribute sid="Name_1">
+                                            <string></string>
+                                        </attribute>
+                                        <attribute sid="Color">
+                                            <float3>0.784314 0.784314 0.784314</float3>
+                                        </attribute>
+                                        <attribute sid="Luminosity">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Diffuse">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Specularity">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Glossiness">
+                                            <float>0.4</float>
+                                        </attribute>
+                                        <attribute sid="Reflection">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Transparency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionIndex">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Translucency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="Normal">
+                                            <double3>0 0 0</double3>
+                                        </attribute>
+                                        <attribute sid="BumpHeight">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="Bump">
+                                            <double3>1 1 1</double3>
+                                        </attribute>
+                                        <attribute sid="ColorHighlights">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ColorFilter">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="AdditiveTransparency">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="DiffuseSharpness">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionOptions">
+                                            <int>1</int>
+                                        </attribute>
+                                        <attribute sid="ReflectionMap">
+                                            <WeakRef></WeakRef>
+                                        </attribute>
+                                        <attribute sid="ReflectionImageSeamAngle">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionBlurring">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ReflectionSamples">
+                                            <int>8</int>
+                                        </attribute>
+                                        <attribute sid="RefractionOptions">
+                                            <int>1</int>
+                                        </attribute>
+                                        <attribute sid="RefractionMap">
+                                            <WeakRef></WeakRef>
+                                        </attribute>
+                                        <attribute sid="RefractionImageSeamAngle">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionBlurring">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RefractionSamples">
+                                            <int>8</int>
+                                        </attribute>
+                                        <attribute sid="LWSURFChunk">
+                                            <string></string>
+                                        </attribute>
+                                    </component>
+                                </connected_component>
+                            </attribute>
+                            <children>
+                                <component_ref target="comp_LegacyLightWave_3"/>
+                            </children>
+                        </component>
+                    </shaders>
+                </technique>
+            </extra>
+        </effect>
+    </library_effects>
+    <library_geometries>
+        <geometry id="Empty_Mesh_lib" name="">
+            <mesh>
+                <source id="Empty_Mesh_positions" name="position">
+                    <float_array id="Empty_Mesh_positions_array" count="2118">0.422484 0.00238889 0.104334 0.422192 0.00452874 0.103381 0.42015 0.00696605 0.101672 0.415074 0.00913155 0.0989774 0.408628 0.0105 0.0961569 0.400253 0.0111876 0.0872047 0.382276 0.0118383 0.0723133 0.353492 0.0123098 0.0518346 0.306968 0.01288 0.0214351 0.331584 0.0103759 0.0297298 0.341117 0.00754236 0.0329149 0.344441 0.00477092 0.0340224 0.344915 0.0025 0.0341806 0.375072 0.00249826 0.0550932 0.39836 0.00248611 0.0734082 0.414318 0.00245313 0.0896477 0.414049 0.00465539 0.0892394 0.412167 0.00719231 0.0884736 0.407432 0.00950986 0.0873868 0.390964 0.00992087 0.0723093 0.365207 0.0102143 0.0530032 0.372097 0.00749673 0.0544 0.3747 0.00476256 0.0549969 0.398076 0.00472954 0.0732667 0.396092 0.00738144 0.0728959 0.372441 0.00941667 0.106991 0.355554 0.00990387 0.0977804 0.32821 0.0103623 0.0820623 0.293079 0.0106356 0.0616903 0.25181 0.0107222 0.03841 0.265359 0.0122918 0.0346742 0.281516 0.0132368 0.0316017 0.297027 0.0135179 0.0280891 0.405379 0.0107454 0.100637 0.396928 0.0106443 0.104984 0.384201 0.0100856 0.107053 0.366658 0.0112079 0.0946483 0.340636 0.0118611 0.0783615 0.306568 0.0121927 0.058032 0.322861 0.0130835 0.0553687 0.339154 0.0132043 0.0531163 0.370128 0.0127411 0.073622 0.39146 0.0119634 0.0893771 0.380085 0.011932 0.0922818 0.355663 0.0126934 0.0757873 0.378037 0.002 0.131293 0.349959 0.00198524 0.121295 0.316457 0.00200694 0.104527 0.278441 0.00203906 0.0831732 0.236822 0.00205556 0.059417 
+0.237056 0.00392535 0.0548232 0.238695 0.00622222 0.0492078 0.243145 0.00860243 0.0434453 0.374923 0.00799762 0.113592 0.377039 0.0059456 0.120973 0.377912 0.0038057 0.126977 0.349983 0.00378217 0.116629 0.316617 0.0038299 0.0997705 0.278666 0.00389372 0.0784709 0.280247 0.00617126 0.0727164 0.28456 0.00853087 0.0668085 0.320964 0.0083359 0.087516 0.351061 0.00808072 0.103621 0.350152 0.00593812 0.110509 0.317736 0.00605411 0.0938182 0.372441 -2.68221e-09 0.124741 0.384201 -2.81262e-09 0.123326 0.396928 -2.87813e-09 0.118301 0.405379 -2.81262e-09 0.110338 0.408628 -2.68221e-09 0.103074 0.400253 -2.82124e-09 0.0934297 0.382276 -2.94706e-09 0.0777453 0.353492 -3.03555e-09 0.0565331 0.306968 -3.14713e-09 0.0250751 0.297027 -3.41291e-09 0.0371316 0.281516 -3.45757e-09 0.0459852 0.265359 -3.3193e-09 0.0532186 0.25181 -2.98023e-09 0.0586322 0.293079 -2.97385e-09 0.0823463 0.32821 -2.92918e-09 0.102588 0.355554 -2.819e-09 0.117152 0.366658 -3.09983e-09 0.112624 0.380085 -3.19534e-09 0.106824 0.39146 -3.10137e-09 0.0995874 0.370128 -3.26369e-09 0.0835852 0.339154 -3.35005e-09 0.062593 0.322861 -3.43305e-09 0.0701344 0.306568 -3.30922e-09 0.0769889 0.340636 -3.25139e-09 0.0972698 0.355663 -3.36275e-09 0.0907255 0.415074 3.73241e-05 0.10411 0.42015 0.000298609 0.104801 0.422192 0.00100781 0.104835 0.344441 0.00105469 0.0340699 0.341117 0.000312498 0.0332949 0.331584 3.906e-05 0.03105 0.407432 3.83277e-05 0.0908387 0.412167 0.000306639 0.0901682 0.414049 0.00103491 0.0898995 0.398076 0.00104883 0.0735155 
+0.3747 0.00105395 0.0550841 0.372097 0.000312281 0.0549648 0.365207 3.90329e-05 0.0548759 0.390964 3.88431e-05 0.0747947 0.396092 0.000310762 0.0738243 0.243145 3.21156e-05 0.0619297 0.238695 0.000256943 0.0631106 0.237056 0.000867187 0.0622485 0.377912 0.000843749 0.133718 0.377039 0.000249998 0.133398 0.374923 3.12477e-05 0.129753 0.28456 3.18579e-05 0.0856969 0.280247 0.000254881 0.0869342 0.278666 0.000860229 0.0860685 0.316617 0.000846679 0.107411 0.349983 0.000837524 0.124028 0.350152 0.000248154 0.124197 0.351061 3.10171e-05 0.12149 0.320964 3.13561e-05 0.106338 0.317736 0.000250866 0.108064 -0.25181 0.0107222 0.03841 -0.243145 0.00860243 0.0434453 -0.238695 0.00622222 0.0492078 -0.237056 0.00392535 0.0548232 -0.236822 0.00205556 0.059417 -0.278441 0.00203906 0.0831732 -0.316457 0.00200694 0.104527 -0.349959 0.00198524 0.121295 -0.378037 0.002 0.131293 -0.377912 0.0038057 0.126977 -0.377039 0.0059456 0.120973 -0.374923 0.00799762 0.113592 -0.372441 0.00941667 0.106991 -0.355554 0.00990387 0.0977804 -0.32821 0.0103623 0.0820623 -0.293079 0.0106356 0.0616903 -0.28456 0.00853087 0.0668085 -0.280247 0.00617126 0.0727164 -0.278666 0.00389372 0.0784709 -0.316617 0.0038299 0.0997705 -0.349983 0.00378217 0.116629 -0.350152 0.00593812 0.110509 -0.351061 0.00808072 0.103621 -0.320964 0.0083359 0.087516 -0.317736 0.00605411 0.0938182 -0.384201 0.0100856 0.107053 -0.396928 0.0106443 0.104984 -0.405379 0.0107454 0.100637 -0.408628 0.0105 0.0961569 -0.400253 0.0111876 0.0872047 
+-0.382276 0.0118383 0.0723133 -0.353492 0.0123098 0.0518346 -0.306968 0.01288 0.0214351 -0.297027 0.0135179 0.0280891 -0.281516 0.0132368 0.0316017 -0.265359 0.0122918 0.0346742 -0.366658 0.0112079 0.0946483 -0.380085 0.011932 0.0922818 -0.39146 0.0119634 0.0893771 -0.370128 0.0127411 0.073622 -0.339154 0.0132043 0.0531163 -0.322861 0.0130835 0.0553687 -0.306568 0.0121927 0.058032 -0.340636 0.0118611 0.0783615 -0.355663 0.0126934 0.0757873 -0.415074 0.00913155 0.0989774 -0.42015 0.00696605 0.101672 -0.422192 0.00452874 0.103381 -0.422484 0.00238889 0.104334 -0.414318 0.00245313 0.0896477 -0.39836 0.00248611 0.0734082 -0.375072 0.00249826 0.0550932 -0.344915 0.0025 0.0341806 -0.344441 0.00477092 0.0340224 -0.341117 0.00754236 0.0329149 -0.331584 0.0103759 0.0297298 -0.407432 0.00950986 0.0873868 -0.412167 0.00719231 0.0884736 -0.414049 0.00465539 0.0892394 -0.398076 0.00472954 0.0732667 -0.3747 0.00476256 0.0549969 -0.372097 0.00749673 0.0544 -0.365207 0.0102143 0.0530032 -0.390964 0.00992087 0.0723093 -0.396092 0.00738144 0.0728959 -0.237056 0.000867187 0.0622485 -0.238695 0.000256943 0.0631106 -0.243145 3.21156e-05 0.0619297 -0.25181 -2.98023e-09 0.0586322 -0.293079 -2.97385e-09 0.0823463 -0.32821 -2.92918e-09 0.102588 -0.355554 -2.819e-09 0.117152 -0.372441 -2.68221e-09 0.124741 -0.374923 3.12477e-05 0.129753 -0.377039 0.000249998 0.133398 -0.377912 0.000843749 0.133718 -0.349983 0.000837524 0.124028 -0.316617 0.000846679 0.107411 -0.278666 0.000860229 0.0860685 -0.280247 0.000254881 0.0869342 
+-0.28456 3.18579e-05 0.0856969 -0.320964 3.13561e-05 0.106338 -0.351061 3.10171e-05 0.12149 -0.350152 0.000248154 0.124197 -0.317736 0.000250866 0.108064 -0.422192 0.00100781 0.104835 -0.42015 0.000298609 0.104801 -0.415074 3.73241e-05 0.10411 -0.408628 -2.68221e-09 0.103074 -0.400253 -2.82124e-09 0.0934297 -0.382276 -2.94706e-09 0.0777453 -0.353492 -3.03555e-09 0.0565331 -0.306968 -3.14713e-09 0.0250751 -0.331584 3.906e-05 0.03105 -0.341117 0.000312498 0.0332949 -0.344441 0.00105469 0.0340699 -0.414049 0.00103491 0.0898995 -0.412167 0.000306639 0.0901682 -0.407432 3.83277e-05 0.0908387 -0.390964 3.88431e-05 0.0747947 -0.365207 3.90329e-05 0.0548759 -0.372097 0.000312281 0.0549648 -0.3747 0.00105395 0.0550841 -0.398076 0.00104883 0.0735155 -0.396092 0.000310762 0.0738243 -0.265359 -3.3193e-09 0.0532186 -0.281516 -3.45757e-09 0.0459852 -0.297027 -3.41291e-09 0.0371316 -0.405379 -2.81262e-09 0.110338 -0.396928 -2.87813e-09 0.118301 -0.384201 -2.81262e-09 0.123326 -0.366658 -3.09983e-09 0.112624 -0.340636 -3.25139e-09 0.0972698 -0.306568 -3.30922e-09 0.0769889 -0.322861 -3.43305e-09 0.0701344 -0.339154 -3.35005e-09 0.062593 -0.370128 -3.26369e-09 0.0835852 -0.39146 -3.10137e-09 0.0995874 -0.380085 -3.19534e-09 0.106824 -0.355663 -3.36275e-09 0.0907255 -0.184542 0.01125 -0.0632917 -0.161404 0.0118238 -0.0758034 -0.129252 0.0122859 -0.0919419 -0.0948691 0.0124732 -0.107172 -0.0611389 0.0125 -0.119306 -0.0670807 0.0139358 -0.111497 -0.0738194 0.0146111 -0.101608 -0.0796623 0.0147031 -0.0907548 -0.0829167 0.0143889 -0.0800555 -0.133054 0.0144168 -0.0612622 
+-0.188199 0.0143201 -0.037042 -0.245713 0.0139352 -0.0095133 -0.270612 0.012618 -0.00641151 -0.236589 0.0123282 -0.0299653 -0.206034 0.0118291 -0.0498985 -0.179293 0.0130362 -0.0634709 -0.143733 0.0136674 -0.0807523 -0.105026 0.0139028 -0.0976979 -0.116722 0.0145824 -0.0858223 -0.127085 0.0146938 -0.073119 -0.178099 0.0145054 -0.0508361 -0.228636 0.0139253 -0.0268576 -0.203448 0.013679 -0.046332 -0.161398 0.0143451 -0.0663612 -0.0611389 -2.98023e-09 -0.119306 -0.0948691 -2.97385e-09 -0.107172 -0.129252 -2.92918e-09 -0.0919419 -0.161404 -2.819e-09 -0.0758034 -0.184542 -2.68221e-09 -0.0632917 -0.206034 -2.82124e-09 -0.0498523 -0.236589 -2.94706e-09 -0.0295957 -0.270612 -3.03555e-09 -0.00511926 -0.245713 -3.42222e-09 -0.00509496 -0.188199 -3.53207e-09 -0.032346 -0.133054 -3.57075e-09 -0.0565068 -0.0829167 -3.57628e-09 -0.0753333 -0.0796623 -3.56697e-09 -0.0887626 -0.0738194 -3.50177e-09 -0.101017 -0.0670807 -3.32482e-09 -0.111423 -0.105026 -3.31676e-09 -0.0976239 -0.143733 -3.26036e-09 -0.0806813 -0.179293 -3.10949e-09 -0.063409 -0.203448 -3.27265e-09 -0.045837 -0.228636 -3.35932e-09 -0.0251354 -0.178099 -3.50721e-09 -0.0488999 -0.127085 -3.5595e-09 -0.0711185 -0.116722 -3.49336e-09 -0.0852302 -0.161398 -3.4345e-09 -0.0657931 -0.186667 0.0025 -0.0640833 -0.186633 0.00474537 -0.0640609 -0.186399 0.00733796 -0.0639037 -0.185728 0.00970462 -0.0635588 -0.308693 0.0025 0.0104889 -0.268573 0.0025 -0.0148003 -0.227061 0.0025 -0.0401651 -0.226803 0.00475127 -0.0402706 -0.224997 0.00738519 -0.0410087 -0.219607 0.00987594 -0.0433392 -0.256048 0.010148 -0.0205418 -0.294198 0.0103279 0.00440136 
+-0.304563 0.00753157 0.00878919 -0.308177 0.00476957 0.0102765 -0.268124 0.00476221 -0.0150028 -0.264983 0.00747269 -0.0164196 -0.185728 3.90602e-05 -0.0635588 -0.186399 0.000312498 -0.0639037 -0.186633 0.00105469 -0.0640609 -0.219607 3.90602e-05 -0.0433135 -0.224997 0.000312498 -0.0410003 -0.226803 0.00105469 -0.0402695 -0.268124 0.00105469 -0.0149944 -0.308177 0.00105469 0.0103024 -0.304563 0.000312498 0.00899634 -0.294198 3.906e-05 0.00506552 -0.256048 3.90601e-05 -0.0203359 -0.264983 0.000312498 -0.0163524 -0.0824249 0.0138056 -0.0703945 -0.0791701 0.0129306 -0.0617257 -0.0746706 0.0117014 -0.0537704 -0.0704444 0.0100556 -0.04625 -0.112841 0.0102535 -0.0301616 -0.159032 0.0104722 -0.0094175 -0.20627 0.0106493 0.0140753 -0.218433 0.0122348 0.00970737 -0.23241 0.013264 0.00556225 -0.244207 0.0137849 0.000239613 -0.187551 0.0139091 -0.0272277 -0.132496 0.0138874 -0.0515404 -0.127174 0.013069 -0.0436013 -0.11978 0.0118826 -0.0366997 -0.168785 0.0120801 -0.0148175 -0.179465 0.0131998 -0.0203813 -0.20627 -2.98023e-09 0.0338392 -0.159032 -2.98023e-09 0.00997139 -0.112841 -2.98023e-09 -0.0110643 -0.0704444 -2.98023e-09 -0.0273611 -0.0746706 -3.32482e-09 -0.036431 -0.0791701 -3.50177e-09 -0.0481493 -0.0824249 -3.56697e-09 -0.0614666 -0.132496 -3.56392e-09 -0.0425276 -0.187551 -3.54256e-09 -0.0181721 -0.244207 -3.48852e-09 0.00924838 -0.23241 -3.47737e-09 0.0196588 -0.218433 -3.32177e-09 0.0278364 -0.168785 -3.32383e-09 0.00297615 -0.11978 -3.3247e-09 -0.0191696 -0.127174 -3.50078e-09 -0.0298799 -0.179465 -3.49383e-09 -0.00648333 -0.192717 0.00203733 0.0353443 -0.148061 0.00199306 0.0126493 
+-0.104997 0.00193837 -0.00707161 -0.0656667 0.00188889 -0.0222222 -0.0657413 0.000796874 -0.0196463 -0.0662639 0.000236109 -0.0193229 -0.0676823 2.95115e-05 -0.0217339 -0.198435 3.18308e-05 0.0374887 -0.194411 0.000254664 0.0388619 -0.192928 0.000859496 0.0381001 -0.148232 0.000840819 0.0153341 -0.10512 0.000817748 -0.00444845 -0.105978 0.000242294 -0.00398997 -0.108306 3.02846e-05 -0.00607049 -0.152689 3.11391e-05 0.0142461 -0.149432 0.00024913 0.01595 -0.0676823 0.00799045 -0.0389996 -0.0662639 0.00574306 -0.032309 -0.0657413 0.00361024 -0.026582 -0.192928 0.00389088 0.0308431 -0.194411 0.00616982 0.0252742 -0.198435 0.0085355 0.0194232 -0.152689 0.00837294 -0.00347651 -0.108306 0.00817213 -0.0235265 -0.105978 0.00588531 -0.0171193 -0.10512 0.00370379 -0.0114607 -0.148232 0.00380718 0.00821471 -0.149432 0.00604254 0.00262016 0.184542 0.01125 -0.0632917 0.185728 0.00970462 -0.0635588 0.186399 0.00733796 -0.0639037 0.186633 0.00474537 -0.0640609 0.186667 0.0025 -0.0640833 0.227061 0.0025 -0.0401651 0.268573 0.0025 -0.0148003 0.308693 0.0025 0.0104889 0.270612 0.012618 -0.00641151 0.236589 0.0123282 -0.0299653 0.206034 0.0118291 -0.0498985 0.219607 0.00987594 -0.0433392 0.224997 0.00738519 -0.0410087 0.226803 0.00475127 -0.0402706 0.268124 0.00476221 -0.0150028 0.308177 0.00476957 0.0102765 0.304563 0.00753157 0.00878919 0.294198 0.0103279 0.00440136 0.256048 0.010148 -0.0205418 0.264983 0.00747269 -0.0164196 0.186633 0.00105469 -0.0640609 0.186399 0.000312498 -0.0639037 0.185728 3.90602e-05 -0.0635588 0.184542 -2.68221e-09 -0.0632917 
+0.206034 -2.82124e-09 -0.0498523 0.236589 -2.94706e-09 -0.0295957 0.270612 -3.03555e-09 -0.00511926 0.226803 0.00105469 -0.0402695 0.224997 0.000312498 -0.0410003 0.219607 3.90602e-05 -0.0433135 0.256048 3.90601e-05 -0.0203359 0.294198 3.906e-05 0.00506552 0.304563 0.000312498 0.00899634 0.308177 0.00105469 0.0103024 0.268124 0.00105469 -0.0149944 0.264983 0.000312498 -0.0163524 0.422553 0.00228906 0.117572 0.414849 0.00217361 0.127798 0.399851 0.00206858 0.133032 0.399624 0.00393774 0.129398 0.398035 0.00616188 0.124015 0.393632 0.00833098 0.116618 0.407262 0.0087477 0.114265 0.41469 0.00896564 0.108011 0.420147 0.00673453 0.112796 0.422253 0.00434694 0.115794 0.414568 0.004137 0.125066 0.412598 0.00646923 0.120741 0.422253 0.000965697 0.118488 0.420147 0.000286131 0.118161 0.41469 3.57643e-05 0.115902 0.407262 3.39603e-05 0.125359 0.393632 3.23192e-05 0.130554 0.398035 0.00025857 0.134458 0.399624 0.00087268 0.135001 0.414568 0.000916991 0.129235 0.412598 0.0002717 0.128718 0.0704444 -2.98023e-09 -0.0273611 0.0676823 2.95115e-05 -0.0217339 0.0662639 0.000236109 -0.0193229 0.0657413 0.000796874 -0.0196463 0.0656667 0.00188889 -0.0222222 0.104997 0.00193837 -0.00707161 0.148061 0.00199306 0.0126493 0.192717 0.00203733 0.0353443 0.20627 -2.98023e-09 0.0338392 0.159032 -2.98023e-09 0.00997139 0.112841 -2.98023e-09 -0.0110643 0.108306 3.02846e-05 -0.00607049 0.105978 0.000242294 -0.00398997 0.10512 0.000817748 -0.00444845 0.148232 0.000840819 0.0153341 0.192928 0.000859496 0.0381001 0.194411 0.000254664 0.0388619 
+0.198435 3.18308e-05 0.0374887 0.152689 3.11391e-05 0.0142461 0.149432 0.00024913 0.01595 0.0657413 0.00361024 -0.026582 0.0662639 0.00574306 -0.032309 0.0676823 0.00799045 -0.0389996 0.0704444 0.0100556 -0.04625 0.112841 0.0102535 -0.0301616 0.159032 0.0104722 -0.0094175 0.20627 0.0106493 0.0140753 0.10512 0.00370379 -0.0114607 0.105978 0.00588531 -0.0171193 0.108306 0.00817213 -0.0235265 0.152689 0.00837294 -0.00347651 0.198435 0.0085355 0.0194232 0.194411 0.00616982 0.0252742 0.192928 0.00389088 0.0308431 0.148232 0.00380718 0.00821471 0.149432 0.00604254 0.00262016 0.0829167 0.0143889 -0.0800555 0.133054 0.0144168 -0.0612622 0.188199 0.0143201 -0.037042 0.245713 0.0139352 -0.0095133 0.0746706 0.0117014 -0.0537704 0.0791701 0.0129306 -0.0617257 0.0824249 0.0138056 -0.0703945 0.132496 0.0138874 -0.0515404 0.187551 0.0139091 -0.0272277 0.244207 0.0137849 0.000239613 0.23241 0.013264 0.00556225 0.218433 0.0122348 0.00970737 0.168785 0.0120801 -0.0148175 0.11978 0.0118826 -0.0366997 0.127174 0.013069 -0.0436013 0.179465 0.0131998 -0.0203813 0.0611389 0.0125 -0.119306 0.0948691 0.0124732 -0.107172 0.129252 0.0122859 -0.0919419 0.161404 0.0118238 -0.0758034 0.0796623 0.0147031 -0.0907548 0.0738195 0.0146111 -0.101608 0.0670807 0.0139358 -0.111497 0.105026 0.0139028 -0.0976979 0.143733 0.0136674 -0.0807523 0.179293 0.0130362 -0.0634709 0.203448 0.013679 -0.046332 0.228636 0.0139253 -0.0268576 0.178099 0.0145054 -0.0508361 0.127085 0.0146938 -0.073119 0.116722 0.0145824 -0.0858223 
+0.161398 0.0143451 -0.0663612 0.0573008 0.0102344 -0.124236 0.0553299 0.0075 -0.126767 0.0546037 0.00476563 -0.1277 0.0545 0.0025 -0.127833 0.0837995 0.0025 -0.117415 0.115271 0.0025 -0.103115 0.149398 0.0025 -0.0852357 0.0884129 0.010219 -0.113123 0.0851593 0.00749494 -0.116147 0.0839695 0.00476499 -0.117257 0.115465 0.00476056 -0.102952 0.149526 0.00475107 -0.0851183 0.150415 0.00738354 -0.0842965 0.153229 0.00987136 -0.0818736 0.120716 0.0101114 -0.0986333 0.116828 0.00745949 -0.101816 0.0546037 0.00105469 -0.1277 0.0553299 0.000312498 -0.126767 0.0573008 3.90601e-05 -0.124236 0.0611389 -2.98023e-09 -0.119306 0.0948691 -2.97385e-09 -0.107172 0.129252 -2.92918e-09 -0.0919419 0.161404 -2.819e-09 -0.0758034 0.149526 0.00105469 -0.0851183 0.115465 0.00105469 -0.102952 0.0839695 0.00105469 -0.117257 0.0851593 0.000312498 -0.116147 0.0884129 3.90601e-05 -0.113123 0.120716 3.90601e-05 -0.0986333 0.153229 3.90602e-05 -0.0818736 0.150415 0.000312498 -0.0842965 0.116828 0.000312498 -0.101816 0.0670807 -3.32482e-09 -0.111423 0.0738195 -3.50177e-09 -0.101017 0.0796623 -3.56697e-09 -0.0887626 0.0829167 -3.57628e-09 -0.0753333 0.133054 -3.57075e-09 -0.0565068 0.188199 -3.53207e-09 -0.032346 0.245713 -3.42222e-09 -0.00509496 0.179293 -3.10949e-09 -0.063409 0.143733 -3.26036e-09 -0.0806813 0.105026 -3.31676e-09 -0.0976239 0.116722 -3.49336e-09 -0.0852302 0.127085 -3.5595e-09 -0.0711185 0.178099 -3.50721e-09 -0.0488999 0.228636 -3.35932e-09 -0.0251354 0.203448 -3.27265e-09 -0.045837 0.161398 -3.4345e-09 -0.0657931 0.0824249 -3.56697e-09 -0.0614666 
+0.0791701 -3.50177e-09 -0.0481493 0.0746706 -3.32482e-09 -0.036431 0.218433 -3.32177e-09 0.0278364 0.23241 -3.47737e-09 0.0196588 0.244207 -3.48852e-09 0.00924838 0.187551 -3.54256e-09 -0.0181721 0.132496 -3.56392e-09 -0.0425276 0.127174 -3.50078e-09 -0.0298799 0.11978 -3.3247e-09 -0.0191696 0.168785 -3.32383e-09 0.00297615 0.179465 -3.49383e-09 -0.00648333 -0.0313646 0.00185764 -0.0314722 3.46945e-18 0.00184722 -0.0345556 0.0313646 0.00185764 -0.0314722 0.0335868 -2.98023e-09 -0.0373299 5.95012e-10 -2.98023e-09 -0.0406528 -0.0335868 -2.98023e-09 -0.0373299 -0.0323021 2.90232e-05 -0.0313047 -0.0316424 0.000232203 -0.0286862 -0.0313993 0.000783691 -0.0289251 9.29705e-12 0.000779296 -0.032018 0.0313993 0.000783691 -0.0289251 0.0316424 0.000232203 -0.0286862 0.0323021 2.90232e-05 -0.0313047 2.51021e-10 2.88604e-05 -0.034495 7.43765e-11 0.000230901 -0.0318073 -0.0335868 0.00993056 -0.0560937 5.95012e-10 0.00988889 -0.059375 0.0335868 0.00993056 -0.0560937 -0.0313993 0.00355116 -0.0358149 -0.0316424 0.00565321 -0.0415864 -0.0323021 0.00787571 -0.0484561 2.51021e-10 0.00783746 -0.0516083 0.0323021 0.00787571 -0.0484561 0.0316424 0.00565321 -0.0415864 0.0313993 0.00355116 -0.0358149 9.29705e-12 0.00353147 -0.0388926 7.43765e-11 0.00562327 -0.0446788 -0.0394974 0.0143576 -0.0915556 2.97506e-09 0.0143472 -0.0953889 0.0394974 0.0143576 -0.0915556 -0.0355542 0.0115866 -0.0642289 -0.037659 0.0128407 -0.0728312 -0.0392053 0.0137465 -0.0819302 2.43583e-09 0.0137268 -0.0857754 0.0392053 0.0137465 -0.0819302 0.037659 0.0128407 -0.0728312 0.0355542 0.0115866 -0.0642289 1.13424e-09 0.0115484 -0.0677151 1.78503e-09 0.0128108 -0.076533 
+-0.0298064 0.0125 -0.126774 3.57007e-09 0.0125 -0.129264 0.0298064 0.0125 -0.126774 -0.038083 0.0146899 -0.101594 -0.0354852 0.0146072 -0.111362 -0.0324708 0.0139353 -0.120031 3.56077e-09 0.0139351 -0.122875 0.0324708 0.0139353 -0.120031 0.0354852 0.0146072 -0.111362 0.038083 0.0146899 -0.101594 3.31905e-09 0.0146856 -0.105207 3.49569e-09 0.0146059 -0.114613 -0.0545 0.0025 -0.127833 -0.0268281 0.0025 -0.134115 3.57007e-09 0.0025 -0.136208 0.0268281 0.0025 -0.134115 -0.0573008 0.0102344 -0.124236 -0.0553299 0.0075 -0.126767 -0.0546037 0.00476563 -0.1277 -0.0268747 0.00476563 -0.134 3.57007e-09 0.00476563 -0.1361 0.0268747 0.00476563 -0.134 0.0272004 0.0075 -0.133197 0.0280846 0.0102344 -0.131018 3.57007e-09 0.0102344 -0.133279 -0.0280846 0.0102344 -0.131018 -0.0272004 0.0075 -0.133197 3.57007e-09 0.0075 -0.13534 -0.0298064 -2.98023e-09 -0.126774 3.57007e-09 -2.98023e-09 -0.129264 0.0298064 -2.98023e-09 -0.126774 -0.0546037 0.00105469 -0.1277 -0.0553299 0.000312498 -0.126767 -0.0573008 3.90601e-05 -0.124236 -0.0280846 3.90601e-05 -0.131018 3.57007e-09 3.90601e-05 -0.133279 0.0280846 3.90601e-05 -0.131018 0.0272004 0.000312498 -0.133197 0.0268747 0.00105469 -0.134 3.57007e-09 0.00105469 -0.1361 -0.0268747 0.00105469 -0.134 -0.0272004 0.000312498 -0.133197 3.57007e-09 0.000312498 -0.13534 -0.0394974 -3.57628e-09 -0.0868646 2.97506e-09 -3.57628e-09 -0.0907083 0.0394974 -3.57628e-09 -0.0868646 -0.038083 -3.56697e-09 -0.0996151 3.31905e-09 -3.56697e-09 -0.103233 0.038083 -3.56697e-09 -0.0996151 0.0354852 -3.50177e-09 -0.110775 
+0.0324708 -3.32482e-09 -0.119957 3.56077e-09 -3.32482e-09 -0.122802 -0.0324708 -3.32482e-09 -0.119957 -0.0354852 -3.50177e-09 -0.110775 3.49569e-09 -3.50177e-09 -0.114028 -0.0355542 -3.32482e-09 -0.0470042 1.13424e-09 -3.32482e-09 -0.0505286 0.0355542 -3.32482e-09 -0.0470042 0.037659 -3.50177e-09 -0.0593446 0.0392053 -3.56697e-09 -0.0730613 2.43583e-09 -3.56697e-09 -0.0769262 -0.0392053 -3.56697e-09 -0.0730613 -0.037659 -3.50177e-09 -0.0593446 1.78503e-09 -3.50177e-09 -0.0630764 -0.149398 0.0025 -0.0852357 -0.115271 0.0025 -0.103115 -0.0837995 0.0025 -0.117415 -0.149526 0.00475107 -0.0851183 -0.115465 0.00476056 -0.102952 -0.0839695 0.00476499 -0.117257 -0.0851593 0.00749494 -0.116147 -0.0884129 0.010219 -0.113123 -0.120716 0.0101114 -0.0986333 -0.153229 0.00987136 -0.0818736 -0.150415 0.00738354 -0.0842965 -0.116828 0.00745949 -0.101816 -0.0884129 3.90601e-05 -0.113123 -0.0851593 0.000312498 -0.116147 -0.0839695 0.00105469 -0.117257 -0.115465 0.00105469 -0.102952 -0.149526 0.00105469 -0.0851183 -0.150415 0.000312498 -0.0842965 -0.153229 3.90602e-05 -0.0818736 -0.120716 3.90601e-05 -0.0986333 -0.116828 0.000312498 -0.101816 -0.399851 0.00206858 0.133032 -0.414849 0.00217361 0.127798 -0.422553 0.00228906 0.117572 -0.422253 0.00434694 0.115794 -0.420147 0.00673453 0.112796 -0.41469 0.00896564 0.108011 -0.407262 0.0087477 0.114265 -0.393632 0.00833098 0.116618 -0.398035 0.00616188 0.124015 -0.399624 0.00393774 0.129398 -0.414568 0.004137 0.125066 -0.412598 0.00646923 0.120741 -0.399624 0.00087268 0.135001 -0.398035 0.00025857 0.134458 -0.393632 3.23192e-05 0.130554 
+-0.407262 3.39603e-05 0.125359 -0.41469 3.57643e-05 0.115902 -0.420147 0.000286131 0.118161 -0.422253 0.000965697 0.118488 -0.414568 0.000916991 0.129235 -0.412598 0.0002717 0.128718 </float_array>
+                    <technique_common>
+                        <accessor count="706" offset="0" source="#Empty_Mesh_positions_array" stride="3">
+                            <param name="X" type="float"/>
+                            <param name="Y" type="float"/>
+                            <param name="Z" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Texture" name="uvmap">
+                    <float_array id="Texture_array" count="1414">0 0 
+0.945964 0.25283 0.971346 0.19526 0.975243 0.188442 0.950929 0.244435 0.940998 0.261226 0.967449 0.202078 0.936033 0.269621 0.963553 0.208896 0.931068 0.278016 0.959656 0.215714 0.902479 0.340318 0.908513 0.330346 0.880993 0.391071 0.87389 0.402621 0.853473 0.451796 0.845301 0.464923 0.888096 0.379521 0.861645 0.438669 0.895199 0.367971 0.869816 0.425542 0.902302 0.356421 0.877988 0.412415 0.920581 0.310401 0.926615 0.300428 0.914547 0.320373 0.885027 0.236763 0.91895 0.179581 0.929127 0.188614 0.896537 0.247076 0.851103 0.293945 0.863947 0.305538 0.831357 0.364 0.817179 0.351127 0.783255 0.408309 0.798767 0.422462 0.845535 0.376874 0.814278 0.436616 0.859712 0.389747 0.82979 0.450769 0.889635 0.328725 0.919557 0.267703 0.94948 0.20668 0.939303 0.197647 0.908047 0.257389 0.876791 0.317132 0.925245 0.0685285 0.923671 0.0962915 0.881656 0.161159 0.880533 0.135958 0.839641 0.226027 
+0.83582 0.203388 0.797626 0.290895 0.791108 0.270817 0.755611 0.355762 0.746396 0.338247 0.804144 0.310972 0.764826 0.373278 0.810661 0.331049 0.77404 0.390793 0.847282 0.271305 0.883903 0.211562 0.920524 0.151818 0.922098 0.124055 0.88278 0.18636 0.843462 0.248666 0.929127 0.115948 0.91895 0.0903816 0.880027 0.153002 0.892787 0.179172 0.939303 0.141514 0.905547 0.205341 0.918307 0.23151 0.94948 0.16708 0.931068 0.25768 0.959656 0.192645 0.902479 0.322714 0.887135 0.295941 0.87389 0.387749 0.855962 0.360372 0.82479 0.424803 0.845301 0.452783 0.838035 0.332996 0.804278 0.396824 0.820107 0.30562 0.783767 0.368844 0.802179 0.278244 0.763255 0.340864 0.856447 0.242396 0.841103 0.215623 0.871791 0.269169 0.963553 0.191595 0.936033 0.254369 0.967449 0.190544 0.940998 0.251057 0.971346 0.189493 0.945964 0.247746 0.920581 0.306 0.895199 0.364253 0.869816 0.422507 0.861645 0.432599 
+0.888096 0.372085 0.853473 0.442691 0.880993 0.379917 0.908513 0.317143 0.914547 0.311571 0.799411 0.276387 0.75904 0.34021 0.796644 0.274531 0.754826 0.339556 0.793876 0.272674 0.750611 0.338901 0.837141 0.206447 0.880406 0.140219 0.923671 0.0739917 0.88028 0.14448 0.922098 0.079455 0.880153 0.148741 0.920524 0.0849183 0.839782 0.212564 0.838462 0.209505 0.216745 0.408309 0.182821 0.351127 0.189339 0.331049 0.22596 0.390793 0.235174 0.373278 0.195856 0.310972 0.244389 0.355762 0.202374 0.290895 0.253604 0.338247 0.208892 0.270817 0.160359 0.226027 0.16418 0.203388 0.118344 0.161159 0.119467 0.135958 0.0763286 0.0962915 0.0747549 0.0685285 0.11722 0.18636 0.0779023 0.124055 0.116097 0.211562 0.079476 0.151818 0.114973 0.236763 0.0810496 0.179581 0.148897 0.293945 0.152718 0.271305 0.156538 0.248666 0.0708732 0.188614 0.103463 0.247076 0.0606967 0.197647 0.0919529 0.257389 0.0804427 0.267703 
+0.0505202 0.20668 0.0689325 0.278016 0.0403438 0.215714 0.0975212 0.340318 0.110365 0.328725 0.12611 0.402621 0.140288 0.389747 0.17021 0.450769 0.154699 0.464923 0.154465 0.376874 0.185722 0.436616 0.168643 0.364 0.201233 0.422462 0.136053 0.305538 0.123209 0.317132 0.0364471 0.208896 0.0633421 0.268371 0.0325505 0.202078 0.0577518 0.258726 0.0286539 0.19526 0.0521614 0.24908 0.0247573 0.188442 0.046571 0.239435 0.0756689 0.302901 0.0683848 0.290428 0.0901985 0.341421 0.0991763 0.356721 0.112012 0.392415 0.122684 0.410542 0.108154 0.372021 0.133355 0.428669 0.117132 0.387321 0.144027 0.446796 0.0902371 0.327846 0.082953 0.315373 0.0763286 0.0739917 0.119594 0.140219 0.162859 0.206447 0.206124 0.272674 0.249389 0.338901 0.203356 0.274531 0.245174 0.339556 0.200589 0.276387 0.24096 0.34021 0.197821 0.278244 0.236745 0.340864 0.160218 0.212564 0.158897 0.215623 0.119847 0.148741 0.119973 0.153002 
+0.079476 0.0849183 0.0810496 0.0903816 0.0779023 0.079455 0.11972 0.14448 0.161538 0.209505 0.0521614 0.243996 0.0286539 0.189493 0.0577518 0.248557 0.0325505 0.190544 0.0633421 0.253119 0.0364471 0.191595 0.0689325 0.25768 0.0403438 0.192645 0.0902371 0.314643 0.0975212 0.322714 0.117132 0.376167 0.12611 0.387749 0.144027 0.437691 0.154699 0.452783 0.108154 0.364585 0.133355 0.422599 0.0991763 0.353003 0.122684 0.407507 0.0756689 0.2985 0.082953 0.306571 0.0708732 0.115948 0.107213 0.179172 0.143553 0.242396 0.179893 0.30562 0.216233 0.368844 0.161965 0.332996 0.195722 0.396824 0.144038 0.360372 0.17521 0.424803 0.112865 0.295941 0.0816927 0.23151 0.0505202 0.16708 0.0606967 0.141514 0.0944529 0.205341 0.128209 0.269169 0.332116 0.769204 0.302413 0.7275 0.265485 0.661856 0.303514 0.714289 0.36182 0.810908 0.341543 0.766723 0.391523 0.852612 0.379573 0.819156 0.417602 0.87159 0.421226 0.894316 
+0.413978 0.848863 0.367622 0.7857 0.410353 0.826137 0.355672 0.752245 0.406729 0.803411 0.343721 0.718789 0.30099 0.678352 0.280714 0.634167 0.246309 0.60446 0.217706 0.549545 0.191627 0.530567 0.274911 0.659375 0.228556 0.596212 0.321267 0.722537 0.391523 0.852612 0.421226 0.894316 0.417602 0.867652 0.379573 0.815444 0.341543 0.763237 0.36182 0.810908 0.303514 0.711029 0.332116 0.769204 0.265484 0.658821 0.302413 0.7275 0.228556 0.590142 0.274911 0.652853 0.191627 0.521462 0.246309 0.594678 0.217706 0.536503 0.30099 0.667894 0.280714 0.620222 0.355672 0.741109 0.343721 0.703942 0.410353 0.814325 0.406729 0.787661 0.367622 0.778277 0.413978 0.840989 0.321267 0.715565 0.256136 0.649746 0.30062 0.729481 0.300023 0.730141 0.25302 0.645709 0.259252 0.653783 0.301218 0.728821 0.262368 0.657819 0.301816 0.728161 0.222921 0.587478 0.183474 0.517137 0.175321 0.503707 0.167168 0.490276 
+0.159015 0.476846 0.211652 0.570011 0.206017 0.561278 0.217287 0.578745 0.301816 0.728161 0.262368 0.655543 0.301218 0.728821 0.259252 0.652265 0.30062 0.729481 0.256136 0.648987 0.211652 0.568494 0.167168 0.488 0.175321 0.499154 0.183474 0.510308 0.222921 0.582926 0.217287 0.57571 0.267748 0.478897 0.255238 0.496559 0.242727 0.514221 0.230217 0.531883 0.290223 0.612997 0.35023 0.69411 0.410236 0.775224 0.356738 0.669432 0.413744 0.747037 0.363247 0.644753 0.417251 0.71885 0.369755 0.620075 0.420759 0.690664 0.318752 0.549486 0.309242 0.570656 0.299733 0.591827 0.410236 0.747663 0.35148 0.666948 0.292723 0.586233 0.233967 0.505518 0.250227 0.474534 0.266488 0.443549 0.282748 0.412565 0.316742 0.518255 0.328752 0.484265 0.366997 0.59296 0.374755 0.555966 0.417251 0.667665 0.420759 0.607666 0.413744 0.707664 0.359238 0.629954 0.304733 0.552244 0.286245 0.411003 0.289742 0.409441 
+0.293239 0.407879 0.296736 0.406317 0.337089 0.476857 0.339869 0.474387 0.380939 0.545834 0.383001 0.542457 0.424789 0.594812 0.426133 0.590527 0.423446 0.599097 0.378878 0.549211 0.422102 0.603381 0.376817 0.552589 0.331531 0.481796 0.33431 0.479326 0.289489 0.424462 0.282242 0.442607 0.274995 0.460752 0.324031 0.530711 0.373067 0.60067 0.422102 0.67063 0.376378 0.581266 0.423446 0.650595 0.379689 0.561862 0.424789 0.610561 0.334589 0.493162 0.32931 0.511937 0.698184 0.728161 0.697587 0.7275 0.734516 0.661856 0.737007 0.659069 0.698782 0.728821 0.739498 0.656283 0.69938 0.729481 0.741989 0.653496 0.699977 0.730141 0.74448 0.650709 0.784598 0.577511 0.788983 0.571278 0.827207 0.501526 0.833485 0.491846 0.820929 0.511207 0.814651 0.520887 0.808373 0.530567 0.775829 0.589978 0.771444 0.596212 0.780213 0.583745 0.741989 0.652737 0.69938 0.729481 0.739498 0.654765 0.698782 0.728821 
+0.737007 0.656793 0.698184 0.728161 0.734516 0.658821 0.697587 0.7275 0.775829 0.585426 0.771444 0.590142 0.814651 0.514058 0.808373 0.521462 0.820929 0.506654 0.827207 0.49925 0.784598 0.575994 0.780213 0.58071 0.937744 0.0985068 0.93559 0.121034 0.933436 0.14356 0.931281 0.166087 0.942038 0.180357 0.952796 0.194626 0.956111 0.182572 0.959427 0.170518 0.962743 0.158464 0.947509 0.145776 0.950244 0.128485 0.944774 0.163066 0.959427 0.160618 0.956111 0.162772 0.952796 0.164926 0.942038 0.138256 0.931281 0.111587 0.933436 0.107227 0.93559 0.102867 0.947509 0.131742 0.944774 0.134999 0.623183 0.552589 0.577898 0.603381 0.579241 0.607666 0.625245 0.555966 0.621122 0.549211 0.576554 0.599097 0.619061 0.545834 0.575211 0.594812 0.616999 0.542457 0.573867 0.590527 0.660131 0.474387 0.662911 0.476857 0.703264 0.406317 0.706761 0.407879 0.710258 0.409441 0.713755 0.411003 0.717252 0.412565 
+0.668469 0.481796 0.671248 0.484265 0.66569 0.479326 0.575211 0.610561 0.620311 0.561862 0.576554 0.650595 0.623622 0.581266 0.577898 0.67063 0.626933 0.600671 0.579241 0.690664 0.630245 0.620075 0.675969 0.530711 0.681248 0.549486 0.725005 0.460752 0.732252 0.478897 0.717758 0.442607 0.710511 0.424462 0.665411 0.493162 0.67069 0.511937 0.593271 0.803411 0.589764 0.775224 0.64977 0.69411 0.656279 0.718789 0.709777 0.612997 0.719286 0.634167 0.769783 0.531883 0.782294 0.549545 0.757273 0.514221 0.744762 0.496559 0.690758 0.570656 0.636753 0.644753 0.582749 0.71885 0.586256 0.747037 0.643262 0.669432 0.700267 0.591827 0.600977 0.852612 0.568774 0.894316 0.574898 0.87159 0.614802 0.819156 0.654707 0.766723 0.63318 0.810908 0.694611 0.714289 0.665384 0.769204 0.723839 0.659375 0.753066 0.60446 0.69776 0.678352 0.642453 0.752245 0.587147 0.826137 0.628628 0.7857 0.581023 0.848863 
+0.676233 0.722537 0.599726 0.85811 0.566907 0.901426 0.598475 0.863608 0.56504 0.908537 0.597225 0.869105 0.563173 0.915647 0.595974 0.874603 0.561306 0.922757 0.631276 0.822564 0.630642 0.826449 0.665328 0.776022 0.665309 0.778295 0.665347 0.77375 0.665365 0.771477 0.632546 0.814793 0.631911 0.818679 0.665328 0.776022 0.631276 0.822564 0.597225 0.869105 0.563173 0.915647 0.56504 0.908537 0.598475 0.863608 0.566907 0.901426 0.599726 0.85811 0.568774 0.894316 0.600977 0.852612 0.632546 0.814793 0.63318 0.810908 0.665365 0.771477 0.665384 0.769204 0.665347 0.77375 0.631911 0.818679 0.694611 0.711029 0.654707 0.763237 0.614802 0.815444 0.574898 0.867652 0.581023 0.840989 0.628628 0.778277 0.587147 0.814325 0.642453 0.741109 0.593271 0.787661 0.656279 0.703942 0.69776 0.667894 0.719286 0.620222 0.753066 0.594678 0.782294 0.536503 0.723839 0.652853 0.676233 0.715565 0.733512 0.443549 
+0.749773 0.474534 0.766033 0.505518 0.707277 0.586233 0.64852 0.666948 0.589764 0.747663 0.640762 0.629954 0.586256 0.707664 0.633003 0.59296 0.582749 0.667665 0.683258 0.518255 0.695267 0.552244 0.460379 0.627666 0.461051 0.623381 0.461723 0.619097 0.462395 0.614812 0.463066 0.610527 0.5 0.614812 0.5 0.610527 0.536933 0.610527 0.537605 0.614812 0.538277 0.619097 0.538949 0.623381 0.539621 0.627666 0.5 0.623381 0.5 0.627666 0.5 0.619097 0.462395 0.630561 0.461723 0.650595 0.461051 0.67063 0.460379 0.690664 0.5 0.67063 0.5 0.690664 0.538949 0.67063 0.539621 0.690664 0.538277 0.650595 0.537605 0.630561 0.5 0.630561 0.5 0.650595 0.458626 0.71885 0.456872 0.747037 0.455118 0.775224 0.453364 0.803411 0.5 0.775224 0.5 0.803411 0.544882 0.775224 0.546636 0.803411 0.543128 0.747037 0.541374 0.71885 0.5 0.71885 0.5 0.747037 
+0.454552 0.826137 0.455739 0.848863 0.456926 0.87159 0.458113 0.894316 0.49625 0.87159 0.495 0.894316 0.531887 0.894316 0.535574 0.87159 0.539261 0.848863 0.542948 0.826137 0.49875 0.826137 0.4975 0.848863 0.460914 0.935647 0.461847 0.942757 0.428694 0.922757 0.426827 0.915647 0.495 0.935647 0.495 0.942757 0.528153 0.942757 0.529086 0.935647 0.53002 0.908537 0.530953 0.901426 0.495 0.901426 0.459047 0.901426 0.423093 0.901426 0.45998 0.908537 0.42496 0.908537 0.495 0.908537 0.423093 0.901426 0.459047 0.901426 0.458113 0.894316 0.495 0.901426 0.495 0.894316 0.530953 0.901426 0.531887 0.894316 0.53002 0.908537 0.529086 0.935647 0.495 0.935647 0.460914 0.935647 0.426827 0.915647 0.45998 0.908537 0.42496 0.908537 0.495 0.908537 0.454552 0.814325 0.453364 0.787661 0.49875 0.814325 0.5 0.787661 0.542948 0.814325 0.546636 0.787661 0.539261 0.840989 
+0.535574 0.867652 0.49625 0.867652 0.456926 0.867652 0.455739 0.840989 0.4975 0.840989 0.458626 0.667665 0.5 0.667665 0.541374 0.667665 0.543128 0.707664 0.544882 0.747663 0.5 0.747663 0.455118 0.747663 0.456872 0.707664 0.5 0.707664 0.332172 0.776022 0.332191 0.778295 0.363724 0.822564 0.364358 0.826449 0.396526 0.874603 0.395275 0.869105 0.394025 0.863608 0.392774 0.85811 0.362454 0.814793 0.332135 0.771477 0.332154 0.77375 0.363089 0.818679 0.392774 0.85811 0.394025 0.863608 0.395275 0.869105 0.363724 0.822564 0.332172 0.776022 0.332153 0.77375 0.332135 0.771477 0.362454 0.814793 0.363089 0.818679 0.0372567 0.158464 0.0405726 0.170518 0.0438885 0.182572 0.0472043 0.194626 0.0579615 0.180357 0.0687188 0.166087 0.0665643 0.14356 0.0644099 0.121034 0.0622555 0.0985068 0.0524913 0.145776 0.0497561 0.128485 0.0552264 0.163066 0.0644099 0.102867 0.0665643 0.107227 0.0687187 0.111587 
+0.0579615 0.138256 0.0472043 0.164926 0.0438885 0.162772 0.0405726 0.160618 0.0524913 0.131742 0.0552264 0.134999 </float_array>
+                    <technique_common>
+                        <accessor count="707" offset="0" source="#Texture_array" stride="2">
+                            <param name="S" type="float"/>
+                            <param name="T" type="float"/>
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="Empty_Mesh_vertices">
+                    <input semantic="POSITION" source="#Empty_Mesh_positions"/>
+                </vertices>
+                <polylist count="704" material="boomerang">
+                    <input offset="0" semantic="VERTEX" source="#Empty_Mesh_vertices"/>
+                    <input offset="1" semantic="TEXCOORD" source="#Texture" set="0"/>
+                    <vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 </vcount>
+                    <p>16 1 1 2 0 3 15 4 17 5 2 6 1 2 16 1 18 7 3 8 2 6 17 5 5 9 4 10 3 8 18 7 6 11 5 9 18 7 19 12 6 11 19 12 20 13 7 14 7 14 20 13 9 15 8 16 20 13 21 17 10 18 9 15 21 17 22 19 11 20 10 18 22 19 13 21 12 22 11 20 23 23 14 24 13 21 22 19 23 23 16 1 15 4 14 24 19 12 18 7 17 5 24 25 19 12 24 25 21 17 20 13 24 25 23 23 22 19 21 17 24 25 17 5 16 1 23 23 26 26 25 27 35 28 36 29 27 30 26 26 36 29 37 31 27 30 37 31 38 32 28 33 29 34 28 33 38 32 30 35 30 35 38 32 39 36 31 37 31 37 39 36 40 38 32 39 32 39 40 38 7 14 8 16 41 40 6 11 7 14 40 38 42 41 5 9 6 11 41 40 33 42 4 10 5 9 42 41 34 43 33 42 42 41 43 44 36 29 35 28 34 43 43 44 37 31 44 45 39 36 38 32 44 45 41 40 40 38 39 36 43 44 42 41 41 40 44 45 36 29 43 44 44 45 37 31 45 46 55 47 56 48 46 49 46 49 56 48 57 50 47 51 57 50 58 52 48 53 47 51 58 52 50 54 49 55 48 53 59 56 51 57 50 54 58 52 60 58 52 59 51 57 59 56 60 58 28 33 29 34 52 59 61 60 27 30 28 33 60 58 62 61 26 26 27 30 61 60 53 62 25 27 26 26 62 61 54 63 53 62 62 61 63 64 55 47 54 63 63 64 56 48 57 50 64 65 59 56 58 52 64 65 61 60 60 58 59 56 63 64 62 61 61 60 64 65 56 48 63 64 64 65 57 50 66 66 65 67 80 68 81 69 67 70 66 66 81 69 82 71 
+83 72 68 73 67 70 82 71 70 74 69 75 68 73 83 72 71 76 70 74 83 72 84 77 72 78 71 76 84 77 85 79 72 78 85 79 74 80 73 81 85 79 86 82 75 83 74 80 86 82 87 84 76 85 75 83 87 84 78 86 77 87 76 85 87 84 88 88 79 89 78 86 81 69 80 68 79 89 88 88 84 77 83 72 82 71 89 90 85 79 84 77 89 90 86 82 86 82 89 90 88 88 87 84 82 71 81 69 88 88 89 90 90 91 69 75 70 74 96 92 91 93 90 91 96 92 97 94 92 95 91 93 97 94 98 96 98 96 15 4 0 3 92 95 99 97 14 24 15 4 98 96 13 21 14 24 99 97 100 98 93 99 12 22 13 21 100 98 94 100 93 99 100 98 101 101 95 102 94 100 101 101 102 103 95 102 102 103 72 78 73 81 102 103 103 104 71 76 72 78 103 104 96 92 70 74 71 76 98 96 97 94 104 105 99 97 100 98 99 97 104 105 101 101 101 101 104 105 103 104 102 103 97 94 96 92 103 104 104 105 77 87 78 86 111 106 105 107 105 107 111 106 112 108 106 109 106 109 112 108 113 110 107 111 49 55 107 111 113 110 48 53 48 53 113 110 114 112 47 51 114 112 115 113 46 49 47 51 115 113 108 114 45 46 46 49 116 115 109 116 108 114 115 113 117 117 110 118 109 116 116 115 80 68 65 67 110 118 117 117 79 89 80 68 117 117 118 119 78 86 79 89 118 119 111 106 112 108 119 120 114 112 113 110 119 120 116 115 115 113 114 112 118 119 117 117 116 115 119 120 111 106 118 119 119 120 112 108 120 121 135 122 136 123 121 124 122 125 121 124 136 123 137 126 123 127 122 125 137 126 138 128 124 129 123 127 138 128 125 130 
+125 130 138 128 139 131 126 132 139 131 140 133 127 134 126 132 140 133 129 135 128 136 127 134 141 137 130 138 129 135 140 133 142 139 131 140 130 138 141 137 133 141 132 142 131 140 142 139 134 143 133 141 142 139 143 144 135 122 134 143 143 144 136 123 137 126 144 145 139 131 138 128 144 145 141 137 140 133 139 131 143 144 142 139 141 137 144 145 136 123 143 144 144 145 137 126 145 146 132 142 133 141 156 147 146 148 145 146 156 147 157 149 158 150 147 151 146 148 157 149 149 152 148 153 147 151 158 150 150 154 149 152 158 150 159 155 151 156 150 154 159 155 160 157 151 156 160 157 153 158 152 159 160 157 161 160 154 161 153 158 161 160 162 162 155 163 154 161 162 162 135 122 120 121 155 163 162 162 163 164 134 143 135 122 156 147 133 141 134 143 163 164 159 155 158 150 157 149 164 165 160 157 159 155 164 165 161 160 161 160 164 165 163 164 162 162 164 165 157 149 156 147 163 164 165 166 148 153 149 152 176 167 166 168 165 166 176 167 177 169 167 170 166 168 177 169 178 171 168 172 167 170 178 171 169 173 169 173 178 171 179 174 170 175 171 176 170 175 179 174 180 177 172 178 171 176 180 177 173 179 173 179 180 177 181 180 174 181 174 181 181 180 182 182 175 183 175 183 182 182 151 156 152 159 182 182 183 184 150 154 151 156 176 167 149 152 150 154 183 184 178 171 177 169 184 185 179 174 180 177 179 174 184 185 181 180 181 180 184 185 183 184 182 182 177 169 176 167 183 184 184 185 128 136 195 186 196 187 127 134 127 134 196 187 197 188 126 132 197 188 198 189 125 130 126 132 198 189 185 190 124 129 125 130 198 189 199 191 186 192 185 190 199 191 200 193 187 194 186 192 
+200 193 189 195 188 196 187 194 201 197 190 198 189 195 200 193 202 199 191 200 190 198 201 197 193 201 192 202 191 200 202 199 194 203 193 201 202 199 203 204 195 186 194 203 203 204 196 187 197 188 204 205 199 191 198 189 204 205 201 197 200 193 199 191 203 204 202 199 201 197 204 205 196 187 203 204 204 205 197 188 168 172 169 173 216 206 205 207 217 208 206 209 205 207 216 206 218 210 207 211 206 209 217 208 209 212 208 213 207 211 218 210 209 212 218 210 219 214 210 215 210 215 219 214 220 216 211 217 211 217 220 216 213 218 212 219 221 220 214 221 213 218 220 216 222 222 215 223 214 221 221 220 171 176 172 178 215 223 222 222 223 224 170 175 171 176 222 222 169 173 170 175 223 224 216 206 219 214 218 210 217 208 224 225 219 214 224 225 221 220 220 216 224 225 223 224 222 222 221 220 224 225 217 208 216 206 223 224 191 200 192 202 230 226 231 227 190 198 191 200 231 227 232 228 190 198 232 228 233 229 189 195 188 196 189 195 233 229 225 230 225 230 233 229 234 231 226 232 226 232 234 231 235 233 227 234 227 234 235 233 211 217 212 219 236 235 210 215 211 217 235 233 237 236 209 212 210 215 236 235 228 237 208 213 209 212 237 236 229 238 228 237 237 236 238 239 231 227 230 226 229 238 238 239 232 228 239 240 234 231 233 229 239 240 236 235 235 233 234 231 238 239 237 236 236 235 239 240 232 228 231 227 238 239 239 240 241 241 240 242 254 243 255 244 242 245 241 241 255 244 256 246 243 247 242 245 256 246 257 248 245 249 244 250 243 247 257 248 246 251 245 249 257 248 258 252 247 253 246 251 258 252 259 254 248 255 247 253 259 254 249 256 249 256 259 254 260 257 250 258 
+250 258 260 257 261 259 251 260 251 260 261 259 252 261 152 159 262 262 253 263 252 261 261 259 255 244 254 243 253 263 262 262 257 248 256 246 263 264 258 252 259 254 258 252 263 264 260 257 263 264 262 262 261 259 260 257 256 246 255 244 262 262 263 264 265 265 264 266 278 267 279 268 280 269 266 270 265 265 279 268 281 271 267 272 266 270 280 269 269 273 268 274 267 272 281 271 270 275 269 273 281 271 282 276 271 277 270 275 282 276 283 278 271 277 283 278 272 279 212 219 283 278 284 280 273 281 272 279 284 280 285 282 274 283 273 281 285 282 276 284 275 285 274 283 286 286 277 287 276 284 285 282 279 268 278 267 277 287 286 286 282 276 281 271 280 269 287 288 283 278 282 276 287 288 284 280 287 288 286 286 285 282 284 280 287 288 280 269 279 268 286 286 295 289 289 290 288 291 294 292 296 293 290 294 289 290 295 289 297 295 291 296 290 294 296 293 254 243 240 242 291 296 297 295 253 263 254 243 297 295 298 297 253 263 298 297 299 298 252 261 252 261 299 298 175 183 152 159 299 298 300 299 174 181 175 183 300 299 301 300 173 179 174 181 301 300 292 301 172 178 173 179 301 300 302 302 293 303 292 301 302 302 295 289 294 292 293 303 298 297 297 295 296 293 303 304 299 298 298 297 303 304 300 299 300 299 303 304 302 302 301 300 303 304 296 293 295 289 302 302 304 305 268 274 269 273 307 306 305 307 304 305 307 306 308 308 306 309 305 307 308 308 309 310 288 291 306 309 309 310 294 292 294 292 309 310 310 311 293 303 293 303 310 311 311 312 292 301 172 178 292 301 311 312 215 223 215 223 311 312 312 313 214 221 214 221 312 313 313 314 213 218 213 218 313 314 271 277 212 219 
+313 314 314 315 270 275 271 277 314 315 307 306 269 273 270 275 309 310 308 308 315 316 310 311 311 312 310 311 315 316 312 313 312 313 315 316 314 315 313 314 308 308 307 306 314 315 315 316 120 121 322 317 323 318 155 163 155 163 323 318 324 319 154 161 154 161 324 319 325 320 153 158 153 158 325 320 251 260 152 159 325 320 326 321 250 258 251 260 326 321 327 322 249 256 250 258 327 322 316 323 248 255 249 256 328 324 317 325 316 323 327 322 329 326 318 327 317 325 328 324 320 328 319 329 318 327 329 326 321 330 320 328 329 326 330 331 322 317 321 330 330 331 323 318 324 319 331 332 326 321 325 320 331 332 328 324 327 322 326 321 330 331 329 326 328 324 331 332 323 318 330 331 331 332 324 319 275 285 338 333 339 334 274 283 274 283 339 334 340 335 273 281 273 281 340 335 341 336 272 279 272 279 341 336 227 234 212 219 341 336 342 337 226 232 227 234 342 337 343 338 225 230 226 232 343 338 332 339 188 196 225 230 344 340 333 341 332 339 343 338 345 342 334 343 333 341 344 340 336 344 335 345 334 343 345 342 337 346 336 344 345 342 346 347 338 333 337 346 346 347 339 334 340 335 347 348 342 337 341 336 347 348 344 340 343 338 342 337 346 347 345 342 344 340 347 348 339 334 346 347 347 348 340 335 332 339 355 349 187 194 188 196 355 349 356 350 186 192 187 194 356 350 357 351 185 190 186 192 357 351 348 352 124 129 185 190 358 353 349 354 348 352 357 351 359 355 350 356 349 354 358 353 352 357 351 358 350 356 359 355 353 359 352 357 359 355 360 360 354 361 353 359 360 360 361 362 335 345 354 361 361 362 334 343 334 343 361 362 362 363 333 341 333 341 362 363 355 349 332 339 
+363 364 358 353 357 351 356 350 360 360 359 355 358 353 363 364 361 362 360 360 363 364 362 363 362 363 363 364 356 350 355 349 124 129 348 352 367 365 123 127 123 127 367 365 368 366 122 125 122 125 368 366 369 367 121 124 121 124 369 367 322 317 120 121 369 367 370 368 321 330 322 317 370 368 371 369 320 328 321 330 371 369 364 370 319 329 320 328 372 371 365 372 364 370 371 369 373 373 366 374 365 372 372 371 350 356 351 358 366 374 373 373 349 354 350 356 373 373 374 375 348 352 349 354 374 375 367 365 368 366 375 376 370 368 369 367 375 376 372 371 371 369 370 368 374 375 373 373 372 371 375 376 367 365 374 375 375 376 368 366 377 377 376 378 386 379 387 380 378 381 377 377 387 380 388 382 379 383 378 381 388 382 389 384 380 385 379 383 389 384 381 386 381 386 389 384 390 387 382 388 382 388 390 387 391 389 383 390 12 22 383 390 391 389 11 20 11 20 391 389 392 391 10 18 10 18 392 391 393 392 9 15 9 15 393 392 384 393 8 16 393 392 394 394 385 395 384 393 387 380 386 379 385 395 394 394 389 384 388 382 395 396 390 387 390 387 395 396 392 391 391 389 395 396 394 394 393 392 392 391 388 382 387 380 394 394 395 396 403 397 396 398 380 385 381 386 404 399 397 400 396 398 403 397 405 401 398 402 397 400 404 399 400 403 399 404 398 402 405 401 400 403 405 401 406 405 401 406 401 406 406 405 407 407 402 408 402 408 407 407 95 102 73 81 407 407 408 409 94 100 95 102 408 409 409 410 93 99 94 100 409 410 383 390 12 22 93 99 409 410 410 411 382 388 383 390 410 411 403 397 381 386 382 388 406 405 405 401 404 399 411 412 406 405 411 412 408 409 407 407 
+411 412 410 411 409 410 408 409 411 412 404 399 403 397 410 411 414 413 415 414 55 47 45 46 415 414 416 415 54 63 55 47 416 415 417 416 53 62 54 63 35 28 25 27 53 62 417 416 418 417 34 43 35 28 417 416 419 418 33 42 34 43 418 417 3 8 4 10 33 42 419 418 2 6 3 8 419 418 420 419 2 6 420 419 421 420 1 2 1 2 421 420 412 421 0 3 412 421 421 420 422 422 413 423 413 423 422 422 415 414 414 413 423 424 418 417 417 416 416 415 420 419 419 418 418 417 423 424 421 420 420 419 423 424 422 422 422 422 423 424 416 415 415 414 0 3 412 421 424 425 92 95 425 426 91 93 92 95 424 425 426 427 90 91 91 93 425 426 68 73 69 75 90 91 426 427 67 70 68 73 426 427 427 428 428 429 66 66 67 70 427 428 110 118 65 67 66 66 428 429 109 116 110 118 428 429 429 430 108 114 109 116 429 430 430 431 108 114 430 431 414 413 45 46 430 431 431 432 413 423 414 413 424 425 412 421 413 423 431 432 427 428 426 427 425 426 432 433 428 429 427 428 432 433 429 430 430 431 429 430 432 433 431 432 431 432 432 433 425 426 424 425 444 434 434 435 433 436 443 437 445 438 435 439 434 435 444 434 446 440 436 441 435 439 445 438 438 442 437 443 436 441 446 440 439 444 438 442 446 440 447 445 440 446 439 444 447 445 448 447 49 55 440 446 448 447 107 111 107 111 448 447 449 448 106 109 106 109 449 448 450 449 105 107 105 107 450 449 441 450 77 87 450 449 451 451 442 452 441 450 451 451 444 434 443 437 442 452 447 445 446 440 445 438 452 453 448 447 447 445 452 453 449 448 449 448 452 453 451 451 450 449 452 453 445 438 444 434 451 451 
+453 454 437 443 438 442 460 455 454 456 453 454 460 455 461 457 455 458 454 456 461 457 462 459 456 460 455 458 462 459 457 461 457 461 462 459 463 462 458 463 458 463 463 462 464 464 459 465 459 465 464 464 52 59 29 34 464 464 465 466 51 57 52 59 465 466 466 467 50 54 51 57 466 467 440 446 49 55 50 54 467 468 439 444 440 446 466 467 460 455 438 442 439 444 467 468 462 459 461 457 468 469 463 462 463 462 468 469 465 466 464 464 468 469 467 468 466 467 465 466 461 457 460 455 467 468 468 469 469 470 475 471 476 472 470 473 470 473 476 472 477 474 471 475 471 475 477 474 478 476 472 477 472 477 478 476 32 39 8 16 478 476 479 478 31 37 32 39 479 478 480 479 30 35 31 37 480 479 459 465 29 34 30 35 481 480 458 463 459 465 480 479 482 481 457 461 458 463 481 480 473 482 456 460 457 461 482 481 474 483 473 482 482 481 483 484 475 471 474 483 483 484 476 472 477 474 484 485 479 478 478 476 484 485 481 480 480 479 479 478 483 484 482 481 481 480 484 485 476 472 483 484 484 485 477 474 486 486 485 487 491 488 492 489 493 490 487 491 486 486 492 489 494 492 488 493 487 491 493 490 386 379 376 378 488 493 494 492 385 395 386 379 494 492 495 494 384 393 385 395 495 494 496 495 384 393 496 495 472 477 8 16 496 495 497 496 471 475 472 477 497 496 498 497 470 473 471 475 498 497 489 498 469 470 470 473 499 499 490 500 489 498 498 497 492 489 491 488 490 500 499 499 495 494 494 492 493 490 500 501 496 495 495 494 500 501 497 496 500 501 499 499 498 497 497 496 500 501 493 490 492 489 499 499 508 502 501 503 485 487 486 486 509 504 502 505 501 503 508 502 
+509 504 510 506 503 507 502 505 510 506 505 508 504 509 503 507 511 510 506 511 505 508 510 506 511 510 512 512 507 513 506 511 512 512 379 383 380 385 507 513 513 514 378 381 379 383 512 512 514 515 377 377 378 381 513 514 488 493 376 378 377 377 514 515 488 493 514 515 515 516 487 491 487 491 515 516 508 502 486 486 516 517 511 510 510 506 509 504 516 517 513 514 512 512 511 510 515 516 514 515 513 514 516 517 515 516 516 517 509 504 508 502 380 385 396 398 524 518 507 513 507 513 524 518 525 519 506 511 505 508 506 511 525 519 526 520 517 521 504 509 505 508 526 520 518 522 517 521 526 520 527 523 519 524 518 522 527 523 528 525 520 526 519 524 528 525 521 527 528 525 529 528 522 529 521 527 529 528 530 530 523 531 522 529 398 402 399 404 523 531 530 530 397 400 398 402 530 530 531 532 396 398 397 400 531 532 524 518 526 520 525 519 532 533 527 523 527 523 532 533 529 528 528 525 531 532 530 530 529 528 532 533 524 518 531 532 532 533 525 519 523 531 399 404 400 403 540 534 522 529 523 531 540 534 541 535 521 527 522 529 541 535 542 536 533 537 520 526 521 527 542 536 534 538 533 537 542 536 543 539 535 540 534 538 543 539 544 541 536 542 535 540 544 541 537 543 537 543 544 541 545 544 538 545 538 545 545 544 546 546 539 547 539 547 546 546 402 408 73 81 547 548 401 406 402 408 546 546 540 534 400 403 401 406 547 548 542 536 541 535 548 549 543 539 544 541 543 539 548 549 545 544 548 549 547 548 546 546 545 544 541 535 540 534 547 548 548 549 77 87 441 450 552 550 76 85 76 85 552 550 553 551 75 83 75 83 553 551 554 552 74 80 74 80 554 552 539 547 73 81 
+554 552 555 553 538 545 539 547 555 553 556 554 537 543 538 545 556 554 549 555 536 542 537 543 557 556 550 557 549 555 556 554 558 558 551 559 550 557 557 556 443 437 433 436 551 559 558 558 442 452 443 437 558 558 559 560 441 450 442 452 559 560 552 550 553 551 560 561 555 553 554 552 560 561 557 556 556 554 555 553 559 560 558 558 557 556 560 561 552 550 559 560 560 561 553 551 566 562 567 563 354 361 335 345 568 564 353 359 354 361 567 563 568 564 569 565 352 357 353 359 569 565 561 566 351 358 352 357 570 567 562 568 561 566 569 565 563 569 562 568 570 567 571 570 437 443 563 569 571 570 436 441 436 441 571 570 572 571 435 439 434 435 435 439 572 571 573 572 434 435 573 572 564 573 433 436 564 573 573 572 574 574 565 575 574 574 567 563 566 562 565 575 575 576 570 567 569 565 568 564 571 570 570 567 575 576 572 571 573 572 572 571 575 576 574 574 575 576 568 564 567 563 574 574 351 358 561 566 579 577 366 374 366 374 579 577 580 578 365 372 365 372 580 578 581 579 364 370 364 370 581 579 576 580 319 329 576 580 581 579 582 581 577 582 582 581 583 583 578 584 577 582 578 584 583 583 455 458 456 460 583 583 584 585 454 456 455 458 584 585 585 586 453 454 454 456 585 586 563 569 437 443 453 454 586 587 562 568 563 569 585 586 561 566 562 568 586 587 579 577 580 578 587 588 582 581 581 579 582 581 587 588 584 585 583 583 587 588 586 587 585 586 584 585 579 577 586 587 587 588 580 578 318 327 319 329 576 580 591 589 317 325 318 327 591 589 592 590 317 325 592 590 593 591 316 323 316 323 593 591 588 592 248 255 593 591 594 593 589 594 588 592 589 594 594 593 595 595 590 596 
+590 596 595 595 475 471 469 470 595 595 596 597 474 483 475 471 597 598 473 482 474 483 596 597 578 584 456 460 473 482 597 598 577 582 578 584 597 598 598 599 591 589 576 580 577 582 598 599 592 590 599 600 594 593 593 591 594 593 599 600 596 597 595 595 598 599 597 598 596 597 599 600 592 590 591 589 598 599 599 600 588 592 603 601 247 253 248 255 603 601 604 602 246 251 247 253 604 602 605 603 245 249 246 251 605 603 600 604 244 250 245 249 606 605 601 606 600 604 605 603 602 607 601 606 606 605 607 608 485 487 602 607 607 608 491 488 491 488 607 608 608 609 490 500 490 500 608 609 609 610 489 498 489 498 609 610 590 596 469 470 609 610 610 611 589 594 590 596 589 594 610 611 603 601 588 592 611 612 606 605 605 603 604 602 607 608 606 605 611 612 608 609 608 609 611 612 610 611 609 610 610 611 611 612 604 602 603 601 619 613 613 614 612 615 618 616 620 617 614 618 613 614 619 613 615 619 614 618 620 617 621 620 504 509 615 619 621 620 503 507 503 507 621 620 622 621 502 505 502 505 622 621 623 622 501 503 501 503 623 622 602 607 485 487 623 622 624 623 601 606 602 607 601 606 624 623 625 624 600 604 600 604 625 624 616 625 244 250 625 624 626 626 617 627 616 625 626 626 619 613 618 616 617 627 621 620 620 617 627 628 622 621 622 621 627 628 624 623 623 622 624 623 627 628 626 626 625 624 627 628 620 617 619 613 626 626 633 629 634 630 628 631 264 266 634 630 635 632 629 633 628 631 629 633 635 632 636 634 630 635 630 635 636 634 519 524 520 526 636 634 637 636 518 522 519 524 637 636 638 637 517 521 518 522 638 637 615 619 504 509 517 521 639 638 614 618 615 619 638 637 
+613 614 614 618 639 638 640 639 612 615 613 614 640 639 631 640 631 640 640 639 641 641 632 642 632 642 641 641 634 630 633 629 635 632 642 643 637 636 636 634 642 643 639 638 638 637 637 636 640 639 639 638 642 643 641 641 641 641 642 643 635 632 634 630 276 284 646 644 643 645 275 285 646 644 647 646 644 647 643 645 644 647 647 646 648 648 645 649 645 649 648 648 535 540 536 542 648 648 649 650 534 538 535 540 649 650 650 651 533 537 534 538 650 651 630 635 520 526 533 537 651 652 629 633 630 635 650 651 628 631 629 633 651 652 652 653 264 266 628 631 652 653 278 267 278 267 652 653 653 654 277 287 277 287 653 654 646 644 276 284 647 646 654 655 649 650 648 648 654 655 651 652 650 651 649 650 652 653 651 652 654 655 653 654 653 654 654 655 647 646 646 644 655 656 566 562 335 345 336 344 565 575 566 562 655 656 656 657 657 658 564 573 565 575 656 657 433 436 564 573 657 658 551 559 551 559 657 658 658 659 550 557 550 557 658 659 659 660 549 555 549 555 659 660 645 649 536 542 659 660 660 661 644 647 645 649 644 647 660 661 661 662 643 645 643 645 661 662 338 333 275 285 661 662 662 663 337 346 338 333 662 663 655 656 336 344 337 346 657 658 656 657 663 664 658 659 658 659 663 664 660 661 659 660 660 661 663 664 662 663 661 662 663 664 656 657 655 656 662 663 288 291 289 290 667 665 664 666 664 666 667 665 668 667 665 668 666 669 665 668 668 667 669 670 612 615 666 669 669 670 618 616 618 616 669 670 670 671 617 627 616 625 617 627 670 671 671 672 244 250 616 625 671 672 243 247 671 672 672 673 242 245 243 247 672 673 673 674 241 241 242 245 291 296 240 242 241 241 673 674 
+290 294 291 296 673 674 674 675 289 290 290 294 674 675 667 665 669 670 668 667 675 676 670 671 670 671 675 676 672 673 671 672 674 675 673 674 672 673 675 676 667 665 674 675 675 676 668 667 676 677 633 629 264 266 265 265 677 678 632 642 633 629 676 677 678 679 631 640 632 642 677 678 666 669 612 615 631 640 678 679 679 680 665 668 666 669 678 679 679 680 680 681 664 666 665 668 680 681 306 309 288 291 664 666 681 682 305 307 306 309 680 681 682 683 304 305 305 307 681 682 267 272 268 274 304 305 682 683 267 272 682 683 683 684 266 270 266 270 683 684 676 677 265 265 684 685 679 680 678 679 677 678 684 685 681 682 680 681 679 680 683 684 682 683 681 682 684 685 683 684 684 685 677 678 676 677 687 686 688 687 167 170 168 172 688 687 689 688 166 168 167 170 690 689 165 166 166 168 689 688 147 151 148 153 165 166 690 689 146 148 147 151 690 689 691 690 145 146 146 148 691 690 692 691 131 140 132 142 145 146 692 691 131 140 692 691 693 692 130 138 130 138 693 692 694 693 129 135 129 135 694 693 685 694 128 136 694 693 695 695 686 696 685 694 695 695 688 687 687 686 686 696 691 690 690 689 689 688 696 697 692 691 691 690 696 697 693 692 693 692 696 697 695 695 694 693 696 697 689 688 688 687 695 695 685 694 697 698 195 186 128 136 698 699 194 203 195 186 697 698 699 700 193 201 194 203 698 699 230 226 192 202 193 201 699 700 229 238 230 226 699 700 700 701 701 702 228 237 229 238 700 701 207 211 208 213 228 237 701 702 206 209 207 211 701 702 702 703 205 207 206 209 702 703 703 704 703 704 687 686 168 172 205 207 686 696 687 686 703 704 704 705 686 696 704 705 697 698 685 694 
+705 706 700 701 699 700 698 699 702 703 701 702 700 701 705 706 702 703 705 706 704 705 703 704 705 706 698 699 697 698 704 705 </p>
+                </polylist>
+                <extra>
+                    <technique profile="LWCORE">
+                        <hard_edges/>
+                    </technique>
+                </extra>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_controllers/>
+    <library_visual_scenes>
+        <visual_scene id="VisualSceneNode" name="Scene">
+            <node id="Empty_Mesh" name="Empty_Mesh">
+                <translate sid="translate">0 0 0</translate>
+                <translate sid="rotatePivotCompensation">0 0 0</translate>
+                <translate sid="rotatePivot">0 0 0</translate>
+                <rotate sid="rotatePivotOffsetY">0 1 0 0</rotate>
+                <rotate sid="rotatePivotOffsetX">1 0 0 0</rotate>
+                <rotate sid="rotatePivotOffsetZ">0 0 1 0</rotate>
+                <rotate sid="rotateY">0 1 0 0</rotate>
+                <rotate sid="rotateX">1 0 0 0</rotate>
+                <rotate sid="rotateZ">0 0 1 0</rotate>
+                <rotate sid="rotatePivotAxisY">0 1 0 0</rotate>
+                <rotate sid="rotatePivotAxisX">1 0 0 0</rotate>
+                <rotate sid="rotatePivotAxisZ">0 0 1 0</rotate>
+                <translate sid="rotatePivotInverse">0 0 0</translate>
+                <translate sid="scalePivotCompensation">0 0 0</translate>
+                <translate sid="scalePivot">0 0 0</translate>
+                <scale sid="scale">1 1 1</scale>
+                <translate sid="scalePivotInverse">0 0 0</translate>
+                <instance_geometry url="#Empty_Mesh_lib">
+                    <bind_material>
+                        <technique_common>
+                            <instance_material symbol="Default" target="#Default"/>
+                            <instance_material symbol="boomerang" target="#boomerang">
+                                <bind_vertex_input semantic="TEX0" input_semantic="TEXCOORD" input_set="0"/>
+                            </instance_material>
+                            <instance_material symbol="Default_1" target="#Default_1"/>
+                        </technique_common>
+                    </bind_material>
+                </instance_geometry>
+                <extra>
+                    <technique profile="LWCORE">
+                        <component id="comp_SceneObject" type="SceneObject">
+                            <attribute sid="Name" dynamic="custom">
+                                <description>
+                                    <parameter_type value="string"/>
+                                    <is_input value="true"/>
+                                </description>
+                                <string>Empty_Mesh</string>
+                            </attribute>
+                            <attribute sid="Self" dynamic="custom">
+                                <description>
+                                    <parameter_type value="WeakRef"/>
+                                    <is_input value="false"/>
+                                </description>
+                            </attribute>
+                            <attribute sid="Name_1">
+                                <string></string>
+                            </attribute>
+                            <attribute sid="Transform">
+                                <float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float4x4>
+                                <connected_component target_attribute="Transform">
+                                    <component id="comp_FKMotionController" type="FKMotionController">
+                                        <attribute sid="Name">
+                                            <string></string>
+                                        </attribute>
+                                        <attribute sid="TranslateX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="TranslateY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="TranslateZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateOrder">
+                                            <int>3</int>
+                                        </attribute>
+                                        <attribute sid="ScaleX">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="ScaleY">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="ScaleZ">
+                                            <float>1</float>
+                                        </attribute>
+                                        <attribute sid="RotateAxisX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateAxisY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateAxisZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateAxisOrder">
+                                            <int>3</int>
+                                        </attribute>
+                                        <attribute sid="RotateOffsetX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateOffsetY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateOffsetZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotateOffsetOrder">
+                                            <int>3</int>
+                                        </attribute>
+                                        <attribute sid="RotatePivotPositionX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotatePivotPositionY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotatePivotPositionZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ScalePivotPositionX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ScalePivotPositionY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ScalePivotPositionZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotatePivotCompensationX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotatePivotCompensationY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="RotatePivotCompensationZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ScalePivotCompensationX">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ScalePivotCompensationY">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="ScalePivotCompensationZ">
+                                            <float>0</float>
+                                        </attribute>
+                                        <attribute sid="UseKeys">
+                                            <bool>true</bool>
+                                        </attribute>
+                                    </component>
+                                </connected_component>
+                            </attribute>
+                            <attribute sid="MotionParent">
+                                <StrongRef>/Root/Scene/SceneItems/</StrongRef>
+                            </attribute>
+                            <attribute sid="visible">
+                                <bool>true</bool>
+                            </attribute>
+                            <attribute sid="frozen">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="layer">
+                                <StrongRef></StrongRef>
+                            </attribute>
+                            <attribute sid="wireframe">
+                                <bool>true</bool>
+                            </attribute>
+                            <attribute sid="solid">
+                                <bool>true</bool>
+                            </attribute>
+                            <attribute sid="showrotatepivot">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="showscalepivot">
+                                <bool>false</bool>
+                            </attribute>
+                            <attribute sid="SkinPose">
+                                <float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float4x4>
+                            </attribute>
+                            <attribute sid="SubdLevel">
+                                <int>3</int>
+                            </attribute>
+                            <attribute sid="ShadowOffset">
+                                <float>0</float>
+                            </attribute>
+                            <attribute sid="VertexSmoothing">
+                                <float>40</float>
+                            </attribute>
+                            <attribute sid="OriginalLocation">
+                                <string></string>
+                            </attribute>
+                            <attribute sid="DoubleSided">
+                                <bool>false</bool>
+                            </attribute>
+                        </component>
+                    </technique>
+                </extra>
+            </node>
+            <extra>
+                <technique profile="LWCORE">
+                    <construction_layers active_layer="Default_Layer">
+                        <construction_layer>
+                            <component id="comp_ConstructionLayer" type="ConstructionLayer">
+                                <attribute sid="Name" dynamic="custom">
+                                    <description>
+                                        <parameter_type value="string"/>
+                                        <is_input value="true"/>
+                                    </description>
+                                    <string>Default_Layer</string>
+                                </attribute>
+                                <attribute sid="Self" dynamic="custom">
+                                    <description>
+                                        <parameter_type value="WeakRef"/>
+                                        <is_input value="false"/>
+                                    </description>
+                                </attribute>
+                                <attribute sid="Name_1">
+                                    <string></string>
+                                </attribute>
+                                <attribute sid="visible">
+                                    <bool>true</bool>
+                                </attribute>
+                                <attribute sid="frozen">
+                                    <bool>false</bool>
+                                </attribute>
+                                <attribute sid="wireframe">
+                                    <bool>true</bool>
+                                </attribute>
+                                <attribute sid="solid">
+                                    <bool>true</bool>
+                                </attribute>
+                            </component>
+                            <item>/Grid/</item>
+                            <item>/Construction_Plane/</item>
+                            <item>/Directional_Light/</item>
+                            <item>/Perspective_Camera/</item>
+                        </construction_layer>
+                    </construction_layers>
+                    <time_operator>
+                        <component id="comp_SceneTime" type="SceneTime">
+                            <attribute sid="Name">
+                                <string></string>
+                            </attribute>
+                        </component>
+                    </time_operator>
+                    <dynamics_world/>
+                </technique>
+            </extra>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#VisualSceneNode"/>
+    </scene>
+</COLLADA>

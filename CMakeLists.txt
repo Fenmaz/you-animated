@@ -34,19 +34,22 @@ message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
 set(source_files
   src/main.cpp
   src/App.cpp
-  src/Model.cpp
-  src/Mesh.cpp
+  src/AnimatedModel.cpp
+  src/BoneMesh.cpp
 )
 
 set(header_files
   src/App.hpp
-  src/Model.h
-  src/Mesh.h
+  src/AnimatedModel.h
+  src/BoneMesh.h
 )
 
 set(extra_files
   README.md
-  resources/Alfred.obj
+  shaders/vertex.glsl
+  shaders/fragment.glsl
+  shaders/vertex-basic.glsl
+  shaders/fragment-basic.glsl
 )
 
 set_source_files_properties(${extra_files} PROPERTIES HEADER_FILE_ONLY TRUE)
@@ -110,7 +113,13 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                        ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:${PROJECT_NAME}>
 					   )
-			
+
+#copy shaders files to build folder so that the executable can find them in the working directory
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory
+                        ${CMAKE_SOURCE_DIR}/shaders $<TARGET_FILE_DIR:${PROJECT_NAME}>
+                        )
+
 #copy the basic graphics resources to the build directory			
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory

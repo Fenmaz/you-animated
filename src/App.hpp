@@ -37,7 +37,8 @@ using namespace MinVR;
 #endif
 
 #include <BasicGraphics.h>
-using namespace basicgraphics;
+
+#include "AnimatedModel.h"
 
 class App : public VRApp {
 public:
@@ -58,15 +59,12 @@ public:
     
 protected:
     
-    double _lastTime;
-    double _curFrameTime;
+    double _startTime;
     
     virtual void reloadShaders();
     basicgraphics::GLSLProgram _shader;
-    
-    std::unique_ptr<Model> _modelMesh;
-    
-    std::unique_ptr<Box> _box;
+    std::unique_ptr<AnimatedModel> _modelMesh;
+    std::unique_ptr<basicgraphics::Box> _box;
 
     
 };
