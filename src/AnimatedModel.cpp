@@ -58,9 +58,12 @@ AnimatedModel::~AnimatedModel()
 
 void AnimatedModel::draw(basicgraphics::GLSLProgram &shader) {
     for (int i = 0; i < _meshes.size(); i++) {
-        //cout<<"Drawing a mesh"<<endl;
-        shader.setUniform("bones", _finalTransformation);
-        //for (int i = 0; i < MAX_BONES; i++) { cout << i << "\t" << glm::to_string(_finalTransformation[i]) << endl; };
+//        cout<<"Drawing a mesh"<<endl;
+//        for (int i = 0; i < MAX_BONES; i++) { cout << i << "\t" << glm::to_string(_finalTransformation[i]) << endl; };
+        
+        // Per Bret's instructions, the following code set the bones array in vertex shader correctly to the array of final transformations
+        shader.use();
+        glUniformMatrix4fv(glGetUniformLocation(shader.getHandle(), "bones"), MAX_BONES, GL_FALSE, glm::value_ptr(_finalTransformation[0]));
         _meshes[i]->draw(shader);
     }
 }
@@ -177,7 +180,7 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
 std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
 {
     
-    std::cout << "# vertices in mesh: " << mesh->mNumVertices << std::endl;
+//    std::cout << "# vertices in mesh: " << mesh->mNumVertices << std::endl;
     
     // Data to fill
     std::vector<BoneMesh::Vertex> cpuVertexArray;
@@ -213,20 +216,20 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
         cpuVertexArray.push_back(vertex);
     }
     
-    cout << "# bones in mesh: " << mesh->mNumBones << endl;
+//    cout << "# bones in mesh: " << mesh->mNumBones << endl;
     for (uint i = 0 ; i < mesh->mNumBones ; i++) {
         int boneIndex = 0;
         std::string boneName(mesh->mBones[i]->mName.data);
         
         if (_boneMapping.find(boneName) == _boneMapping.end()) {
-            //std::cout << _numBones << std::endl;
+//            std::cout << _numBones << std::endl;
             boneIndex = _numBones;
             _boneMapping[boneName] = boneIndex;
             
             _boneOffset[boneIndex] = aiMatrix4x4ToGlm(&mesh->mBones[i]->mOffsetMatrix);
             _finalTransformation[boneIndex] = glm::mat4(1.0);
             
-            //std::cout << glm::to_string(_boneOffset[boneIndex]) << std::endl;
+//            std::cout << glm::to_string(_boneOffset[boneIndex]) << std::endl;
             
             _numBones++;
         }
