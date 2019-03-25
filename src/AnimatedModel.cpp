@@ -88,6 +88,8 @@ void AnimatedModel::importMesh(const std::string &filename, int &numIndices, con
     scaleMat[1][1] = scale;
     scaleMat[2][2] = scale;
     
+    printf("%d\n", scene->HasAnimations());
+    
     _globalInverseTransform = glm::inverse(aiMatrix4x4ToGlm(&scene->mRootNode->mTransformation));
     this->processNode(scene->mRootNode, scene, scaleMat);
 }
