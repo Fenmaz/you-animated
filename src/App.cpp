@@ -120,7 +120,6 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     
     // Draw the model
     _modelMesh->draw(_shader);
-    
 }
 
 void App::reloadShaders(){

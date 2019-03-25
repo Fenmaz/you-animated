@@ -40,7 +40,7 @@ class BoneMesh : public std::enable_shared_from_this<BoneMesh>
 {
 public:
     
-    #define NUM_BONES_PER_VERTEX 4
+    #define NUM_BONES_PER_VERTEX 8
     
     struct Vertex {        
         glm::vec3 position;
