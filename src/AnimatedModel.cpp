@@ -88,7 +88,7 @@ void AnimatedModel::importMesh(const std::string &filename, int &numIndices, con
     scaleMat[1][1] = scale;
     scaleMat[2][2] = scale;
     
-    printf("%d\n", scene->HasAnimations());
+    printf("aiScence has animations: %d\n", scene->HasAnimations());
     
     _globalInverseTransform = glm::inverse(aiMatrix4x4ToGlm(&scene->mRootNode->mTransformation));
     this->processNode(scene->mRootNode, scene, scaleMat);
@@ -182,7 +182,7 @@ void AnimatedModel::ReadNodeHeirarchy(float AnimationTime, aiNode* node, const a
 std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene* scene, const glm::mat4 scaleMat)
 {
     
-//    std::cout << "# vertices in mesh: " << mesh->mNumVertices << std::endl;
+    std::cout << "# vertices in mesh: " << mesh->mNumVertices << std::endl;
     
     // Data to fill
     std::vector<BoneMesh::Vertex> cpuVertexArray;
@@ -218,7 +218,7 @@ std::shared_ptr<BoneMesh> AnimatedModel::processMesh(aiMesh* mesh, const aiScene
         cpuVertexArray.push_back(vertex);
     }
     
-//    cout << "# bones in mesh: " << mesh->mNumBones << endl;
+    cout << "# bones in mesh: " << mesh->mNumBones << endl;
     for (uint i = 0 ; i < mesh->mNumBones ; i++) {
         int boneIndex = 0;
         std::string boneName(mesh->mBones[i]->mName.data);
