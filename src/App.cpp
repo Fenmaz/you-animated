@@ -80,7 +80,7 @@ void App::onRenderGraphicsContext(const VRGraphicsState &renderState){
         reloadShaders();
         
         //import a new model to use in the program
-        _modelMesh.reset(new AnimatedModel("library_animation_clips.dae", 1.0, vec4(1.0)));
+        _modelMesh.reset(new AnimatedModel("boblampclean.md5mesh", 1.0, vec4(1.0)));
     }
 }
 
@@ -92,10 +92,10 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     
     // Setup the camera with a good initial position and view direction to see the model
-    glm::vec3 eye_world = glm::vec3(-20, 10, 10);
-    glm::vec3 center (0, 0, 2);
+    glm::vec3 eye_world = glm::vec3(0, -150, 50);
+    glm::vec3 center (0, 0, 30);
     
-    glm::mat4 view = glm::lookAt(eye_world, center, glm::vec3(0, 1, 0));
+    glm::mat4 view = glm::lookAt(eye_world, center, glm::vec3(0, 0, 1));
     
     GLfloat windowHeight = renderState.index().getValue("FramebufferHeight");
     GLfloat windowWidth = renderState.index().getValue("FramebufferWidth");

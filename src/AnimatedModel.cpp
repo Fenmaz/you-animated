@@ -74,7 +74,7 @@ void AnimatedModel::importMesh(const std::string &filename, int &numIndices, con
         _importer.reset(new Assimp::Importer());
     }
 
-    scene = _importer->ReadFile(filename, aiProcess_Triangulate);
+    scene = _importer->ReadFile(filename, aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FlipUVs);
     
     // If the import failed, report it
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
