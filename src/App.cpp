@@ -92,8 +92,8 @@ void App::onRenderGraphicsScene(const VRGraphicsState &renderState){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     
     // Setup the camera with a good initial position and view direction to see the model
-    glm::vec3 eye_world = glm::vec3(20, 12, 5);
-    glm::vec3 center (0, 0, 0);
+    glm::vec3 eye_world = glm::vec3(-20, 10, 10);
+    glm::vec3 center (0, 0, 2);
     
     glm::mat4 view = glm::lookAt(eye_world, center, glm::vec3(0, 1, 0));
     
